@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="~/images/logo_2020.jpg" />
+    <title>FIN Plus-Privacy Policy</title>
+    <link href="~/css/Privacy-Policy/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link href="~/css/cookie.css" rel="stylesheet">
+    <script src="~/css/Privacy-Policy/jquery.min.js"></script>
+    <script src="~/css/Privacy-Policy/bootstrap.min.js"></script>
+</head>
+<body style="padding:10px;">
+    @RenderBody()
+    @Html.Partial("~/Views/Register/Partial_Cookies.cshtml")
+    <script src="@Url.Content("~/Scripts/pages/CookieClient.js?ver=")@DateTime.Now.Ticks.ToString()" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            CookieClient.init();
+        });
+    </script>
+</body>
+</html>

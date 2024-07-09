@@ -1,0 +1,764 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="WisePayModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tm_Company">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="CompanyID" Type="varchar" MaxLength="50" />
+          <Property Name="CompanyName" Type="nvarchar" MaxLength="500" />
+          <Property Name="OmisePublicKey" Type="varchar" MaxLength="100" />
+          <Property Name="OmiseSecurityKey" Type="varchar" MaxLength="100" />
+          <Property Name="FlagActive" Type="bit" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="CreateBy" Type="int" />
+          <Property Name="UpdateDate" Type="datetime" />
+          <Property Name="UpdateBy" Type="int" />
+        </EntityType>
+        <EntityType Name="tm_Project">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CompanyID" Type="int" />
+          <Property Name="BUID" Type="int" />
+          <Property Name="ProjectCode" Type="varchar" MaxLength="20" />
+          <Property Name="ProjectNameTH" Type="nvarchar" MaxLength="2000" />
+          <Property Name="ProjectNameEN" Type="varchar" MaxLength="2000" />
+          <Property Name="Location" Type="nvarchar" MaxLength="1000" />
+          <Property Name="Vocation" Type="nvarchar" MaxLength="2000" />
+          <Property Name="LineOrder" Type="int" />
+          <Property Name="FlagActive" Type="bit" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="CreateBy" Type="uniqueidentifier" />
+          <Property Name="UpdateDate" Type="datetime" />
+          <Property Name="UpdateBy" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="tr_PaymentGateway">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompanyID" Type="int" />
+          <Property Name="BankID" Type="int" />
+          <Property Name="PublicKey" Type="varchar" MaxLength="200" />
+          <Property Name="SecretKey" Type="varchar" MaxLength="200" />
+          <Property Name="FlagActive" Type="bit" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="CreateBy" Type="uniqueidentifier" />
+          <Property Name="UpdateDate" Type="datetime" />
+          <Property Name="UpdateBy" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="ts_Order">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ApplicationID" Type="int" />
+          <Property Name="ProjectID" Type="uniqueidentifier" />
+          <Property Name="OrderNumber" Type="varchar" MaxLength="50" />
+          <Property Name="OrderDate" Type="datetime" />
+          <Property Name="ExpireDate" Type="datetime" />
+          <Property Name="OrderStatusID" Type="int" />
+          <Property Name="CustomerFirstName" Type="nvarchar" MaxLength="500" />
+          <Property Name="CustomerLastName" Type="nvarchar" MaxLength="500" />
+          <Property Name="CustomerEmail" Type="varchar" MaxLength="100" />
+          <Property Name="CustomerMobile" Type="varchar" MaxLength="100" />
+          <Property Name="CustomerAddress" Type="nvarchar(max)" />
+          <Property Name="SaleReferenceEmail" Type="nvarchar" MaxLength="1000" />
+          <Property Name="TotalPrice" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Discount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="NetPrice" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="FlagActive" Type="bit" />
+          <Property Name="FlagAccept" Type="bit" />
+          <Property Name="IsSettled" Type="bit" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="CreateBy" Type="varchar" MaxLength="200" />
+          <Property Name="UpdateDate" Type="datetime" />
+          <Property Name="UpdateBy" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="ts_OrderChagre">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="OrderPaymentMethodID" Type="uniqueidentifier" />
+          <Property Name="object" Type="varchar" MaxLength="50" />
+          <Property Name="amount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="currency" Type="varchar" MaxLength="50" />
+          <Property Name="transaction_state" Type="varchar" MaxLength="50" />
+          <Property Name="status" Type="varchar" MaxLength="50" />
+          <Property Name="reference_order" Type="varchar" MaxLength="50" />
+          <Property Name="description" Type="varchar" MaxLength="500" />
+          <Property Name="redirect_url" Type="varchar(max)" />
+          <Property Name="approval_code" Type="varchar" MaxLength="20" />
+          <Property Name="ref_1" Type="varchar" MaxLength="200" />
+          <Property Name="ref_2" Type="varchar" MaxLength="200" />
+          <Property Name="ref_3" Type="varchar" MaxLength="200" />
+          <Property Name="failure_code" Type="varchar" MaxLength="256" />
+          <Property Name="failure_message" Type="varchar" MaxLength="256" />
+          <Property Name="source_id" Type="varchar" MaxLength="50" />
+          <Property Name="source_object" Type="varchar" MaxLength="50" />
+          <Property Name="source_brand" Type="varchar" MaxLength="50" />
+          <Property Name="source_issuer_bank" Type="varchar" MaxLength="200" />
+          <Property Name="source_card_masking" Type="varchar" MaxLength="50" />
+          <Property Name="created" Type="varchar" MaxLength="50" />
+          <Property Name="IsWebHookUpdate" Type="bit" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="CreateBy" Type="varchar" MaxLength="200" />
+          <Property Name="UpdateDate" Type="datetime" />
+          <Property Name="UpdateBy" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="ts_OrderPayment">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="OrderID" Type="uniqueidentifier" />
+          <Property Name="OrderPaymentMethodID" Type="uniqueidentifier" />
+          <Property Name="OrderChargeID" Type="varchar" MaxLength="200" />
+          <Property Name="PaymentNo" Type="varchar" MaxLength="50" />
+          <Property Name="PaymentDate" Type="datetime" />
+          <Property Name="IsWebHookUpdate" Type="bit" />
+          <Property Name="FlagActive" Type="bit" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="CreateBy" Type="varchar" MaxLength="200" />
+          <Property Name="UpdateDate" Type="datetime" />
+          <Property Name="UpdateBy" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="ts_OrderPaymentMethod">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="OrderID" Type="uniqueidentifier" />
+          <Property Name="BankID" Type="int" />
+          <Property Name="PaymentMethodID" Type="int" />
+          <Property Name="PaymentTypeID" Type="int" />
+          <Property Name="MethodID" Type="int" />
+          <Property Name="FlagActive" Type="bit" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="CreateBy" Type="varchar" MaxLength="200" />
+          <Property Name="UpdateDate" Type="datetime" />
+          <Property Name="UpdateBy" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <Association Name="FK_tm_Project_tm_Company">
+          <End Role="tm_Company" Type="Self.tm_Company" Multiplicity="0..1" />
+          <End Role="tm_Project" Type="Self.tm_Project" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tm_Company">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tm_Project">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tr_PaymentGateway_tm_Company">
+          <End Role="tm_Company" Type="Self.tm_Company" Multiplicity="0..1" />
+          <End Role="tr_PaymentGateway" Type="Self.tr_PaymentGateway" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tm_Company">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tr_PaymentGateway">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ts_Order_Payment_ts_Order">
+          <End Role="ts_Order" Type="Self.ts_Order" Multiplicity="0..1" />
+          <End Role="ts_OrderPayment" Type="Self.ts_OrderPayment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ts_Order">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ts_OrderPayment">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ts_Order_tm_Project">
+          <End Role="tm_Project" Type="Self.tm_Project" Multiplicity="0..1" />
+          <End Role="ts_Order" Type="Self.ts_Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tm_Project">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ts_Order">
+              <PropertyRef Name="ProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ts_OrderChagre_ts_OrderPaymentMethod">
+          <End Role="ts_OrderPaymentMethod" Type="Self.ts_OrderPaymentMethod" Multiplicity="0..1" />
+          <End Role="ts_OrderChagre" Type="Self.ts_OrderChagre" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ts_OrderPaymentMethod">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ts_OrderChagre">
+              <PropertyRef Name="OrderPaymentMethodID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ts_OrderPayment_ts_OrderChagre">
+          <End Role="ts_OrderChagre" Type="Self.ts_OrderChagre" Multiplicity="0..1" />
+          <End Role="ts_OrderPayment" Type="Self.ts_OrderPayment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ts_OrderChagre">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ts_OrderPayment">
+              <PropertyRef Name="OrderChargeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ts_OrderPayment_ts_OrderPaymentMethod">
+          <End Role="ts_OrderPaymentMethod" Type="Self.ts_OrderPaymentMethod" Multiplicity="0..1" />
+          <End Role="ts_OrderPayment" Type="Self.ts_OrderPayment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ts_OrderPaymentMethod">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ts_OrderPayment">
+              <PropertyRef Name="OrderPaymentMethodID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ts_OrderPaymentMethod_ts_Order">
+          <End Role="ts_Order" Type="Self.ts_Order" Multiplicity="0..1" />
+          <End Role="ts_OrderPaymentMethod" Type="Self.ts_OrderPaymentMethod" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ts_Order">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ts_OrderPaymentMethod">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="WisePayModelStoreContainer">
+          <EntitySet Name="tm_Company" EntityType="Self.tm_Company" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tm_Project" EntityType="Self.tm_Project" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tr_PaymentGateway" EntityType="Self.tr_PaymentGateway" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ts_Order" EntityType="Self.ts_Order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ts_OrderChagre" EntityType="Self.ts_OrderChagre" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ts_OrderPayment" EntityType="Self.ts_OrderPayment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ts_OrderPaymentMethod" EntityType="Self.ts_OrderPaymentMethod" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_tm_Project_tm_Company" Association="Self.FK_tm_Project_tm_Company">
+            <End Role="tm_Company" EntitySet="tm_Company" />
+            <End Role="tm_Project" EntitySet="tm_Project" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tr_PaymentGateway_tm_Company" Association="Self.FK_tr_PaymentGateway_tm_Company">
+            <End Role="tm_Company" EntitySet="tm_Company" />
+            <End Role="tr_PaymentGateway" EntitySet="tr_PaymentGateway" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ts_Order_Payment_ts_Order" Association="Self.FK_ts_Order_Payment_ts_Order">
+            <End Role="ts_Order" EntitySet="ts_Order" />
+            <End Role="ts_OrderPayment" EntitySet="ts_OrderPayment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ts_Order_tm_Project" Association="Self.FK_ts_Order_tm_Project">
+            <End Role="tm_Project" EntitySet="tm_Project" />
+            <End Role="ts_Order" EntitySet="ts_Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ts_OrderChagre_ts_OrderPaymentMethod" Association="Self.FK_ts_OrderChagre_ts_OrderPaymentMethod">
+            <End Role="ts_OrderPaymentMethod" EntitySet="ts_OrderPaymentMethod" />
+            <End Role="ts_OrderChagre" EntitySet="ts_OrderChagre" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ts_OrderPayment_ts_OrderChagre" Association="Self.FK_ts_OrderPayment_ts_OrderChagre">
+            <End Role="ts_OrderChagre" EntitySet="ts_OrderChagre" />
+            <End Role="ts_OrderPayment" EntitySet="ts_OrderPayment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ts_OrderPayment_ts_OrderPaymentMethod" Association="Self.FK_ts_OrderPayment_ts_OrderPaymentMethod">
+            <End Role="ts_OrderPaymentMethod" EntitySet="ts_OrderPaymentMethod" />
+            <End Role="ts_OrderPayment" EntitySet="ts_OrderPayment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ts_OrderPaymentMethod_ts_Order" Association="Self.FK_ts_OrderPaymentMethod_ts_Order">
+            <End Role="ts_Order" EntitySet="ts_Order" />
+            <End Role="ts_OrderPaymentMethod" EntitySet="ts_OrderPaymentMethod" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="WisePayModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ts_OrderChagre">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OrderPaymentMethodID" Type="Guid" />
+          <Property Name="object" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="amount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="currency" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="transaction_state" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="reference_order" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="redirect_url" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="approval_code" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ref_1" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ref_2" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ref_3" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="failure_code" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="failure_message" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="source_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="source_object" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="source_brand" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="source_issuer_bank" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="source_card_masking" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="created" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsWebHookUpdate" Type="Boolean" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="CreateBy" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdateBy" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ts_OrderPayment" Relationship="Self.FK_ts_OrderPayment_ts_OrderChagre" FromRole="ts_OrderChagre" ToRole="ts_OrderPayment" />
+          <NavigationProperty Name="ts_OrderPaymentMethod" Relationship="WisePayModel.FK_ts_OrderChagre_ts_OrderPaymentMethod" FromRole="ts_OrderChagre" ToRole="ts_OrderPaymentMethod" />
+        </EntityType>
+        <EntityType Name="ts_OrderPayment">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="OrderID" Type="Guid" />
+          <Property Name="OrderPaymentMethodID" Type="Guid" />
+          <Property Name="OrderChargeID" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="PaymentNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PaymentDate" Type="DateTime" Precision="3" />
+          <Property Name="IsWebHookUpdate" Type="Boolean" />
+          <Property Name="FlagActive" Type="Boolean" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="CreateBy" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdateBy" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ts_OrderChagre" Relationship="Self.FK_ts_OrderPayment_ts_OrderChagre" FromRole="ts_OrderPayment" ToRole="ts_OrderChagre" />
+          <NavigationProperty Name="ts_Order" Relationship="WisePayModel.FK_ts_Order_Payment_ts_Order" FromRole="ts_OrderPayment" ToRole="ts_Order" />
+          <NavigationProperty Name="ts_OrderPaymentMethod" Relationship="WisePayModel.FK_ts_OrderPayment_ts_OrderPaymentMethod" FromRole="ts_OrderPayment" ToRole="ts_OrderPaymentMethod" />
+        </EntityType>
+        <Association Name="FK_ts_OrderPayment_ts_OrderChagre">
+          <End Role="ts_OrderChagre" Type="Self.ts_OrderChagre" Multiplicity="0..1" />
+          <End Role="ts_OrderPayment" Type="Self.ts_OrderPayment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ts_OrderChagre">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ts_OrderPayment">
+              <PropertyRef Name="OrderChargeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="WisePayEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ts_OrderChagre" EntityType="Self.ts_OrderChagre" />
+          <EntitySet Name="ts_OrderPayment" EntityType="Self.ts_OrderPayment" />
+          <AssociationSet Name="FK_ts_OrderPayment_ts_OrderChagre" Association="Self.FK_ts_OrderPayment_ts_OrderChagre">
+            <End Role="ts_OrderChagre" EntitySet="ts_OrderChagre" />
+            <End Role="ts_OrderPayment" EntitySet="ts_OrderPayment" />
+          </AssociationSet>
+          <EntitySet Name="ts_Order" EntityType="WisePayModel.ts_Order" />
+          <AssociationSet Name="FK_ts_Order_Payment_ts_Order" Association="WisePayModel.FK_ts_Order_Payment_ts_Order">
+            <End Role="ts_Order" EntitySet="ts_Order" />
+            <End Role="ts_OrderPayment" EntitySet="ts_OrderPayment" />
+          </AssociationSet>
+          <EntitySet Name="ts_OrderPaymentMethod" EntityType="WisePayModel.ts_OrderPaymentMethod" />
+          <AssociationSet Name="FK_ts_OrderPaymentMethod_ts_Order" Association="WisePayModel.FK_ts_OrderPaymentMethod_ts_Order">
+            <End Role="ts_Order" EntitySet="ts_Order" />
+            <End Role="ts_OrderPaymentMethod" EntitySet="ts_OrderPaymentMethod" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ts_OrderChagre_ts_OrderPaymentMethod" Association="WisePayModel.FK_ts_OrderChagre_ts_OrderPaymentMethod">
+            <End Role="ts_OrderPaymentMethod" EntitySet="ts_OrderPaymentMethod" />
+            <End Role="ts_OrderChagre" EntitySet="ts_OrderChagre" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ts_OrderPayment_ts_OrderPaymentMethod" Association="WisePayModel.FK_ts_OrderPayment_ts_OrderPaymentMethod">
+            <End Role="ts_OrderPaymentMethod" EntitySet="ts_OrderPaymentMethod" />
+            <End Role="ts_OrderPayment" EntitySet="ts_OrderPayment" />
+          </AssociationSet>
+          <EntitySet Name="tm_Company" EntityType="WisePayModel.tm_Company" />
+          <EntitySet Name="tm_Project" EntityType="WisePayModel.tm_Project" />
+          <AssociationSet Name="FK_tm_Project_tm_Company" Association="WisePayModel.FK_tm_Project_tm_Company">
+            <End Role="tm_Company" EntitySet="tm_Company" />
+            <End Role="tm_Project" EntitySet="tm_Project" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ts_Order_tm_Project" Association="WisePayModel.FK_ts_Order_tm_Project">
+            <End Role="tm_Project" EntitySet="tm_Project" />
+            <End Role="ts_Order" EntitySet="ts_Order" />
+          </AssociationSet>
+          <EntitySet Name="tr_PaymentGateway" EntityType="WisePayModel.tr_PaymentGateway" />
+          <AssociationSet Name="FK_tr_PaymentGateway_tm_Company" Association="WisePayModel.FK_tr_PaymentGateway_tm_Company">
+            <End Role="tm_Company" EntitySet="tm_Company" />
+            <End Role="tr_PaymentGateway" EntitySet="tr_PaymentGateway" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="ts_Order">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="ApplicationID" Type="Int32" />
+          <Property Name="ProjectID" Type="Guid" />
+          <Property Name="OrderNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OrderDate" Type="DateTime" Precision="3" />
+          <Property Name="ExpireDate" Type="DateTime" Precision="3" />
+          <Property Name="OrderStatusID" Type="Int32" />
+          <Property Name="CustomerFirstName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerLastName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CustomerMobile" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CustomerAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SaleReferenceEmail" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="TotalPrice" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Discount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="NetPrice" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="FlagAccept" Type="Boolean" />
+          <Property Name="FlagActive" Type="Boolean" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="CreateBy" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdateBy" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ts_OrderPayment" Relationship="WisePayModel.FK_ts_Order_Payment_ts_Order" FromRole="ts_Order" ToRole="ts_OrderPayment" />
+          <NavigationProperty Name="ts_OrderPaymentMethod" Relationship="WisePayModel.FK_ts_OrderPaymentMethod_ts_Order" FromRole="ts_Order" ToRole="ts_OrderPaymentMethod" />
+          <NavigationProperty Name="tm_Project" Relationship="WisePayModel.FK_ts_Order_tm_Project" FromRole="ts_Order" ToRole="tm_Project" />
+          <Property Name="IsSettled" Type="Boolean" />
+        </EntityType>
+        <Association Name="FK_ts_Order_Payment_ts_Order">
+          <End Type="WisePayModel.ts_Order" Role="ts_Order" Multiplicity="0..1" />
+          <End Type="WisePayModel.ts_OrderPayment" Role="ts_OrderPayment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ts_Order">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ts_OrderPayment">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ts_OrderPaymentMethod">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="OrderID" Type="Guid" />
+          <Property Name="BankID" Type="Int32" />
+          <Property Name="PaymentMethodID" Type="Int32" />
+          <Property Name="PaymentTypeID" Type="Int32" />
+          <Property Name="MethodID" Type="Int32" />
+          <Property Name="FlagActive" Type="Boolean" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="CreateBy" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdateBy" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ts_Order" Relationship="WisePayModel.FK_ts_OrderPaymentMethod_ts_Order" FromRole="ts_OrderPaymentMethod" ToRole="ts_Order" />
+          <NavigationProperty Name="ts_OrderChagre" Relationship="WisePayModel.FK_ts_OrderChagre_ts_OrderPaymentMethod" FromRole="ts_OrderPaymentMethod" ToRole="ts_OrderChagre" />
+          <NavigationProperty Name="ts_OrderPayment" Relationship="WisePayModel.FK_ts_OrderPayment_ts_OrderPaymentMethod" FromRole="ts_OrderPaymentMethod" ToRole="ts_OrderPayment" />
+        </EntityType>
+        <Association Name="FK_ts_OrderPaymentMethod_ts_Order">
+          <End Type="WisePayModel.ts_Order" Role="ts_Order" Multiplicity="0..1" />
+          <End Type="WisePayModel.ts_OrderPaymentMethod" Role="ts_OrderPaymentMethod" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ts_Order">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ts_OrderPaymentMethod">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ts_OrderChagre_ts_OrderPaymentMethod">
+          <End Type="WisePayModel.ts_OrderPaymentMethod" Role="ts_OrderPaymentMethod" Multiplicity="0..1" />
+          <End Type="WisePayModel.ts_OrderChagre" Role="ts_OrderChagre" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ts_OrderPaymentMethod">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ts_OrderChagre">
+              <PropertyRef Name="OrderPaymentMethodID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ts_OrderPayment_ts_OrderPaymentMethod">
+          <End Type="WisePayModel.ts_OrderPaymentMethod" Role="ts_OrderPaymentMethod" Multiplicity="0..1" />
+          <End Type="WisePayModel.ts_OrderPayment" Role="ts_OrderPayment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ts_OrderPaymentMethod">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ts_OrderPayment">
+              <PropertyRef Name="OrderPaymentMethodID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tm_Company">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="CompanyID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CompanyName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="OmisePublicKey" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="OmiseSecurityKey" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FlagActive" Type="Boolean" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="CreateBy" Type="Int32" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdateBy" Type="Int32" />
+          <NavigationProperty Name="tm_Project" Relationship="WisePayModel.FK_tm_Project_tm_Company" FromRole="tm_Company" ToRole="tm_Project" />
+          <NavigationProperty Name="tr_PaymentGateway" Relationship="WisePayModel.FK_tr_PaymentGateway_tm_Company" FromRole="tm_Company" ToRole="tr_PaymentGateway" />
+        </EntityType>
+        <EntityType Name="tm_Project">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="CompanyID" Type="Int32" />
+          <Property Name="BUID" Type="Int32" />
+          <Property Name="ProjectCode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ProjectNameTH" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="ProjectNameEN" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="Location" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Vocation" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="LineOrder" Type="Int32" />
+          <Property Name="FlagActive" Type="Boolean" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="CreateBy" Type="Guid" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdateBy" Type="Guid" />
+          <NavigationProperty Name="tm_Company" Relationship="WisePayModel.FK_tm_Project_tm_Company" FromRole="tm_Project" ToRole="tm_Company" />
+          <NavigationProperty Name="ts_Order" Relationship="WisePayModel.FK_ts_Order_tm_Project" FromRole="tm_Project" ToRole="ts_Order" />
+        </EntityType>
+        <Association Name="FK_tm_Project_tm_Company">
+          <End Type="WisePayModel.tm_Company" Role="tm_Company" Multiplicity="0..1" />
+          <End Type="WisePayModel.tm_Project" Role="tm_Project" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tm_Company">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tm_Project">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ts_Order_tm_Project">
+          <End Type="WisePayModel.tm_Project" Role="tm_Project" Multiplicity="0..1" />
+          <End Type="WisePayModel.ts_Order" Role="ts_Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tm_Project">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ts_Order">
+              <PropertyRef Name="ProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tr_PaymentGateway">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyID" Type="Int32" />
+          <Property Name="BankID" Type="Int32" />
+          <Property Name="PublicKey" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="SecretKey" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="FlagActive" Type="Boolean" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="CreateBy" Type="Guid" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdateBy" Type="Guid" />
+          <NavigationProperty Name="tm_Company" Relationship="WisePayModel.FK_tr_PaymentGateway_tm_Company" FromRole="tr_PaymentGateway" ToRole="tm_Company" />
+        </EntityType>
+        <Association Name="FK_tr_PaymentGateway_tm_Company">
+          <End Type="WisePayModel.tm_Company" Role="tm_Company" Multiplicity="0..1" />
+          <End Type="WisePayModel.tr_PaymentGateway" Role="tr_PaymentGateway" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tm_Company">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tr_PaymentGateway">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="WisePayModelStoreContainer" CdmEntityContainer="WisePayEntities">
+          <EntitySetMapping Name="ts_OrderChagre">
+            <EntityTypeMapping TypeName="WisePayModel.ts_OrderChagre">
+              <MappingFragment StoreEntitySet="ts_OrderChagre">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="OrderPaymentMethodID" ColumnName="OrderPaymentMethodID" />
+                <ScalarProperty Name="object" ColumnName="object" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="currency" ColumnName="currency" />
+                <ScalarProperty Name="transaction_state" ColumnName="transaction_state" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="reference_order" ColumnName="reference_order" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="redirect_url" ColumnName="redirect_url" />
+                <ScalarProperty Name="approval_code" ColumnName="approval_code" />
+                <ScalarProperty Name="ref_1" ColumnName="ref_1" />
+                <ScalarProperty Name="ref_2" ColumnName="ref_2" />
+                <ScalarProperty Name="ref_3" ColumnName="ref_3" />
+                <ScalarProperty Name="failure_code" ColumnName="failure_code" />
+                <ScalarProperty Name="failure_message" ColumnName="failure_message" />
+                <ScalarProperty Name="source_id" ColumnName="source_id" />
+                <ScalarProperty Name="source_object" ColumnName="source_object" />
+                <ScalarProperty Name="source_brand" ColumnName="source_brand" />
+                <ScalarProperty Name="source_issuer_bank" ColumnName="source_issuer_bank" />
+                <ScalarProperty Name="source_card_masking" ColumnName="source_card_masking" />
+                <ScalarProperty Name="created" ColumnName="created" />
+                <ScalarProperty Name="IsWebHookUpdate" ColumnName="IsWebHookUpdate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ts_OrderPayment">
+            <EntityTypeMapping TypeName="WisePayModel.ts_OrderPayment">
+              <MappingFragment StoreEntitySet="ts_OrderPayment">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="OrderPaymentMethodID" ColumnName="OrderPaymentMethodID" />
+                <ScalarProperty Name="OrderChargeID" ColumnName="OrderChargeID" />
+                <ScalarProperty Name="PaymentNo" ColumnName="PaymentNo" />
+                <ScalarProperty Name="PaymentDate" ColumnName="PaymentDate" />
+                <ScalarProperty Name="IsWebHookUpdate" ColumnName="IsWebHookUpdate" />
+                <ScalarProperty Name="FlagActive" ColumnName="FlagActive" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ts_Order">
+            <EntityTypeMapping TypeName="WisePayModel.ts_Order">
+              <MappingFragment StoreEntitySet="ts_Order">
+                <ScalarProperty Name="IsSettled" ColumnName="IsSettled" />
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="FlagActive" ColumnName="FlagActive" />
+                <ScalarProperty Name="FlagAccept" ColumnName="FlagAccept" />
+                <ScalarProperty Name="NetPrice" ColumnName="NetPrice" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+                <ScalarProperty Name="SaleReferenceEmail" ColumnName="SaleReferenceEmail" />
+                <ScalarProperty Name="CustomerAddress" ColumnName="CustomerAddress" />
+                <ScalarProperty Name="CustomerMobile" ColumnName="CustomerMobile" />
+                <ScalarProperty Name="CustomerEmail" ColumnName="CustomerEmail" />
+                <ScalarProperty Name="CustomerLastName" ColumnName="CustomerLastName" />
+                <ScalarProperty Name="CustomerFirstName" ColumnName="CustomerFirstName" />
+                <ScalarProperty Name="OrderStatusID" ColumnName="OrderStatusID" />
+                <ScalarProperty Name="ExpireDate" ColumnName="ExpireDate" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="OrderNumber" ColumnName="OrderNumber" />
+                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+                <ScalarProperty Name="ApplicationID" ColumnName="ApplicationID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ts_OrderPaymentMethod">
+            <EntityTypeMapping TypeName="WisePayModel.ts_OrderPaymentMethod">
+              <MappingFragment StoreEntitySet="ts_OrderPaymentMethod">
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="FlagActive" ColumnName="FlagActive" />
+                <ScalarProperty Name="MethodID" ColumnName="MethodID" />
+                <ScalarProperty Name="PaymentTypeID" ColumnName="PaymentTypeID" />
+                <ScalarProperty Name="PaymentMethodID" ColumnName="PaymentMethodID" />
+                <ScalarProperty Name="BankID" ColumnName="BankID" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tm_Company">
+            <EntityTypeMapping TypeName="WisePayModel.tm_Company">
+              <MappingFragment StoreEntitySet="tm_Company">
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="FlagActive" ColumnName="FlagActive" />
+                <ScalarProperty Name="OmiseSecurityKey" ColumnName="OmiseSecurityKey" />
+                <ScalarProperty Name="OmisePublicKey" ColumnName="OmisePublicKey" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tm_Project">
+            <EntityTypeMapping TypeName="WisePayModel.tm_Project">
+              <MappingFragment StoreEntitySet="tm_Project">
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="FlagActive" ColumnName="FlagActive" />
+                <ScalarProperty Name="LineOrder" ColumnName="LineOrder" />
+                <ScalarProperty Name="Vocation" ColumnName="Vocation" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="ProjectNameEN" ColumnName="ProjectNameEN" />
+                <ScalarProperty Name="ProjectNameTH" ColumnName="ProjectNameTH" />
+                <ScalarProperty Name="ProjectCode" ColumnName="ProjectCode" />
+                <ScalarProperty Name="BUID" ColumnName="BUID" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tr_PaymentGateway">
+            <EntityTypeMapping TypeName="WisePayModel.tr_PaymentGateway">
+              <MappingFragment StoreEntitySet="tr_PaymentGateway">
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="FlagActive" ColumnName="FlagActive" />
+                <ScalarProperty Name="SecretKey" ColumnName="SecretKey" />
+                <ScalarProperty Name="PublicKey" ColumnName="PublicKey" />
+                <ScalarProperty Name="BankID" ColumnName="BankID" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

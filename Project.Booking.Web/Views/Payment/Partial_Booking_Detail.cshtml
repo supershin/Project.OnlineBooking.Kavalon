@@ -1,0 +1,52 @@
+﻿@model Project.Booking.Model.BookingModel
+@using Project.Booking.Extensions;
+@using Project.Booking.Constants;
+<h3 class="h-header">รายละเอียดการจอง</h3>
+<div class="row">
+    <div class="col-md-4 col-xs-6 l-header">โครงการ :</div>
+    <div class="col-md-8 col-xs-6 l-detail">@Model.ProjectName</div>
+</div>
+<div class="row">
+    <div class="col-md-4 col-xs-6 l-header">เลขที่ ยูนิต/ห้อง :</div>
+    <div class="col-md-8 col-xs-6 l-detail">@Model.UnitCode</div>
+</div>
+<div class="row">
+    <div class="col-md-4 col-xs-6 l-header">เลขที่จอง :</div>
+    <div class="col-md-8 col-xs-6 l-detail">@Model.BookingNumber</div>
+</div>
+<div class="row">
+    <div class="col-md-4 col-xs-6 l-header">วันที่จอง :</div>
+    <div class="col-md-8 col-xs-6 l-detail">@Model.BookingDate.AsDate().ToStringDateTime()</div>
+</div>
+<div class="row">
+    <div class="col-md-4 col-xs-6 l-header">โมเดล :</div>
+    <div class="col-md-8 col-xs-6 l-detail">@Model.ModelTypeName</div>
+</div>
+<div class="row">
+    <div class="col-md-4 col-xs-6 l-header">ประเภท :</div>
+    <div class="col-md-8 col-xs-6 l-detail">@Model.UnitTypeName</div>
+</div>
+<div class="row">
+    <div class="col-md-4 col-xs-6 l-header">ขนาด :</div>
+    <div class="col-md-8 col-xs-6 l-detail">@(Model.Area) ตร.ม.</div>
+</div>
+<div class="row">
+    <div class="col-md-4 col-xs-6 l-header">ราคาขาย :</div>
+    <div class="col-md-8 col-xs-6 l-detail">@(Model.SellingPrice.AsDecimal().ToStringNumber()) บาท</div>
+</div>
+<div class="row">
+    <div class="col-md-4 col-xs-6 l-header">ส่วนลด :</div>
+    <div class="col-md-8 col-xs-6 l-detail">@(Model.Discount.AsDecimal().ToStringNumber()) บาท</div>
+</div>
+<div class="row">
+    <div class="col-md-4 col-xs-6 l-header">ราคาสุทธิ :</div>
+    <div class="col-md-8 col-xs-6 l-detail">@(Model.SpecialPrice.AsDecimal().ToStringNumber()) บาท</div>
+</div>
+<div class="row">
+    <div class="col-md-4 col-xs-6 l-header" style="color:#cf8a0c;">เงินจอง :</div>
+    <div class="col-md-8 col-xs-6 l-detail" style="color:#cf8a0c;">@(Model.BookingAmount.AsDecimal().ToStringNumber()) บาท</div>
+</div>
+<div class="row">
+    <div class="col-md-4 col-xs-6 l-header" style="color:#cf8a0c;">สถานะ :</div>
+    <div class="col-md-8 col-xs-6 l-detail" style="color:#cf8a0c;">@Model.BookingStatus</div>
+</div>

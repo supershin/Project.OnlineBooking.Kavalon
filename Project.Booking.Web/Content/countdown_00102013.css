@@ -1,0 +1,32 @@
+﻿
+
+body {
+}
+
+.cowndown-menu {
+    /*display: flex;*/
+    justify-content:center;
+}
+
+    .cowndown-menu .btn {
+        color: #000000;
+        /*background: rgba(63, 55, 55, 1);*/
+        background-color:transparent;
+        padding: 10px 20px;
+        font-size: xx-large;
+        text-decoration: none;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin: 0px;
+    }
+
+        .cowndown-menu .btn:hover {
+            border: none;            
+            background: #333333;
+            color: #ffffff;
+        }
+        .cowndown-menu .btn:focus {
+            border: none;
+            background-color:#333333;
+            color: #ffffff;
+        }

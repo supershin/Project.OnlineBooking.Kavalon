@@ -1,0 +1,53 @@
+﻿@model Project.Booking.Model.BookingModel
+    @using Project.Booking.Constants;
+<div style="display:flex;justify-content:space-between">
+    <h3 class="h-header">รายละเอียดผู้จอง</h3>
+    @if (Model.BookingStatusID == Constant.BookingStatus.WAIT_PAYMENT
+        && Model.PaymentDueDate >= DateTime.Now)
+    {
+        <button id="btn-edit-customer-@Model.ID" onclick="Booking.SetEnabledCustomer('@Model.ID');" class="btn btn-warning btn-edit-customer btn-link"><i class="fa fa-pencil"></i> แก้ไขรายละเอียด</button>
+    }
+</div>
+<form id="frm-customer-edit-@Model.ID" method="post" autocomplete="off">
+    <div class="row">
+        <div class="col-md-5 col-xs-12 l-header">ชื่อ :</div>
+        <div class="col-md-7 col-xs-12 l-detail">
+            <span data-id="@Model.ID" class="sp-customer-enable">@Model.CustomerFirstName</span>
+            <input name="CustomerFirstName" data-id="@Model.ID" type="text"  class="customer-disabled form-control" value="@Model.CustomerFirstName" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-5 col-xs-12 l-header">นามสกุล :</div>
+        <div class="col-md-7 col-xs-12 l-detail">
+            <span data-id="@Model.ID" class="sp-customer-enable">@Model.CustomerLastName</span>
+            <input name="CustomerLastName" data-id="@Model.ID" type="text"  class="customer-disabled form-control" value="@Model.CustomerLastName" />
+        </div>
+    </div>
+    @*<div class="row">
+        <div class="col-md-5 col-xs-12 l-header">เลขที่บัตรประชาชน :</div>
+        <div class="col-md-7 col-xs-12 l-detail">
+            <span data-id="@Model.ID" class="sp-customer-enable">@Model.CustomerCitizenID</span>
+            <input name="CustomerCitizenID" data-id="@Model.ID" type="text" class="customer-disabled form-control" value="@Model.CustomerCitizenID" />
+        </div>
+    </div>*@
+    <div class="row">
+        <div class="col-md-5 col-xs-12 l-header">อีเมล :</div>
+        <div class="col-md-7 col-xs-12 l-detail">
+            <span data-id="@Model.ID" class="sp-customer-enable">@Model.CustomerEmail</span>
+            <input name="CustomerEmail" data-id="@Model.ID" type="text"  class="customer-disabled form-control" value="@Model.CustomerEmail" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-5 col-xs-12 l-header">เบอร์โทร :</div>
+        <div class="col-md-7 col-xs-12 l-detail">
+            <span data-id="@Model.ID" class="sp-customer-enable">@Model.CustomerMobile</span>
+            <input name="CustomerMobile" data-id="@Model.ID" type="text"  class="customer-disabled form-control" value="@Model.CustomerMobile" />
+        </div>
+    </div>
+    <div id="customer-action-@Model.ID" class="row" style="display:none;padding-top:10px">
+        <div class="col-md-12 col-xs-12 l-header text-center">
+            <button type="button" class="btn btn-xs btn-success" onclick="Booking.SaveBookingCustomer('@Model.ID')">บันทึก</button>
+            <button type="reset" class="btn btn-xs btn-danger" onclick="Booking.SetDisabledCustomer('@Model.ID')">ยกเลิก</button>
+        </div>
+    </div>
+</form>

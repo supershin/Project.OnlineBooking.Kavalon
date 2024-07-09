@@ -1,0 +1,121 @@
+﻿@model Project.Booking.Model.Unit
+@using Project.Booking.Extensions;
+@using Project.Booking.Constants;
+@{
+    var colorStatusStyle = (Model.UnitStatusID == Constant.UnitStatus.CLOSE) ? "background-color:rgb(155 151 144);"
+                            : "background-color:" + Model.UnitStatusColor + ";";
+}
+
+<link rel="stylesheet" href="@Url.Content("~/css/unit-selected.css?ver=")@DateTime.Now.Ticks.ToString()">
+
+<div class="container" style="margin-bottom:20px;background-color:white">
+    <div class="row">
+        <div class="col-sm-12" style="padding-bottom:0px;">
+            <h2><i class="fa fa-building-o"></i> Unit Detail</h2>
+        </div>
+    </div>
+    <div class="row" id="div-unit" style="padding-left: 15px;padding-right: 15px;">
+        <div class="col-sm-12 c-unit col-md-12">
+            <div class="col-sm-6 c-header">
+                @*<a href="~/@(Model.ModelTypePath)?ver=@(DateTime.Now.Ticks.ToString())" data-fancybox="images"><img src="~/@(Model.ModelTypePath)" /></a>*@
+                <a href="~/@(Model.ModelTypePath)?ver=@(DateTime.Now.Ticks.ToString())" data-fancybox="images"><img src="~/@(Model.ModelTypePath)?ver=@(DateTime.Now.Ticks.ToString())" /></a>
+            </div>
+            <div class="col-sm-6 c-detail">
+
+                <h3 class="h-header">Unit Detail</h3>
+                @*<div class="unit-random-view bg-danger"><span><img src="~/Images/sweet.png" width="20" /> @($"View : { Model.RandomView}")</span></div>*@
+                <div class="row">
+                    <div class="col-md-3 col-xs-6 l-header">Project :</div>
+                    <div class="col-md-9 col-xs-6 l-detail">@Model.ProjectName</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 col-xs-6 l-header">Unit Code :</div>
+                    <div class="col-md-9 col-xs-6 l-detail">@Model.UnitCode</div>
+                </div>
+                @if (Model.UnitStatusID == Constant.UnitStatus.BOOKING)
+                {
+                    <div class="row" style="margin-top:70px;margin-bottom:70px;">
+                        <div class="col-md-12 text-center"><h2 class="text-danger">*** Sold ***</h2></div>
+                    </div>
+                }
+                else
+                {
+                    <div class="row">
+                        <div class="col-md-3 col-xs-6 l-header">Model Type :</div>
+                        <div class="col-md-8 col-xs-6 l-detail">@Model.ModelTypeName</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 col-xs-6 l-header">Unit Type :</div>
+                        <div class="col-md-9 col-xs-6 l-detail">@Model.UnitTypeName</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 col-xs-6 l-header">Area :</div>
+                        <div class="col-md-9 col-xs-6 l-detail">@(Model.Area) Sq.m.</div>
+                    </div>
+                    if (Model.AreaIncrease.AsDecimal() > 0)
+                    {
+                        <div class="row">
+                            <div class="col-md-3 col-xs-6 l-header">Balcony Area :</div>
+                            <div class="col-md-9 col-xs-6 l-detail">@(Model.AreaIncrease) Sq.m.</div>
+                        </div>
+                    }
+                    <div class="row">
+                        <div class="col-md-3 col-xs-6 l-header">Selling Price :</div>
+                        @*<div class="col-md-9 col-xs-6 l-detail"><s>@(Model.SellingPrice.AsDecimal().ToStringNumber())฿</s></div>*@
+                        <div class="col-md-9 col-xs-6 l-detail">@(Model.SellingPrice.AsDecimal().ToStringNumber()) ฿</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 col-xs-6 l-header">Discount :</div>
+                        <div class="col-md-9 col-xs-6 l-detail">@(Model.Discount.AsDecimal().ToStringNumber()) ฿</div>
+                    </div>
+                    @*<div class="row">
+                <div class="col-md-3 col-xs-6 l-header" style="color:#cf8a0c;">Net Price :</div>
+                <div class="col-md-9 col-xs-6 l-detail" style="color:#cf8a0c;">@(Model.SpecialPrice.AsDecimal().ToStringNumber())฿</div>
+            </div>
+            <div class="row">
+                <div class="col-md-3 col-xs-6 l-header" style="color:#cf8a0c;">Book :</div>
+                <div class="col-md-9 col-xs-6 l-detail" style="color:navy;">@(Model.BookingAmount.AsDecimal().ToStringNumber())฿</div>
+            </div>
+            <div class="row">
+                <div class="col-md-3 col-xs-6 l-header" style="color:#cf8a0c;">Contract :</div>
+                <div class="col-md-9 col-xs-6 l-detail" style="color:navy;">@(Model.ContractAmount.AsDecimal().ToStringNumber())฿</div>
+            </div>*@
+                    if (Model.UnitStatusID != Constant.UnitStatus.AVAILABLE)
+                    {
+                        <div class="row">
+                            <div class="col-md-3 col-xs-6 l-header" style="color:#cf8a0c;">Status :</div>
+                            <div class="col-md-9 col-xs-6 l-header" style="color:#cf8a0c;">Booking</div>
+                            @*<div class="col-md-9 col-xs-6 l-detail l-unit-status btn btn-xs" style="@colorStatusStyle">@Model.UnitStatus</div>*@
+                        </div>
+                    }
+                    if (!string.IsNullOrEmpty(Model.SpecialPromotion))
+                    {
+                        <div class="row bg-special-promotion" style="margin-top:10px;">
+                            <label class="col-md-12 col-xs-12 l-header text-center" style="color:whitesmoke;line-height: 25px;margin-bottom:10px;">@Model.SpecialPromotion</label>
+                        </div>
+                    }
+                }
+                <div class="row text-center" style="padding-top:20px;">
+                    <div class="col-md-12">
+                        @if (Html.UserProfile().RegisterTypeID != Constant.Ext.REGISTER_TYPE_CUSTOMER
+                            || Html.UserProfile().RegisterTypeID != Constant.Ext.REGISTER_TYPE_SALEKIT)
+                        {
+                            if (Model.UnitStatusID == Constant.UnitStatus.AVAILABLE)
+                            {
+                                @*<button type="button" id="btn-book-unit" data-id="@Model.ID" class="btn btn-warning  btn-book" style="background-color:navy">จอง @(Model.BookingAmount.AsDecimal().ToStringNumber())฿</button>*@
+                                <button type="button" id="btn-book-unit" data-id="@Model.ID" class="btn btn-warning  btn-book" style="background-color:navy;width:130px;">Select</button>
+                            }
+                        }
+                        <button type="button" id="btn-book-back" class="btn btn-warning  btn-book" style="width: 130px; background-color: #b8860b94;">Back</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        Booking.initSaveBooking();
+    })
+</script>
+

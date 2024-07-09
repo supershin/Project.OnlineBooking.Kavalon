@@ -1,0 +1,40 @@
+﻿@model List<Project.Booking.Model.BookingModel>
+@using Project.Booking.Extensions;
+@using Project.Booking.Constants;
+<div class="row">
+    <div class="col-sm-12 text-center" style="padding-bottom:0px;">
+        <h2>Booking Detail</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12 text-center" style="padding-bottom:0px;">
+        <h3 style="color:navy;">@ViewBag.UnitBooked</h3>
+    </div>
+</div>
+@foreach (var book in Model)
+{
+    <div class="row div-booking-unit" id="div-booking-unit-@book.ID">
+        <div class="col-sm-12 c-unit col-md-12">
+            <div class="col-sm-4 c-header">
+                <a href="~/@(book.ModelTypePath)?ver=@(DateTime.Now.Ticks.ToString())" data-fancybox="images"><img src="~/@(book.ModelTypePath)" /></a>
+            </div>
+            <div class="col-sm-8">
+                <div class="col-sm-12 c-detail" id="div-booking-detail-@book.ID">
+                    @Html.Partial("Partial_Booking_Detail", book)
+                </div>
+                @*<div class="col-sm-6 c-detail" id="div-booking-customer-@book.ID" style="background-color:#f8f7f7;">
+                @Html.Partial("Partial_Booking_Customer", book)
+                @if (book.PaymentCredit != null)
+                {
+                    @Html.Partial("Partial_Booking_PaymentDetail", book.PaymentCredit)
+                }
+            </div>*@
+
+            </div>
+            <div class="col-sm-12 c-detail" id="div-booking-action-@book.ID" style="padding-top: 0px;">
+                @Html.Partial("Partial_Booking_Action", book)
+            </div>
+        </div>
+    </div>
+}
+

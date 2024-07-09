@@ -1,0 +1,39 @@
+﻿@model Project.Booking.Model.BookingModel
+@using Project.Booking.Constants;
+@using Project.Booking.Extensions;
+<div class="row" style="">
+    <div class="col-md-12 text-left">
+        @*@if (!string.IsNullOrEmpty(Model.SpecialPromotion))
+        {
+            <div class="row bg-special-promotion" style="margin-bottom:15px;">
+                <label class="col-md-12 col-xs-12 l-header text-center" style="color:whitesmoke;line-height: 25px;margin-bottom:10px;">@Model.SpecialPromotion</label>
+            </div>
+        }
+        @if (Model.BookingStatusID == Constant.BookingStatus.WAIT_PAYMENT)
+        {
+            if (Model.PaymentDueDate >= DateTime.Now)
+            {
+                <button type="button" data-id="@Model.ID" class="btn btn-payment">ชำระเงิน @(Model.BookingAmount.AsDecimal().ToStringNumber()) บาท</button>
+                <button type="button" data-id="@Model.ID" class="btn btn-cancel">ยกเลิกจอง</button>
+                <a href="@Url.Action("detail", "project", new { projectID = Model.ProjectID })" class="btn btn-back">กลับไปหน้าจอง</a>
+            }
+            else
+            {
+                <label class="col-md-12 col-xs-12 l-header text-center" style="color:#cf8a0c;line-height: 25px;">** ไม่สามรถชำระเงินได้ เนื่องจากเกินเวลาที่กำหนด **</label>
+                <div class="col-md-12 text-center">
+                    <a href="@Url.Action("detail", "project", new { projectID = Model.ProjectID })" class="btn btn-back">กลับไปหน้าจอง</a>
+                </div>
+            }
+        }
+        else
+        {
+            <a href="@Url.Action("detail","project",new { projectID = Model.ProjectID})" class="btn btn-back">กลับไปหน้าจอง</a>
+        }*@
+        <a href="@Url.Action("detail","project",new { projectID = Model.ProjectID})" class="btn btn-back">Back to book</a>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        Booking.init();
+    });
+</script>

@@ -1,0 +1,7 @@
+﻿@model List<Project.Booking.Model.ProjectBuildFloor>
+<select id="FloorID" class="form-control">
+    @foreach (var floor in Model)
+    {
+        <option value="@floor.FloorID">@(string.Format("{0} Fl.", floor.FloorName))</option>
+    }
+</select>

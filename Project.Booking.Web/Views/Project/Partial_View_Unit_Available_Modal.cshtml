@@ -1,0 +1,43 @@
+﻿@model List<Project.Booking.Model.Unit>
+@using Project.Booking.Extensions;
+<!-- Modal -->
+<div class="modal fade" id="modal-available" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title"><i style="color:dimgrey;" class="fa fa-heart-o "></i> Unit Available</h3>
+            </div>
+            <div class="modal-body" style="padding-top: 0px; max-height: calc(100vh - 212px); overflow-y: auto; ">
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table table-hover" width="100%" style="font-size:2rem;">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">Build</th>
+                                    <th class="text-center">Floor</th>
+                                    <th class="text-center">Available (units)</th>
+                                    <th class="text-center"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td class="text-center" >@item.BuildName</td>
+                                        <td class="text-center" >Fl. @item.FloorName</td>
+                                        <td class="text-center" >@item.CntUnitAvailable.ToStringNumber()</td>
+                                        <td class="text-center" ><button floor-id="@item.FloorID" build-id="@item.BuildID" data-action="view-unit" class="btn btn-xs btn-warning" style="font-size: 18px; background-color: #006600;">View</button></td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="btn-close" type="button" class="btn  btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,50 @@
+﻿@model List<Project.Booking.Model.ProjectTransPayment>
+@using Project.Booking.Constants;
+@using Project.Booking.Extensions;
+<div class="tile tile-rv">
+    <div class="col-md-12">
+        @if (Model.Count() > 0)
+        {
+            foreach (var item in Model)
+            {
+                var bgBadge = (item.StatusID == Constant.Ext.TRANSFER_PAYMENR_STATUS_APPROVE) ? "badge-success" :
+                    (item.StatusID == Constant.Ext.TRANSFER_PAYMENR_STATUS_VERIFY) ? "badge-warning" :
+                    (item.StatusID == Constant.Ext.TRANSFER_PAYMENR_STATUS_FAIL) ? "badge-danger" : "default";
+                <div class="row" style="margin-bottom:15px;">
+                    <div class="card card-1 card-rv" style="text-align: left;">
+                        <div class="row">
+                            <div class="col-md-8 sp-title">
+                                <span class="sp-payment"><a href="@($"{ViewBag.BaseUrl}{item.FilePath}")" style="font-size:18px;" target="_blank" title="@item.FileName">@item.FileName</a></span>
+                            </div>
+                            <div class="col-md-4 text-right text-xs-left">
+                                <label class="badge @(bgBadge)" style="width:65px;font-size:1.5rem;">@item.StatusName</label>
+                                @if (item.StatusID == Constant.Ext.TRANSFER_PAYMENR_STATUS_VERIFY)
+                                {
+                                    <label class="lb-remove badge bg-danger" data-id="@item.ID" style="cursor:pointer; font-size:1.5rem;border-radius:20px;"><i class="fa fa-remove"></i></label>
+                                }                                
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-8 col-xs-6">
+                                <h4 style="color: #a29e9e; padding-bottom: 0px; ">฿ @item.Amount.ToString("#,##0.00")</h4>
+                            </div>
+                            <div class="col-md-4 col-xs-6 text-right">
+                               <h4 style="color: #a29e9e; padding-bottom: 0px; "><i class="fa fa-calendar" style="font-size:2rem;"></i> @item.TransferDate.ToStringDate()</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="row">
+                <div class="card card-1 card-rv" style="text-align: center !important;">
+                    <h4>No attach.</h4>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+

@@ -1,0 +1,77 @@
+﻿@model Project.Booking.Model.ProjectDetailView
+@using Project.Booking.Constants;
+@using Project.Booking.Extensions;
+@{ 
+    var activeBook = (Html.UserProfile().Email == Html.UserProfile().Email) ? "active" : "";
+    var activeQuota = (Html.UserProfile().Email == Html.UserProfile().Email) ? "" : "active";
+}
+<link rel="stylesheet" href="@Url.Content("~/css/tab-project-detail.css?ver=")@DateTime.Now.Ticks.ToString()">
+
+<div class="container" style="margin-bottom:20px;" id="div-menu">
+    <div class="row">
+        @*@if (!((bool)ViewBag.isBestViewBrowser))
+            {
+                <div class="col-md-12">
+                    <div class="alert alert-warning text-center" style="margin-bottom:0px;">
+                        <strong>!Warning</strong> This system supports Chrome and Microsoft Edge
+                    </div>
+                </div>
+            }*@
+        <div class="col-md-12">
+            <div class="tab" role="tabpanel">
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" role="tablist">
+                    @if (activeBook == "active")
+                    {
+                        <li role="presentation" class="@(activeBook)"><a id="a-detail-booking" href="#detail-booking" style="padding-top:10px;font-size:3rem;padding-bottom:0px;color:navy;" role="tab" data-toggle="tab">Unit Booked</a></li>
+                    }
+                    <li role="presentation" class="@(activeQuota)"><a style="padding-top:10px;font-size:3rem;padding-bottom:0px;color:navy;" href="#detail-myquota" aria-controls="profile" role="tab" data-toggle="tab">My Quota</a></li>
+                </ul>
+                <!-- Tab panes -->
+                <div class="tab-content tabs">
+                    @if (activeBook == "active")
+                    {
+                        <div role="tabpanel" class="tab-pane fade in @(activeBook)" id="detail-booking">
+                            @if (Model.CountDownAllowBookDateSecond <= 0)
+                            {
+                                @Html.Partial("Partial_Detail_Booking_Search")
+                                <div class="row" id="div-floorplan">
+                                    @Html.Partial("Partial_Detail_Booking_FloorPlan")
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        This system supports Chrome and Microsoft Edge
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                                @Html.Partial("Partial_Detail_CountDown")
+                            }
+                        </div>
+                    }
+                    <div role="tabpanel" class="tab-pane fade in @(activeQuota)" id="detail-myquota">
+                        <div class="row">
+                            @Html.Partial("Partial_Detail_MyQuota_Wizard")
+                        </div>
+                        <div class="row" style="padding:10px;">
+                            <div class="col-md-4">
+                                @Html.Partial("Partial_Detail_MyQuota_Profile")
+                            </div>
+                            @if (Model.Project.TransferPaymentExpireDate >= DateTime.Now)
+                            {
+                                <div class="col-md-4">
+                                    @Html.Partial("Partial_Detail_MyQuota_Transfer")
+                                </div>
+                            }
+
+                            <div class="col-md-4" id="div-trans-resource">
+                                @Html.Partial("Partial_Detail_MyQuota_Transfer_List", Model.PaymentResources)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

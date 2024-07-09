@@ -1,0 +1,76 @@
+﻿@model Project.Booking.Model.UnitView
+
+@using Project.Booking.Constants;
+@using Project.Booking.Extensions;
+@{
+    var available = Constant.UnitStatus.AVAILABLE;
+}
+<div class="modal fade" id="modal-unit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content-matrix">
+            <div class="modal-header" style="display:block;">
+                <h4 class="modal-title " id="" style="float:left;">@Model.UnitCode</h4>
+                <button type="button" class="close"  data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="display:flex;">              
+                <div class="col-sm-12">
+                    <div class="row">
+                        <div class="col-md-4 col-xs-6 l-header">โครงการ :</div>
+                        <div class="col-md-8 col-xs-6 l-detail">@Model.ProjectName</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 col-xs-6 l-header">เลขที่ ยูนิต/ห้อง :</div>
+                        <div class="col-md-8 col-xs-6 l-detail">@Model.UnitCode</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 col-xs-6 l-header">โมเดล :</div>
+                        <div class="col-md-8 col-xs-6 l-detail">@Model.ModelTypeName</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 col-xs-6 l-header">ประเภท :</div>
+                        <div class="col-md-8 col-xs-6 l-detail">@Model.UnitTypeName</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 col-xs-6 l-header">ขนาด :</div>
+                        @if (Model.AreaIncrease.AsDecimal() <= 0)
+                        {
+                            <div class="col-md-8 col-xs-6 l-detail">@Model.Area ตร.ม.</div>
+                        }
+                        else
+                        {
+                            <div class="col-md-8 col-xs-6 l-detail">@($"{Model.Area} ({Model.AreaIncrease})") ตร.ม.</div>
+                        }
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 col-xs-6 l-header">ราคาขาย :</div>
+                        <div class="col-md-8 col-xs-6 l-detail">@Model.SellingPrice.ToStringNumber() บาท</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 col-xs-6 l-header">ส่วนลด :</div>
+                        <div class="col-md-8 col-xs-6 l-detail">@Model.Discount.ToStringNumber() บาท</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 col-xs-6 l-header">ราคาสุทธิ :</div>
+                        <div class="col-md-8 col-xs-6 l-detail">@Model.SpecialPrice.ToStringNumber() บาท</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 col-xs-6 l-header" style="color:#cf8a0c;">เงินจอง+สัญญา :</div>
+                        <div class="col-md-8 col-xs-6 l-detail" style="color:#cf8a0c;">@Model.BookingAmount.ToStringNumber() บาท</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 col-xs-6 l-header" style="color:red;">สถานะ :</div>
+                        <div class="col-md-8 col-xs-6 l-detail" style="color: red;">@Model.UnitStatusName</div>
+                    </div>
+                </div>
+            </div>
+            @*@if (Model.UnitStatusID == available)
+            {
+                <div class="modal-footer justify-content-center" style="text-align:center;">
+                    <button unit-id="@Model.ID" type="button" data-action="btn-save-unit-bookint" class=" btn btn-warning text-white">จอง</button>
+                </div>
+            }*@
+        </div>
+    </div>
+</div>

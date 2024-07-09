@@ -1,0 +1,44 @@
+﻿@model Project.Booking.Model.ProjectDetailView
+@{
+    var jssSerial = new System.Web.Script.Serialization.JavaScriptSerializer();
+    var annoJSON = jssSerial.Serialize(Model.UnitAnnotationList);
+    var floorPlanFilePath = (!string.IsNullOrEmpty(Model.FloorPlanFilePath)) ? Model.FloorPlanFilePath : "Resources/EmptyFloorPlan.jpg";
+
+}
+<link rel="stylesheet" href="@Url.Content("~/css/pinczoomh-floorplan.css?ver=")@DateTime.Now.Ticks.ToString()">
+
+
+<script src="~/Scripts/plugins/annotorious/annotorious.min.js" type="text/javascript"></script>
+
+
+<div class="col-lg-12 col-md-12 text-center col-xs-12">
+    <div id="zoom-holder" class="zoomHolder" style="min-height:230px;">
+        <div data-elem="pinchzoomer" id="div-pinch-zoom">
+            @*<img id="FloorPlanID" src="@(ViewBag.BaseUrl + floorPlanFilePath)?ver=@(DateTime.Now.Ticks.ToString())" style="">*@
+            <img id="FloorPlanID" src="@(ViewBag.BaseUrl + floorPlanFilePath)" style="">
+        </div>
+    </div>
+</div>
+<!--Pinch Zoom-->
+<script src="~/Scripts/plugins/PinchZoom/jquery.mousewheel.min.js"></script>
+<script src="~/Scripts/plugins/PinchZoom/hammer.min.js"></script>
+<script src="~/Scripts/plugins/PinchZoom/TweenMax.min.js"></script>
+<script src="~/Scripts/plugins/PinchZoom/pinchzoom.custom.js"></script>
+
+<script type="text/javascript">
+
+    var config = {
+        image: document.getElementById('FloorPlanID'),
+        readOnly: true,
+        headless: false
+    };
+    var anno = Annotorious.init(config);
+    var annotations = JSON.parse('@Html.Raw(annoJSON)');
+
+    anno.setAnnotations(annotations);
+
+    $(document).ready(e => {
+        ProjectDetail.initFloorPlan();
+    });
+
+</script>

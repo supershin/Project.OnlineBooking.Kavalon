@@ -1,0 +1,212 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{39B8DA1F-9BC2-477E-8249-5C4AD29BC19E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Project.Booking.Data</RootNamespace>
+    <AssemblyName>Project.Booking.Data</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Booking.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Booking.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Booking.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Booking.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Booking.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Booking.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="tm_Annotation.cs">
+      <DependentUpon>Booking.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tm_BookingStatus.cs">
+      <DependentUpon>Booking.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tm_Build.cs">
+      <DependentUpon>Booking.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tm_Company.cs">
+      <DependentUpon>Booking.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tm_Ext.cs">
+      <DependentUpon>Booking.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tm_ExtType.cs">
+      <DependentUpon>Booking.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tm_Floor.cs">
+      <DependentUpon>Booking.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tm_ModelType.cs">
+      <DependentUpon>Booking.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tm_OmiseChargeStatus.cs">
+      <DependentUpon>Booking.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tm_Project.cs">
+      <DependentUpon>Booking.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tm_ProjectConfig.cs">
+      <DependentUpon>Booking.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tm_Register.cs">
+      <DependentUpon>Booking.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tm_Resource.cs">
+      <DependentUpon>Booking.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tm_Unit.cs">
+      <DependentUpon>Booking.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tm_UnitStatus.cs">
+      <DependentUpon>Booking.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tm_UnitType.cs">
+      <DependentUpon>Booking.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tm_WebImage.cs">
+      <DependentUpon>Booking.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tr_Matrix_Config.cs">
+      <DependentUpon>Booking.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tr_ProjectBuild.cs">
+      <DependentUpon>Booking.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tr_ProjectBuildFloor.cs">
+      <DependentUpon>Booking.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tr_ProjectBuildGroup.cs">
+      <DependentUpon>Booking.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tr_ProjectGallery.cs">
+      <DependentUpon>Booking.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tr_ProjectGalleryResource.cs">
+      <DependentUpon>Booking.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tr_ProjectModelType.cs">
+      <DependentUpon>Booking.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tr_ProjectRegisterQuota.cs">
+      <DependentUpon>Booking.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tr_ProjectResource.cs">
+      <DependentUpon>Booking.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tr_ProjectSpecialPromotion.cs">
+      <DependentUpon>Booking.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tr_ProjectTransferPayment.cs">
+      <DependentUpon>Booking.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tr_UnitSpecialPromotion.cs">
+      <DependentUpon>Booking.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tr_UnitVIP.cs">
+      <DependentUpon>Booking.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ts_Booking.cs">
+      <DependentUpon>Booking.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ts_Booking_VIP.cs">
+      <DependentUpon>Booking.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ts_Payment.cs">
+      <DependentUpon>Booking.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ts_Payment_Credit.cs">
+      <DependentUpon>Booking.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ts_Unitbooking_History.cs">
+      <DependentUpon>Booking.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Booking.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Booking.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="Booking.edmx.diagram">
+      <DependentUpon>Booking.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Booking.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Booking.Context.cs</LastGenOutput>
+      <DependentUpon>Booking.edmx</DependentUpon>
+    </Content>
+    <Content Include="Booking.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Booking.edmx</DependentUpon>
+      <LastGenOutput>Booking.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

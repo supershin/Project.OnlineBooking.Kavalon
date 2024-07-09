@@ -1,0 +1,45 @@
+﻿
+@model List<Project.Booking.Model.BookingVIP>
+
+@{
+    ViewBag.Title = "Index";
+    ViewBag.Active = "booking_vip_sendmail";
+    Layout = "~/Views/Shared/_Layout_Project.cshtml";
+}
+
+<div class="container div-booking-list" style="margin-bottom:20px;background-color:white;">
+    @if (Model.Count() == 0)
+    {
+        <div class="row">
+            <div class="col-md-12 bg-success text-center">
+                <h2>Send mail success.</h2>
+            </div>
+        </div>
+    }
+    else
+    {
+        <table class="table" width="100%">
+            <thead>
+                <tr>
+                    <th>Project</th>
+                    <th>Unit</th>
+                    <th>Booking Number</th>
+                    <th>Email</th>
+                    <th>Message</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.ProjectName</td>
+                        <td>@item.UnitCode</td>
+                        <td>@item.BookingNumber</td>
+                        <td>@item.Email</td>
+                        <td>@item.Message</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>

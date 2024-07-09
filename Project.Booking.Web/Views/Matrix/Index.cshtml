@@ -1,0 +1,114 @@
+﻿@model Project.Booking.Model.MatrixView
+@using Project.Booking.Constants;
+@using Project.Booking.Extensions;
+@{
+    Layout = null;
+    var close = Constant.UnitStatus.CLOSE;
+    var available = Constant.UnitStatus.AVAILABLE;
+    var booking = Constant.UnitStatus.BOOKING;
+    var payment = Constant.UnitStatus.PAYMENT;
+    var contract = Constant.UnitStatus.CONTRACT;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="~/Images/logo_2020.jpg" type="image/x-icon" />
+    <!-- Bootstrap CSS -->
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    @*<link rel="stylesheet" href="~/template/css/bootstrap.min.css">*@
+    <!-- load mask -->
+    <link rel="stylesheet" href="~/Scripts/plugins/waitMe/waitMe.min.css" />
+    <!-- Notify -->
+    <link href="~/Scripts/plugins/jquery.growl/jquery.growl.css" rel="stylesheet" type="text/css" />
+
+    <link rel="stylesheet" href="~/Content/matrix/style.css?ver=@DateTime.Now.Ticks.ToString()" />
+    <title>Matrix</title>
+</head>
+<body>
+    <script>
+        var baseUrl = '@(ViewBag.baseUrl)';
+    </script>
+    <div class="outer">
+        <div class="project">
+            @Model.ProjectName
+        </div>
+        @foreach (var build in Model.BuildList)
+        {
+            var roomMax = build.RoomMax;
+            var floorMax = build.FloorMax;
+            <div class="inner">
+                <table class="display" border="0">
+                    @*<tr>
+                        <td colspan="@(build.RoomMax + 1)">
+                            <div class="build">
+                                @($"Build {build.BuildName}")
+                            </div>
+                        </td>
+                    </tr>*@
+                    @foreach (var rowNo in build.MatrixConfigs.Select(e => e.RowNo).Distinct())
+                    {
+                        <tr>
+                            @foreach (var config in build.MatrixConfigs.Where(e => e.RowNo == rowNo).OrderBy(e => e.LineOrder))
+                            {
+                                <td colspan="@config.ColSpan">
+                                    <div style="@config.Style">
+                                        @config.Text
+                                    </div>
+                                </td>
+                            }
+                        </tr>
+                    }
+                    @foreach (var floor in build.FloorList)
+                    {
+                        var floorName = (floor.FloorName == 13) ? "12A" : floor.FloorName.ToString();
+                        <tr>
+                            <td><div class="floor">@($"fl. {floorName}")</div></td>
+                            @foreach (var unit in floor.UnitList)
+                            {
+                                var color = unit.UnitStatusColor;
+                                if (unit.UnitStatusID == available)
+                                {
+                                    color = "white";
+                                }
+
+                                var classStatus = "";
+                                classStatus = (unit.ID == Guid.Empty || unit.UnitStatusID != available) ? "unit-empty" : "unit-item";
+                                <td>
+                                    <div id="@unit.ID" class="unit @(classStatus)" style="background-color:@(color);">
+                                        @(unit.Room.ToString("00"))
+                                        @*@(unit.UnitCode)*@
+                                    </div>
+                                </td>
+                            }
+                        </tr>
+                    }
+                </table>
+            </div>
+        }
+    </div>
+    <div id="div-unit-modal">
+
+    </div>
+    <!-- ALL JS FILES -->
+    <script src="~/template/js/all.js"></script>
+
+    <!-- load mask -->
+    <script type="text/javascript" src="~/scripts/plugins/waitMe/waitMe.min.js"></script>
+    <!-- Notify -->
+    <script src="~/Scripts/plugins/jquery.growl/jquery.growl.js" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/app.js?ver=")@DateTime.Now.Ticks.ToString()" type="text/javascript"></script>
+    <script src="~/Scripts/jquery.signalR-2.4.2.min.js"></script>
+    <script src='~/liveHub/js'></script>
+    <script src="@Url.Content("~/Scripts/pages/matrix.js?ver=")@DateTime.Now.Ticks.ToString()" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            matrix.initHub();
+            matrix.init();
+        });
+    </script>
+
+</body>
+</html>

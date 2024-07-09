@@ -1,0 +1,229 @@
+﻿@model Project.Booking.Model.BookingModel
+@using Project.Booking.Extensions;
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml">
+<head>
+
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <meta content="width=device-width" name="viewport" />
+    <meta content="IE=edge" http-equiv="X-UA-Compatible" />
+    <title></title>
+    <style type="text/css">
+        body {
+            margin: 0;
+            font-family: var(--bs-font-sans-serif);
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #212529;
+            -webkit-text-size-adjust: 100%;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .mb-3 {
+            margin-bottom: 1rem !important;
+        }
+
+        .mt-5 {
+            margin-top: 3rem !important;
+        }
+
+        .container, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
+            max-width: 1320px;
+        }
+
+        .container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
+            width: 100%;
+            /* padding-right: 0.5rem;
+            padding-left: 0.5rem;*/
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+        .justify-content-center {
+            justify-content: center !important;
+        }
+
+        .d-flex {
+            display: flex !important;
+        }
+
+        .flex-column {
+            flex-direction: column !important;
+        }
+
+        .font-weight-bold {
+            font-weight: 700 !important;
+        }
+
+        .small, small {
+            font-size: .875em;
+        }
+
+        .row {
+            --bs-gutter-x: 1.5rem;
+            --bs-gutter-y: 0;
+            display: flex;
+            flex: 1 0 100%;
+            flex-wrap: wrap;
+            margin-top: calc(var(--bs-gutter-y) * -1);
+            margin-right: calc(var(--bs-gutter-x)/ -2);
+            margin-left: calc(var(--bs-gutter-x)/ -2);
+        }
+
+        .col-md-10 {
+            flex: 0 0 auto;
+            width: 83.333333%;
+        }
+
+        .card {
+            position: relative;
+            flex-direction: column;
+            min-width: 0;
+            word-wrap: break-word;
+            background-color: #fff;
+            background-clip: border-box;
+            /*border: 1px solid rgba(0,0,0,.125);*/
+            border-radius: .25rem;
+            padding: 10px;
+        }
+
+        .p-2 {
+            padding: .5rem !important;
+        }
+
+        .flex-row {
+            flex-direction: row !important;
+        }
+
+        .card > hr {
+            margin-right: 0;
+            margin-left: 0;
+        }
+
+        hr:not([size]) {
+            height: 1px;
+        }
+
+        hr {
+            color: #0000004f;
+            margin-top: 5px;
+            margin-bottom: 5px background-color: currentColor;
+            opacity: .25;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .table {
+            --bs-table-bg: transparent;
+            --bs-table-accent-bg: transparent;
+            --bs-table-striped-color: #212529;
+            --bs-table-striped-bg: rgba(0, 0, 0, 0.05);
+            --bs-table-active-color: #212529;
+            --bs-table-active-bg: rgba(0, 0, 0, 0.1);
+            --bs-table-hover-color: #212529;
+            --bs-table-hover-bg: rgba(0, 0, 0, 0.075);
+            width: 100%;
+            margin-bottom: 1rem;
+            color: #212529;
+            vertical-align: top;
+            border-color: #dee2e6;
+        }
+
+            .table > tbody {
+                vertical-align: inherit;
+            }
+
+        tbody, td, tfoot, th, thead, tr {
+            border-color: inherit;
+            border-style: solid;
+            border-width: 0;
+        }
+
+        .add td {
+            color: #c5c4c4;
+            text-transform: uppercase;
+            font-size: 14px
+        }
+
+        .content {
+            font-size: 14px
+        }
+
+        .thankyou {
+            text-align: center;
+            color: navy !important;
+            font-size: 18px !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5 mb-3">
+
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-10">
+                <div class="card">
+                    <div class="table-responsive p-2">
+                        <table class="table table-borderless">
+                            <tbody>
+                                <tr class="content">
+                                    <td class="" style="font-size:14px;">
+                                        <table cellpadding="5" class="table table-borderless">
+                                            <tr>
+                                                <td align="center" colspan="2">
+                                                    <img src="@(Model.BaseUrl)images/TheTitle Heritage_Logo_Original.png" width="350" />
+                                                </td>
+                                            </tr>
+                                            <tr><td>Project :</td><td>@Model.ProjectName</td></tr>
+                                            <tr><td>Unit Code :</td><td>@Model.UnitCode</td></tr>
+                                            <tr><td>Booked Date :</td><td>@(Model.BookingDate.AsDate().ToStringDateTime()) (GMT+7)</td></tr>
+                                            <tr><td>Model :</td><td>@Model.ModelTypeName</td></tr>
+                                            <tr><td>Unit Type :</td><td>@Model.UnitTypeName</td></tr>
+                                            <tr><td>Area :</td><td>@(Model.Area) Sq.m.</td></tr>
+                                            @if (Model.AreaIncrease.AsDecimal() > 0)
+                                            {
+                                                <tr><td>Balcony Area :</td><td>@(Model.AreaIncrease) Sq.m.</td></tr>
+                                            }                                            
+                                            <tr><td>Selling Price :</td><td>@(Model.SellingPrice.ToStringNumber()) ฿</td></tr>
+                                            <tr><td>Discount :</td><td>@(Model.Discount.ToStringNumber()) ฿</td></tr>
+                                            <tr><td>Booked By :</td><td>@($"{Model.CustomerFirstName} {Model.CustomerLastName}")</td></tr>
+                                            <tr><td>Email :</td><td>@(Model.CustomerEmail)</td></tr>
+                                            <tr>
+                                                <td align="center" colspan="2">
+                                                    <img src="@($"{Model.BaseUrl}{Model.MasterPlanPath}")" style="max-width:100%" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td align="center" colspan="2">
+                                                    <img src="@($"{Model.BaseUrl}{Model.FloorPlanPath}")" style="max-width:100%" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td align="center" colspan="2">
+                                                    <img src="@($"{Model.BaseUrl}{Model.UnitPlanPath}")" style="max-width:100%" />
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    @*<hr>
+                        <div class="address p-2 ">
+                            <table class="table table-borderless">
+                                <tbody>
+                                    <tr class="add">
+                                        <td class="thankyou">Thank you for online booking</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>*@
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

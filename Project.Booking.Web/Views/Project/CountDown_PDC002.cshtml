@@ -1,0 +1,61 @@
+﻿@model Project.Booking.Model.ProjectDetailView
+@using Project.Booking.Extensions;
+@{
+    ViewBag.Title = "Count Down";
+    Layout = "~/Views/Shared/_Layout_Project.cshtml";
+}
+<link href="~/css/register.css?ver=@DateTime.Now.Ticks.ToString()" rel="stylesheet" />
+<link href="~/Content/countdown.css?ver=@DateTime.Now.Ticks.ToString()" rel="stylesheet" />
+<link href="~/Content/countdown_PDC002.css?ver=@DateTime.Now.Ticks.ToString()" rel="stylesheet" />
+
+@Html.Partial("Partial_Detail_Section", Model)
+<div id="container" class="container">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h2>หนึ่งเดียวที่ “บางแสน” เปิดมิติใหม่ ใกล้ยู เร็วๆ นี้</h2>
+        </div>
+    </div>
+    <div class="row" style="margin-bottom:40px;">
+        <div class="col-md-12 text-center">
+            <img src="~/Resources/PDC002/logo/comingsoon.png" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h2>เปิดจองครั้งแรก 26 ตุลาคม 2565 เวลา 10.00 น.</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div id="countdown">
+                <div id='tiles'></div>
+                <div class="labels">
+                    <li>Days</li>
+                    <li>Hours</li>
+                    <li>Mins</li>
+                    <li>Secs</li>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="margin-top:10px;">
+        <div class="cowndown-menu col-md-12 text-center">
+            <a href="~/Resources/PDC002/ASW-Kave-Universe_Map_Horizontal_edit.png" data-fancybox="map" data-caption="map" class="btn"><img src="~/Resources/PDC002/map.png" width="30" /> แผนที่</a>
+            <a href="https://lin.ee/YAs5eeY" class="btn"><img src="~/Resources/PDC002/line.png" width="30" /> สอบถามข้อมูลเพิ่มเติม</a>
+            @*<a href="" class="btn"><img src="~/Resources/PDC002/brochure.png" width="30" /> E-brochure</a>*@
+        </div>
+    </div>
+</div>
+@Html.Partial("Partial_CountDown_Modal")
+@section scripts{
+    <script>
+        @*let countDownDate = '@($"{ Model.Project.ProjectConfig.CountDownDate.AsDate().ToString("yyyy-MM-dd HH:mm:ss")} GMT+07:00")';*@
+        let leave = @(Model.Project.ProjectConfig.CountDownSecond);
+    </script>
+    <script src="@Url.Content("~/Scripts/pages/CountDown.js?ver=")@DateTime.Now.Ticks.ToString()" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            countdown_app.init();
+        });
+    </script>
+}

@@ -1,0 +1,42 @@
+﻿
+#cookie-accept-popup {
+    position: fixed;
+    bottom: 0px;
+    z-index: 99;
+    width: 100%;
+}
+
+    #cookie-accept-popup .inner {
+        background-color: white;
+        padding: 10px;
+    }
+
+        #cookie-accept-popup .inner p {
+            color: #333333;
+            margin-bottom: 0;
+            font-size: 16px;
+        }
+
+            #cookie-accept-popup .inner p a {
+                color: #333333;
+                text-decoration: underline;
+            }
+
+        #cookie-accept-popup .inner button {
+            font-size: 20px;
+            line-height: 1;
+            margin: 0 5px;
+            border-radius: 5px !important;
+            border: none;
+        }
+
+        #cookie-accept-popup .inner button {
+            font-size: 20px;
+            line-height: 1;
+            margin: 0 5px;
+            border-radius: 0;
+            border: none;
+        }
+
+
+

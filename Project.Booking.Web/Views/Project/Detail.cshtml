@@ -1,0 +1,51 @@
+﻿@model Project.Booking.Model.ProjectDetailView
+@{
+    ViewBag.Title = "Detail";
+    ViewBag.Active = "project";
+    Layout = "~/Views/Shared/_Layout_Project.cshtml";
+}
+<link href="~/css/gallery.css" rel="stylesheet" />
+<link href="~/Content/my-quota.css?ver=@DateTime.Now.Ticks.ToString()" rel="stylesheet" />
+
+@*@Html.Partial("Partial_Detail_Section", Model)*@
+
+@Html.Partial("Partial_Detail_Menu", Model)
+<div id="div-unit-selected">
+
+</div>
+@Html.Partial("Partial_Confirm_Booking_Modal")
+@Html.Partial("Partial_Confirm_Modal")
+@Html.Partial("Partial_Booking_Success")
+@Html.Partial("Partial_Booking_Quota_Error")
+@Html.Partial("Partial_Booking_Unit_Error")
+@Html.Partial("Partial_Introduction_Modal")
+<div id="partial-unit-available"></div>
+@section scripts{
+    <script>
+        @*let countDownDate = '@($"{ Model.Project.ProjectConfig.CountDownDate.AsDate().ToString("yyyy-MM-dd HH:mm:ss")} GMT+07:00")';*@
+        let leave = @(Model.CountDownAllowBookDateSecond);
+    </script>
+
+    <script src="~/Scripts/jquery.signalR-2.4.2.min.js"></script>
+    <script src='~/liveHub/js'></script>
+    @*<link href="~/Scripts/plugins/PgwSlideshow-master/pgwslideshow.min.css" rel="stylesheet" />
+        <script src="~/Scripts/plugins/PgwSlideshow-master/pgwslideshow.min.js"></script>*@
+    <script src="@Url.Content("~/Scripts/pages/ProjectDetail.js?ver=")@DateTime.Now.Ticks.ToString()" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/pages/Booking.js?ver=")@DateTime.Now.Ticks.ToString()" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/pages/myquota.js?ver=")@DateTime.Now.Ticks.ToString()" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/pages/CountDown.js?ver=")@DateTime.Now.Ticks.ToString()" type="text/javascript"></script>
+    <script type="text/javascript">
+        var projectID = '@ViewData["ProjectID"]';
+        $(document).ready(function () {
+            $('.carousel').carousel({ interval: false });
+            ProjectDetail.init();
+            ProjectDetail.initHub();
+            //ProjectDetail.initGallery();
+            myquota.init();
+            //$('.nav-tabs a[href="#detail-booking"]').tab('show');
+        });
+    </script>
+}
+
+
+

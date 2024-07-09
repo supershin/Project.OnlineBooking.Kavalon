@@ -1,0 +1,43 @@
+﻿@model Project.Booking.Model.CheckoutViewModel
+
+<form id="checkoutForm" method="POST" action="@Url.Action("checkout","payment")">
+    <input type="hidden" name="omiseToken">
+    <input type="hidden" name="BookingID" value="@Model.Booking.ID">
+    <input type="hidden" name="omiseSource">
+    <button type="submit" id="checkoutButton" class="btn btn-payment">ยอมรับเงื่อนไข</button>
+    <button type="button" class="btn autoClose btn-secondary" data-dismiss="modal">ปิด</button>
+</form>
+
+
+<script type="text/javascript">
+    OmiseCard.configure({
+        publicKey: "@Model.Company.OmisePublicKey"
+    });
+
+    var button = document.querySelector("#checkoutButton");
+    var form = document.querySelector("#checkoutForm");
+
+    button.addEventListener("click", (event) => {
+        event.preventDefault();
+        $(".autoClose").click();
+
+        OmiseCard.open({
+            //image: '@Url.Content(ViewBag.BaseUrl + "images/logo_2020.jpg")',
+            image: 'https://assetwise.co.th/migrate/favicon.ico',
+            frameLabel: "@Model.Company.CompanyName",
+            submitLabel:"ชำระเงินจอง ",
+            frameDescription:"https://assetwise.co.th",
+            amount: @(Model.Booking.BookingAmount * 100),
+            currency: "THB",
+            defaultPaymentMethod: "credit_card",
+            onCreateTokenSuccess: (nonce) => {
+                if (nonce.startsWith("tokn_")) {
+                    form.omiseToken.value = nonce;
+                } else {
+                    form.omiseSource.value = nonce;
+                };
+                form.submit();
+            }
+        });
+    });
+</script>

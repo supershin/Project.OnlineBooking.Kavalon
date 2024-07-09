@@ -1,0 +1,35 @@
+﻿@model Project.Booking.Model.Payment
+@using Project.Booking.Constants;
+@using Project.Booking.Extensions;
+<div style="margin-top:20px;">
+    <h3 class="h-header">รายละเอียดชำระเงิน</h3>
+</div>
+<div class="row">
+    <div class="col-md-5 col-xs-12 l-header">วันที่ชำระเงิน :</div>
+    <div class="col-md-7 col-xs-12 l-detail">
+        <span>@Model.PaymentDate.AsDate().ToStringDateTime()</span>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-5 col-xs-12 l-header">เลขที่ชำระเงิน :</div>
+    <div class="col-md-7 col-xs-12 l-detail">
+        <span>@Model.PaymentNo</span>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-5 col-xs-12 l-header">ยอดที่ชำระ :</div>
+    <div class="col-md-7 col-xs-12 l-detail">
+        <span>@((Model.PaymentCredit.Amount / 100.00).ToStringNumber()) บาท</span>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-5 col-xs-12 l-header">รายการ :</div>
+    <div class="col-md-7 col-xs-12 l-detail">
+        <span>@(string.Format("{0} ,{1} ,{2} ,***{3}"                                                
+                                                , Model.PaymentCredit.CardName
+                                                , Model.PaymentCredit.CardBank
+                                                , Model.PaymentCredit.CardBrand
+                                                , Model.PaymentCredit.CardLastDigit))</span>
+    </div>
+</div>

@@ -1,0 +1,611 @@
+@media (max-width: 900px) {
+    .text-xs-left {
+        text-align: left !important;
+    }
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: navy;
+    background-image: -webkit-linear-gradient(45deg,rgba(255, 255, 255, .2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%, transparent 75%, transparent);
+}
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: #F5F5F5;
+}
+
+* {
+    -webkit-transition-property: all;
+    -webkit-transition-duration: .2s;
+    -moz-transition-timing-function: cubic-bezier(100,50,21,6);
+    -moz-transition-property: all;
+    -moz-transition-timing-function: cubic-bezier(100,50,21,6);
+}
+
+@font-face {
+    font-family: 'db_gill_siam_xboldit';
+    src: url('fonts/db_gill_siam_x_bd_it_v3.2_0-webfont.woff2') format('woff2'), url('fonts/db_gill_siam_x_bd_it_v3.2_0-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+@font-face {
+    font-family: 'db_gill_siam_xbold';
+    src: url('fonts/db_gill_siam_x_bd_v3.2_1-webfont.woff2') format('woff2'), url('fonts/db_gill_siam_x_bd_v3.2_1-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+
+
+@font-face {
+    font-family: 'db_gill_siam_xitalic';
+    src: url('fonts/db_gill_siam_x_it_v3.2_0-webfont.woff2') format('woff2'), url('fonts/db_gill_siam_x_it_v3.2_0-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+
+
+@font-face {
+    font-family: 'db_gill_siam_xlightit';
+    src: url('fonts/db_gill_siam_x_li_it_v3.2_0-webfont.woff2') format('woff2'), url('fonts/db_gill_siam_x_li_it_v3.2_0-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+
+
+@font-face {
+    font-family: 'db_gill_siam_xlight';
+    src: url('fonts/db_gill_siam_x_li_v3.2_0-webfont.woff2') format('woff2'), url('fonts/db_gill_siam_x_li_v3.2_0-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+
+
+@font-face {
+    font-family: 'db_gill_siam_xregular';
+    src: url('fonts/dbgillsiamx_0-webfont.woff2') format('woff2'), url('fonts/dbgillsiamx_0-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: "db_gill_siam_xregular",'Noto Sans', sans-serif !important;
+}
+
+.bootstrap-select .dropdown-toggle:focus {
+    outline: thin solid #8283e6 !important;
+    /* outline: 5px auto -webkit-focus-ring-color !important; */
+    outline-offset: -2px;
+}
+
+.copyrights {
+    padding: unset;
+}
+
+.footer {
+    padding: 20px 0 20px;
+    color: #999;
+    background-color: #333333;
+}
+
+.text-white {
+    color: white;
+}
+
+.btn {
+    font-size: 20px;
+}
+
+/*.btn:active {
+        color: #ffffff;
+        background: #d5a762;
+    }*/
+
+
+#preloader {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: #ffffff;
+    z-index: 11000;
+    position: fixed;
+    display: block;
+    text-align: center;
+}
+
+.loader {
+    background-image: url(../Images/rombho_logo.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    animation: unset;
+    display: inline-block;
+    /*width: 330px;
+    height: 100px;*/
+    width: 200px;
+    height: 180px;
+    position: relative;
+    border: 4px solid #Fff;
+    top: 40%;
+}
+
+.header_style_01 {
+    padding: 10px 10px !important;
+}
+
+.i-logo {
+    margin-top: 5px;
+}
+
+.growl .growl-title {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.growl .growl-message {
+    font-size: 18px;
+}
+
+.growl.growl-medium {
+    width: 300px;
+}
+
+.header_style_01 .navbar-default .navbar-nav > li a.active {
+    background-color: #333333;
+}
+
+.header_style_01 .navbar-default .navbar-nav > li a:hover {
+    background-color: #333333;
+}
+
+.carousel {
+    margin-top: 70px;
+}
+
+.carousel-control {
+    width: 7%
+}
+
+.section {
+    padding: 50px 0;
+}
+
+.item-body {
+    height: 200px;
+}
+
+    .item-body .adderess {
+        font-size: 20px;
+    }
+
+    .item-body .info {
+        font-size: 20px;
+        line-height: 30px;
+    }
+
+.post-media {
+    position: unset;
+    border: unset;
+}
+
+.a-project-list:hover {
+    color: navy !important;
+}
+
+.d-project-list {
+    padding-bottom: 30px;
+}
+
+.section.wb {
+    background-color: #f6f6f6;
+}
+
+.property-wrap {
+    padding: 0px;
+}
+
+
+.section-menu {
+    padding-top: 10px;
+    margin-bottom: 20px;
+}
+
+.form-control {
+    font-size: 20px;
+}
+
+.section-detail {
+    border: 1px solid #ededed;
+    background-color: #f2f3f5;
+    padding: 10px 10px;
+    border-radius: 2px;
+}
+
+.col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9 {
+    padding-bottom: 10px;
+}
+
+.dmtop {
+    bottom: 20px;
+    background-color: #917f27 !important;
+}
+
+.btn-unit-status {
+    width: 25px !important;
+    height: 25px !important;
+    border-radius: unset;
+}
+
+label {
+    display: unset;
+    font-weight: unset;
+    font-size: 18px;
+    font-weight: 500;
+    color: #333333;
+}
+
+.status-booking {
+    background-color: rgba(255, 152, 0, 0.83);
+}
+
+.status-payment {
+    background-color: rgba(190, 24, 12, 0.94);
+}
+
+.s-unit-status {
+    padding-left: 5px;
+    color: #333333 !important;
+    font-size: 18px;
+}
+
+.footer-distributed .footer-company-name {
+    padding: 5px;
+    color: white;
+}
+
+
+.c-header {
+    margin: 0px;
+    padding: 0px;
+}
+
+.c-detail {
+    padding: 16px;
+}
+
+.h-header {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.l-header {
+    font-size: 22px;
+    font-weight: unset;
+    padding-bottom: unset;
+    margin-bottom: unset;
+}
+
+.l-detail {
+    font-size: 22px;
+    font-weight: unset;
+    color: #0909a6;
+    padding-bottom: unset;
+    margin-bottom: unset;
+}
+
+.l-unit-status {
+    width: 120px;
+    text-align: center;
+    color: white !important;
+}
+
+.div-booking-unit {
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-bottom: 45px;
+}
+
+.btn-payment {
+    background-color: navy;
+    color: white;
+    margin: 2px;
+}
+
+    .btn-payment:hover, .btn-payment:active, .btn-payment:focus {
+        color: white !important;
+    }
+
+.btn-cancel {
+    background-color: #333333;
+    color: white;
+    margin: 2px;
+}
+
+    .btn-cancel:hover, .btn-cancel:active, .btn-cancel:focus {
+        color: white !important;
+    }
+
+.btn-back {
+    background-color: #333333;
+    color: white;
+    margin: 2px;
+}
+
+    .btn-back:hover, .btn-back:active, .btn-back:focus {
+        color: white !important;
+    }
+
+.c-detail .row {
+    /*display: flex;*/
+}
+
+.modal-body > p {
+    font-size: 22px;
+}
+
+.p-term {
+    font-size: 18px !important;
+    margin: unset;
+    padding: unset;
+    text-indent: 20px;
+}
+
+.btn-edit-customer {
+    font-size: 18px;
+}
+
+.customer-disabled {
+    color: #0909a6;
+    font-size: 22px;
+    background-color: unset !important;
+    cursor: default !important;
+    border: unset;
+    box-shadow: unset;
+    display: none;
+}
+
+.customer-enabled {
+    color: #0909a6;
+    font-size: 22px;
+    padding-left: 6px;
+    padding-right: 6px;
+}
+
+.sp-customer-enable {
+    font-size: 22px;
+    color: #0909a6;
+    word-wrap: break-word;
+}
+
+.sp-customer-disabled {
+    display: none;
+}
+
+/*user form control*/
+
+.form-user-control {
+    position: relative;
+    /*width: 280px;*/
+    height: 50px;
+    margin-bottom: 20px;
+}
+
+    .form-user-control input {
+        width: 100%;
+        border: 0;
+        outline: none;
+        height: 100%;
+        padding: 0 15px;
+        transition: 0.4s;
+        font-size: 22px;
+        padding-top: 15px;
+    }
+
+        .form-user-control input:valid + label {
+            top: -0.45rem;
+            left: 30px;
+            /*font-size: 0.9rem;*/
+            z-index: 100;
+            width: auto;
+            height: 0.9rem;
+            padding: 0 10px;
+            color: rgba(0, 0, 0, 0.3);
+            font-size: 18px;
+        }
+
+            .form-user-control input:valid + label ~ div.border-around {
+                border: 1px solid #0909a6;
+            }
+
+input:not(:focus) {
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.form-user-control input:focus + label {
+    top: -0.45rem;
+    left: 30px;
+    /*font-size: 0.9rem;*/
+    z-index: 100;
+    width: auto;
+    height: 0.9rem;
+    padding: 0 10px;
+    color: #0909a6;
+}
+
+.form-user-control input:focus ~ div.border-around {
+    border: 1px solid #0909a6;
+}
+
+.form-user-control label {
+    position: absolute;
+    top: 0;
+    display: flex;
+    align-items: center;
+    padding-left: 15px;
+    width: 100%;
+    height: 100%;
+    transition: 0.2s;
+    font-size: 1rem;
+    color: rgba(0, 0, 0, 0.5);
+    background-color: #fff;
+    pointer-events: none;
+    font-size: 22px;
+}
+
+.form-user-control div.border-around {
+    position: absolute;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    height: 100%;
+    width: 95%;
+    padding-right: 25px;
+    top: 0;
+    pointer-events: none;
+    border-radius: 3px;
+    transition: 0.2s;
+}
+
+.div-form-user {
+    margin-bottom: 20px;
+    background-color: white;
+    box-shadow: 0 2px 20px rgb(0 0 0 / 20%);
+    border-radius: 10px;
+    padding: 30px;
+    padding-left: 15px;
+    padding-bottom: 10px;
+}
+
+.pass_show {
+    position: relative
+}
+
+    .pass_show .ptxt {
+        position: absolute;
+        top: 40%;
+        right: 20px;
+        z-index: 1;
+        color: #f36c01;
+        margin-top: -10px;
+        cursor: pointer;
+        transition: .3s ease all;
+    }
+
+        .pass_show .ptxt:hover {
+            color: #333333;
+        }
+
+.bg-special-promotion {
+    /*background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);*/
+    background: linear-gradient(-45deg, #d78667, #b2a33a, #d78667, #b25c3a);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+    height: auto;
+    padding-top: 10px;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.controlHolder {
+    padding: 0px !important;
+}
+
+.fullscreenToggle, .zoomIn, .zoomOut {
+    background: url(../Images/pz_sheet.png) no-repeat !important;
+    margin: 0px !important;
+}
+
+
+.zoomIn {
+    background-position: 0 0 !important;
+}
+
+.zoomOut {
+    background-position: -30px 0 !important;
+}
+
+.fullscreenToggle.off {
+    background-position: -60px 0 !important;
+}
+
+.fullscreenToggle.on {
+    background-position: -90px 0 !important;
+}
+
+.unit-random-view {
+    width: 120px;
+    font-size: x-large;
+    padding: 0px 10px 0px 10px;
+    top: 4px;
+    right: 4px;
+    position: absolute;
+    text-align: center;
+    border-radius: 20px;
+    background-color: #e4b22e;
+    color: white;
+}
+
+.body-bg {
+    background: url('../Images/BG_Company.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: repeat;
+}
+
+.a-user {
+    /*border: 1px solid navy;*/
+}
+
+.p-intro {
+    font-size: 18px !important;
+    padding-bottom: 0px;
+    text-indent: 30px;
+    line-height: 2.5rem;
+}
+
+.fancybox-content {
+    height: calc(100% - 88px) !important;
+}
+
+.cwc-cookie-banner-ui-sdk .cwc-css-a071ua-cwc {
+    display: none !important;
+}
+
+.pignose-calendar .pignose-calendar-unit a {
+    width: 1.9em;
+    height: 1.9em;
+    font-size: 2rem;
+    line-height: 2em;
+}
+.badge-danger {
+    background-color:red;
+}
+.badge-success {
+    background-color: limegreen;
+}

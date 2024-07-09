@@ -1,0 +1,103 @@
+﻿@media only screen and (max-width: 768px) {
+    .modal-content-matrix {
+        width:600px !important;
+    }
+        .modal-content-matrix .modal-body {
+            display:block !important;
+        }
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    min-width: 1024px;
+    margin: 0;
+    background-image: url(../../Images/BG.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-color: lightgray;    
+}
+
+.outer {
+    width: 100%;
+    height: 100%
+}
+
+.inner {
+    margin-top: 20px;
+}
+
+.project {
+    width: 100%;
+}
+
+.project {
+    background-image: url(../../Images/Top-BG.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    padding: 10px 0 10px 0;
+    color: white;
+    text-align: center;
+    width: 100%;
+    font-size: 24px;
+}
+
+.build {
+    padding: 10px;
+    color: white;
+    text-align: left;
+    background: navy;
+    text-align:center;
+    font-size:large;
+}
+
+.display {
+    width: 100%;
+    min-width: 1024px;
+}
+
+.floor {
+    background-color: #333333;
+    opacity:0.8;
+    color: white;
+    padding: 7px 10px 7px 10px;
+    /*width: 30px;*/
+    text-align: center;
+}
+
+.unit {
+    background-color: transparent;
+    text-align: center;
+    padding: 7px;
+    cursor: pointer;
+    margin:1.5px;
+}
+
+.unit-empty {
+    color: transparent;
+}
+
+
+.row {
+    padding: 5px;
+}
+/* Modal Content/Box */
+.modal-content-matrix {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 100%; /* Could be more or less, depending on screen size */
+}
+
+.close {
+    float: right;
+    background-color: orange !important;
+    border-radius: 30px;
+    opacity: unset;
+    width: 30px;
+    height: 30px;
+    color: white;
+}

@@ -1,0 +1,69 @@
+﻿@model Project.Booking.Model.ProjectDetailView
+@using Project.Booking.Extensions;
+@{
+    ViewBag.Title = "Count Down";
+    Layout = "~/Views/Shared/_Layout_Project.cshtml";
+}
+<link href="~/css/register.css?ver=@DateTime.Now.Ticks.ToString()" rel="stylesheet" />
+<link href="~/Content/countdown.css?ver=@DateTime.Now.Ticks.ToString()" rel="stylesheet" />
+<link href="~/Content/countdown_00102013.css?ver=@DateTime.Now.Ticks.ToString()" rel="stylesheet" />
+
+@*@Html.Partial("Partial_Detail_Section", Model)*@
+<style>
+    .body-bg {
+        background-position: center !important;
+    }
+</style>
+<div id="container" class="container">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            @*<h2>THE TITLE LEGENDARY BANG-TAO</h2>*@
+        </div>
+    </div>
+    <div class="row" style="margin-top:30px;margin-bottom:0px;">
+        <div class="col-md-12 text-center">
+            <img src="~/Images/The_title_Legendary_final.png" width="350" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h2>The online booking for Phase 2 will start from Monday 13 November, 2023 at 1 PM (GMT+7)</h2>
+            <h2>until Tuesday 14 November, 2023 at 6 PM (GMT+7)</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div id="countdown">
+                <div id='tiles'></div>
+                <div class="labels">
+                    <li>Days</li>
+                    <li>Hours</li>
+                    <li>Mins</li>
+                    <li>Secs</li>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="margin-top:10px;">
+        <div class="cowndown-menu col-md-12 text-center">
+            @*<a href="#" data-fancybox="map" data-caption="map" class="btn"><img src="~/Images/quota.png" width="50" /> Quota : 10</a>*@
+            <a href="#" class="btn"><img src="~/Images/quota.png" width="50" /> Quota @($"{Model.Quota.Quota.AsInt()}")</a>
+            <a href="~/Resources/00102013/Video/SaleKitTutorail.mp4" data-fancybox="Video" class="btn"><img src="~/Images/play.png" width="50" />Tutorial</a>
+            @*<a href="https://lin.ee/YAs5eeY" class="btn"><img src="~/Resources/PDC002/line.png" width="30" /> สอบถามข้อมูลเพิ่มเติม</a>*@
+            @*<a href="" class="btn"><img src="~/Resources/PDC002/brochure.png" width="30" /> E-brochure</a>*@
+        </div>
+    </div>
+</div>
+@Html.Partial("Partial_CountDown_Modal")
+@section scripts{
+    <script>
+        @*let countDownDate = '@($"{ Model.Project.ProjectConfig.CountDownDate.AsDate().ToString("yyyy-MM-dd HH:mm:ss")} GMT+07:00")';*@
+        let leave = @(Model.Project.ProjectConfig.CountDownSecond);
+    </script>
+    <script src="@Url.Content("~/Scripts/pages/CountDown.js?ver=")@DateTime.Now.Ticks.ToString()" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            countdown_app.init();
+        });
+    </script>
+}

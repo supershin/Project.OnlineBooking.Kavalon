@@ -1,0 +1,22 @@
+﻿@model List<Project.Booking.Model.ProjectGallery>
+<div class="row">
+    <div align="center">
+        @foreach (var item in Model)
+        {
+            <button class="btn btn-default filter-button" data-order-by="@item.LineOrder" data-filter="@item.ID">@item.Name</button>
+        }
+    </div>
+    @foreach (var gallery in Model)
+    {
+        var galClass = (gallery.Name == "Facilities") ? "gal-col-3" : "gal";
+
+        <div class="gallery_product col-md-12 filter @gallery.ID">
+            <div class="@galClass">
+                @foreach (var resource in gallery.ResourceList)
+                {                    
+                    <a href="~/@resource.FilePath" data-fancybox="group-@gallery.ID" data-caption="@gallery.Name"><img src="~/@resource.FilePath" alt="@resource.GalleryName"></a>
+                }
+            </div>
+        </div>
+    }
+</div>

@@ -1,0 +1,38 @@
+﻿@model Project.Booking.Model.Payment
+@using Project.Booking.Extensions;
+@using Project.Booking.Constants;
+<div class="row">
+    <div class="col-sm-12 text-center" style="padding-bottom:0px;">
+        <h2>ชำระเงินจองเรียบร้อย ตรวจสอบข้อมูลได้ที่อีเมลของท่าน</h2>
+    </div>
+</div>
+<div class="row div-booking-unit" >
+    <div class="col-sm-12 c-unit col-md-12">
+        <div class="col-sm-3 c-header">
+            <a href="~/@(Model.Booking.ModelTypePath)?ver=@(DateTime.Now.Ticks.ToString())" data-fancybox="images"><img src="~/@(Model.Booking.ModelTypePath)" /></a>
+        </div>
+        <div class="col-sm-9">
+            <div class="col-sm-6 c-detail">
+                @Html.Partial("Partial_Booking_Detail", Model.Booking)
+            </div>
+            <div class="col-sm-6 c-detail">
+                @Html.Partial("Partial_Booking_Customer", Model.Booking)
+                @Html.Partial("Partial_Payment_Detail", Model)
+            </div>
+            @if (!string.IsNullOrEmpty(Model.Booking.SpecialPromotion))
+            {
+                <div class="col-sm-12 bg-special-promotion" style="margin-bottom:15px;display:inline-flex">
+                    <label class="col-md-12 col-xs-12 l-header text-center" style="color:whitesmoke;line-height: 25px;margin-bottom:10px;">@Model.Booking.SpecialPromotion</label>
+                </div>
+            }
+            <div class="col-sm-12 c-detail text-center">
+                <a href="@Url.Action("detail", "project", new { projectID = Model.Booking.ProjectID })" class="btn btn-back">กลับไปหน้าจอง</a>
+                <a href="@Url.Action("index", "booking")" class="btn btn-back">กลับไปหน้าประวัติการจอง</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+

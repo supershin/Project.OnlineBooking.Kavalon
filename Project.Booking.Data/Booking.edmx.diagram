@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e7d28acddaf140a5807d3d52fc774a3f" Name="Diagram1" ZoomLevel="94">
+        <EntityTypeShape EntityType="OnlineBooking_DevModel.tm_Annotation" Width="1.5" PointX="0.75" PointY="20.375" />
+        <EntityTypeShape EntityType="OnlineBooking_DevModel.tm_Build" Width="1.5" PointX="0.75" PointY="16.625" />
+        <EntityTypeShape EntityType="OnlineBooking_DevModel.tm_Ext" Width="1.5" PointX="0.75" PointY="6.5" />
+        <EntityTypeShape EntityType="OnlineBooking_DevModel.tm_ExtType" Width="1.5" PointX="1.5" PointY="2.875" />
+        <EntityTypeShape EntityType="OnlineBooking_DevModel.tm_Floor" Width="1.5" PointX="3.75" PointY="26.75" />
+        <EntityTypeShape EntityType="OnlineBooking_DevModel.tm_ModelType" Width="1.5" PointX="3.75" PointY="21.875" />
+        <EntityTypeShape EntityType="OnlineBooking_DevModel.tm_Project" Width="1.5" PointX="0.75" PointY="11" />
+        <EntityTypeShape EntityType="OnlineBooking_DevModel.tm_Resource" Width="1.5" PointX="3.75" PointY="1.625" />
+        <EntityTypeShape EntityType="OnlineBooking_DevModel.tm_UnitStatus" Width="1.5" PointX="0.75" PointY="22.875" />
+        <EntityTypeShape EntityType="OnlineBooking_DevModel.tm_WebImage" Width="1.5" PointX="6" PointY="1.875" />
+        <EntityTypeShape EntityType="OnlineBooking_DevModel.tr_ProjectBuild" Width="1.5" PointX="3" PointY="11.5" />
+        <EntityTypeShape EntityType="OnlineBooking_DevModel.tr_ProjectBuildFloor" Width="1.5" PointX="6" PointY="11.125" />
+        <EntityTypeShape EntityType="OnlineBooking_DevModel.tr_ProjectModelType" Width="1.5" PointX="6" PointY="6.5" />
+        <EntityTypeShape EntityType="OnlineBooking_DevModel.tr_ProjectResource" Width="1.5" PointX="3" PointY="6.25" />
+        <AssociationConnector Association="OnlineBooking_DevModel.FK_tr_ProjectBuild_tm_Build" />
+        <AssociationConnector Association="OnlineBooking_DevModel.FK_tr_ProjectBuildFloor_tm_Build" />
+        <AssociationConnector Association="OnlineBooking_DevModel.FK_tm_Ext_tm_ExtType" />
+        <AssociationConnector Association="OnlineBooking_DevModel.FK_tr_ProjectResource_tm_Ext" />
+        <AssociationConnector Association="OnlineBooking_DevModel.FK_tr_ProjectBuildFloor_tm_Floor" />
+        <AssociationConnector Association="OnlineBooking_DevModel.FK_tr_ProjectModelType_tm_ModelType" />
+        <AssociationConnector Association="OnlineBooking_DevModel.FK_tr_ProjectBuild_tm_Project" />
+        <AssociationConnector Association="OnlineBooking_DevModel.FK_tr_ProjectBuildFloor_tm_Project" />
+        <AssociationConnector Association="OnlineBooking_DevModel.FK_tr_ProjectModelType_tm_Project" />
+        <AssociationConnector Association="OnlineBooking_DevModel.FK_tr_ProjectResource_tm_Project" />
+        <AssociationConnector Association="OnlineBooking_DevModel.FK_tm_WebImage_tm_Resource" />
+        <AssociationConnector Association="OnlineBooking_DevModel.FK_tr_ProjectBuildFloor_tm_Resource" />
+        <AssociationConnector Association="OnlineBooking_DevModel.FK_tr_ProjectModelType_tm_Resource" />
+        <AssociationConnector Association="OnlineBooking_DevModel.FK_tr_ProjectResource_tm_Resource" />
+        <EntityTypeShape EntityType="OnlineBooking_DevModel.tm_UnitType" Width="1.5" PointX="8.375" PointY="6" />
+        <EntityTypeShape EntityType="OnlineBooking_DevModel.tm_BookingStatus" Width="1.5" PointX="8.75" PointY="9.625" />
+        <EntityTypeShape EntityType="OnlineBooking_DevModel.ts_Booking" Width="1.5" PointX="11" PointY="8.375" />
+        <AssociationConnector Association="OnlineBooking_DevModel.FK_ts_Booking_tm_BookingStatus" />
+        <AssociationConnector Association="OnlineBooking_DevModel.FK_ts_Booking_tm_Project" />
+        <EntityTypeShape EntityType="OnlineBooking_DevModel.tm_Company" Width="1.5" PointX="10.375" PointY="0.75" />
+        <EntityTypeShape EntityType="OnlineBooking_DevModel.tm_OmiseChargeStatus" Width="1.5" PointX="10.375" PointY="4.75" />
+        <AssociationConnector Association="OnlineBooking_DevModel.FK_tm_Project_tm_Company" />
+        <EntityTypeShape EntityType="OnlineBooking_DevModel.ts_Payment_Credit" Width="1.5" PointX="13.625" PointY="13.75" />
+        <EntityTypeShape EntityType="OnlineBooking_DevModel.ts_Payment" Width="1.5" PointX="13.25" PointY="8.625" />
+        <AssociationConnector Association="OnlineBooking_DevModel.FK_ts_Payment_tm_Ext" />
+        <AssociationConnector Association="OnlineBooking_DevModel.FK_ts_Payment_ts_Booking" />
+        <AssociationConnector Association="OnlineBooking_DevModel.FK_ts_Payment_Credit_ts_Payment" />
+        <EntityTypeShape EntityType="OnlineBooking_DevModel.tr_ProjectGallery" Width="1.5" PointX="3.75" PointY="33.875" />
+        <EntityTypeShape EntityType="OnlineBooking_DevModel.tr_ProjectGalleryResource" Width="1.5" PointX="6" PointY="0.75" />
+        <AssociationConnector Association="OnlineBooking_DevModel.FK_tr_ProjectGallery_tm_Project" />
+        <AssociationConnector Association="OnlineBooking_DevModel.FK_tr_ProjectGalleryResource_tm_Resource" />
+        <AssociationConnector Association="OnlineBooking_DevModel.FK_tr_ProjectGalleryResource_tr_ProjectGallery" />
+        <EntityTypeShape EntityType="OnlineBooking_DevModel.tr_ProjectSpecialPromotion" Width="1.5" PointX="3" PointY="38" />
+        <AssociationConnector Association="OnlineBooking_DevModel.FK_tr_ProjectSpecialPromotion_tm_Project" />
+        <EntityTypeShape EntityType="OnlineBooking_DevModel.tr_UnitSpecialPromotion" Width="1.5" PointX="6.25" PointY="28" />
+        <AssociationConnector Association="OnlineBooking_DevModel.FK_tr_UnitSpecialPromotion_tr_ProjectSpecialPromotion" />
+        <EntityTypeShape EntityType="OnlineBooking_DevModel.tr_ProjectBuildGroup" Width="1.5" PointX="6" PointY="16.25" />
+        <AssociationConnector Association="OnlineBooking_DevModel.FK_tr_ProjectBuildGroup_tm_Build" />
+        <AssociationConnector Association="OnlineBooking_DevModel.FK_tr_ProjectBuildGroup_tm_Build1" />
+        <AssociationConnector Association="OnlineBooking_DevModel.FK_tr_ProjectBuildGroup_tm_Project" />
+        <EntityTypeShape EntityType="OnlineBooking_DevModel.tm_ProjectConfig" Width="1.5" PointX="12.375" PointY="0.75" />
+        <AssociationConnector Association="OnlineBooking_DevModel.FK_tm_ProjectConfig_tm_Project" />
+        <EntityTypeShape EntityType="OnlineBooking_DevModel.tr_Matrix_Config" Width="1.5" PointX="6" PointY="19.875" />
+        <AssociationConnector Association="OnlineBooking_DevModel.FK_tr_Matrix_Config_tm_Build" />
+        <AssociationConnector Association="OnlineBooking_DevModel.FK_tr_Matrix_Config_tm_Project" />
+        <EntityTypeShape EntityType="OnlineBooking_DevModel.tm_Unit" Width="1.5" PointX="10.625" PointY="17.125" />
+        <AssociationConnector Association="OnlineBooking_DevModel.FK_tm_Unit_tm_Annotation" />
+        <AssociationConnector Association="OnlineBooking_DevModel.FK_tm_Unit_tm_Build" />
+        <AssociationConnector Association="OnlineBooking_DevModel.FK_tm_Unit_tm_Floor" />
+        <AssociationConnector Association="OnlineBooking_DevModel.FK_tm_Unit_tm_ModelType" />
+        <AssociationConnector Association="OnlineBooking_DevModel.FK_tm_Unit_tm_Project" />
+        <AssociationConnector Association="OnlineBooking_DevModel.FK_tm_Unit_tm_UnitStatus" />
+        <AssociationConnector Association="OnlineBooking_DevModel.FK_tm_Unit_tm_UnitType" />
+        <AssociationConnector Association="OnlineBooking_DevModel.FK_tr_UnitSpecialPromotion_tm_Unit" />
+        <AssociationConnector Association="OnlineBooking_DevModel.FK_ts_Booking_tm_Unit" />
+        <EntityTypeShape EntityType="OnlineBooking_DevModel.tr_ProjectRegisterQuota" Width="1.5" PointX="6.25" PointY="31.75" />
+        <AssociationConnector Association="OnlineBooking_DevModel.FK_tr_ProjectRegisterQuota_tm_Project" />
+        <EntityTypeShape EntityType="OnlineBooking_DevModel.tm_Register" Width="1.5" PointX="3" PointY="15.875" />
+        <AssociationConnector Association="OnlineBooking_DevModel.FK_tm_Register_tm_Ext" />
+        <AssociationConnector Association="OnlineBooking_DevModel.FK_tr_ProjectRegisterQuota_tm_Register" />
+        <AssociationConnector Association="OnlineBooking_DevModel.FK_ts_Booking_tm_Register" />
+        <EntityTypeShape EntityType="OnlineBooking_DevModel.tr_UnitVIP" Width="1.5" PointX="12.875" PointY="22.5" />
+        <AssociationConnector Association="OnlineBooking_DevModel.FK_tr_UnitVIP_tm_Unit" />
+        <EntityTypeShape EntityType="OnlineBooking_DevModel.ts_Unitbooking_History" Width="1.5" PointX="16.25" PointY="15.625" />
+        <AssociationConnector Association="OnlineBooking_DevModel.FK_ts_Unitbooking_History_tm_BookingStatus" />
+        <AssociationConnector Association="OnlineBooking_DevModel.FK_ts_Unitbooking_History_tm_Unit" />
+        <AssociationConnector Association="OnlineBooking_DevModel.FK_ts_Unitbooking_History_tm_UnitStatus" />
+        <AssociationConnector Association="OnlineBooking_DevModel.FK_ts_Unitbooking_History_ts_Booking" />
+        <EntityTypeShape EntityType="OnlineBooking_DevModel.tr_ProjectTransferPayment" Width="1.5" PointX="15" PointY="2.875" />
+        <AssociationConnector Association="OnlineBooking_DevModel.FK_tr_ProjectTransferPayment_tm_Project" />
+        <AssociationConnector Association="OnlineBooking_DevModel.FK_tr_ProjectTransferPayment_tm_Register" />
+        <AssociationConnector Association="OnlineBooking_DevModel.FK_tr_ProjectTransferPayment_tm_Resource" />
+        <EntityTypeShape EntityType="OnlineBooking_DevModel.ts_Booking_VIP" Width="1.5" PointX="17.375" PointY="0.75" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

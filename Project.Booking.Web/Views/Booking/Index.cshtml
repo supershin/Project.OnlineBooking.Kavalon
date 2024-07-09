@@ -1,0 +1,37 @@
+﻿@model List<Project.Booking.Model.BookingModel>
+
+@{
+    ViewBag.Title = "Index";
+    ViewBag.Active = "booking";
+    Layout = "~/Views/Shared/_Layout_Project.cshtml";
+}
+<link rel="stylesheet" href="@Url.Content("~/css/unit-selected.css?ver=")@DateTime.Now.Ticks.ToString()">
+<div class="container div-booking-list" style="margin-bottom:20px;background-color:white;">
+    @if (Model.Count > 0)
+    {
+        @Html.Partial("Partial_Booking_History", Model)
+        @Html.Partial("Partial_Confirm_Modal")
+        <div id="div-term-payment"></div>
+    }
+    else
+    {
+        <div class="row">
+            <div class="col-sm-12 text-center" style="padding:50px;padding-bottom:0px;">
+                <h2 style="height:100vh;"class="text-danger">No transaction.</h2>
+            </div>
+        </div>
+    }
+</div>
+
+@section scripts{
+    <script type="text/javascript" src="https://cdn.omise.co/omise.js"></script>
+    <script src="@Url.Content("~/Scripts/pages/Booking.js?ver=")@DateTime.Now.Ticks.ToString()" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var messageError = '@TempData["errorMessage"]';
+            if (messageError != undefined && messageError != null && messageError != "") {                
+                app.notify('error', messageError);
+            }
+        });
+    </script>
+}

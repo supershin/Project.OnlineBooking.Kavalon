@@ -1,0 +1,28 @@
+﻿@model Project.Booking.Model.Payment
+@using Project.Booking.Constants;
+@{
+    ViewBag.Title = "Index";
+    ViewBag.Active = "booking";
+    Layout = "~/Views/Shared/_Layout_Project.cshtml";
+}
+<link rel="stylesheet" href="@Url.Content("~/css/unit-selected.css?ver=")@DateTime.Now.Ticks.ToString()">
+<div class="container div-booking-list" style="margin-bottom:20px;background-color:white;">    
+    @if (Model.Booking.BookingStatusID == Constant.BookingStatus.PAYMENT_SUCCESS
+        && Model.PaymentCredit.Status == Constant.OmiseChargeStatus.SUCCESSFUL)
+    {
+        @Html.Partial("Partial_PaymentCredit_Success", Model)
+    }
+    else
+    {
+        <div class="row">
+            <div class="col-sm-12 text-center" style="padding-bottom:0px;">
+                <h2 class="text-danger">ชำระเงินจองไม่สำเร็จ โปรดทำรายการอีกครั้ง</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 c-detail text-center">
+                <a href="@Url.Action("index", "booking")" class="btn btn-back">กลับไปหน้าประวัติการจอง</a>
+            </div>
+        </div>
+    }
+</div>

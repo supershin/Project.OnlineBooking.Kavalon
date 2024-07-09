@@ -1,0 +1,240 @@
+﻿/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    .i-logo {
+        width: 57px !important;
+        margin-top: 0px !important;
+    }
+
+    .d-project-list {
+        padding-bottom: 0px;
+    }
+
+    .section {
+        padding: 0px 0;
+    }
+
+    .text-sm-left {
+        text-align: left;
+    }
+
+    .bg-register-success {
+        background-image: url('../Resources/register/THANK YOU_MOBILE_Rev.2.png');
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 350px;
+        max-height: 350px;
+        width: 100%;
+    }
+
+    .post-media {
+        height: 190px;
+        background-size: 100% 100%;
+        background-position: center;
+    }
+
+    .div-booking-list {
+        padding-top: 100px;
+    }
+    .div-form-user {
+        margin:0px;
+    }
+    #register-success-modal .modal-dialog {
+        padding: 15px;
+        margin: 70px 0 0 0;
+        width: 100%;
+        
+    }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    
+
+    .bg-register-success {
+        background-image: url('../Resources/register/THANK YOU_MOBILE_Rev.2.png');
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 600px;
+        max-height: 600px;
+        width: 100%;
+    }
+
+    .post-media {
+        height: 400px;
+        background-size: 100% 100%;
+        background-position: center;
+    }
+
+    .div-booking-list {
+        padding-top: 100px;
+    }
+    .div-form-user {
+        margin-left: 50px;
+        margin-right: 50px;
+    }
+    .bd-full-width {
+        width: 97.5%;
+    }
+    .bd-full-width {
+        width: 97.5% !important;
+    }
+    #register-success-modal .modal-dialog {
+        padding: 30px;
+        margin: 10% 0 0 0;
+        width: 100%;
+    }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    .navbar-header {
+        width: 0%;
+        text-align: center;
+    }
+
+    .navbar-header {
+        display: contents;
+    }
+
+   
+    .bg-register-success {
+        background-image: url('../Resources/register/THANK YOU_DESKTOP_Rev.2.png');
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 700px;
+        max-height: 700px;
+        width: 100%;
+    }
+
+    .post-media {
+        height: 200px;
+        background-size: 100% 100%;
+        background-position: center;
+    }
+
+    .div-booking-list {
+        padding-top: 100px;
+    }
+
+    #register-success-modal .modal-dialog {
+        padding:30px;
+        margin: 50px 0 0 0;
+        width: 100%;
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    .navbar-header {
+        width: 0%;
+        text-align: center;
+    }
+
+    .d-project-list {
+        padding-bottom: 30px !important;
+    }
+
+    .navbar-header {
+        display: unset;
+    }
+
+    
+    .bg-register-success {
+        background-image: url('../Resources/register/THANK YOU_DESKTOP_Rev.2.png');
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 500px;
+        max-height: 600px;
+        width: 100%;
+    }
+
+    .post-media {
+        height: 160px;
+        background-size: 100% 100%;
+        background-position: center;
+    }
+    .div-form-user {
+        margin-left: 100px;
+        margin-right: 100px;
+    }
+    #register-success-modal .modal-dialog {
+        padding: 50px;
+        margin: 30px 0 0 0;
+        width: 100%;
+    }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    .first-section .container {
+        margin-top: 0px;
+    }
+
+    .navbar-header {
+        width: 0%;
+        text-align: center;
+    }
+
+    .container {
+        width: 1370px !important;
+    }
+
+    
+    .bg-register-success {
+        background-image: url('../Resources/register/THANK YOU_DESKTOP_Rev.2.png');
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 650px;
+        max-height: 650px;
+        width: 100%;
+    }
+
+
+    .post-media {
+        height: 240px;
+        background-size: 100% 100%;
+        background-position: center;
+    }
+
+    .c-unit-detail {
+        padding-left: 50px !important;
+        padding-right: 50px !important;
+    }
+
+    .zoomHolder {
+        /*min-height: 400px;*/
+    }
+
+    .div-booking-list {
+        margin-top: 100px;
+        padding-top: 0px;
+    }
+    .div-form-user {
+        margin-left: 300px;
+        margin-right: 300px;
+    }
+}
+
+
+
+
+@media (max-width: 1000px) {
+    .i-logo {
+        width: 60px;
+        margin-top: 0px;
+    }
+
+    .social-links {
+        display: unset !important;
+        float: left !important;
+    }
+
+    .navbar-default .navbar-toggle, .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
+        background-color: navy;
+        border-color: navy;
+    }
+
+    .container {
+        width: 100%;
+    }
+}

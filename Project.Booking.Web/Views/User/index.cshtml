@@ -1,0 +1,67 @@
+﻿@model Project.Booking.Model.UserProfile
+@{
+    ViewBag.Title = "index";
+    ViewBag.Active = "user";
+    Layout = "~/Views/Shared/_Layout_Project.cshtml";
+}
+<link rel="stylesheet" href="@Url.Content("~/css/unit-selected.css?ver=")@DateTime.Now.Ticks.ToString()">
+<form id="frm-user" method="post">
+    <input type="hidden"  name="ID" value="@Model.ID"/>
+    <div class="container div-booking-list" style="margin-bottom:20px;">
+        <div class="row">
+            <div class="col-sm-12 text-center" style="padding-bottom:0px;">
+                <h2>ข้อมูลส่วนตัว</h2>
+            </div>
+        </div>
+        <div class="row div-form-user text-center">
+            <div class="col-sm-6 form-user-control">
+                <input type="text" name="FirstName" value="@Model.FirstName" />
+                <label>ชื่อ*</label>
+                <div class="border-around"></div>
+            </div>
+            <div class="col-sm-6 form-user-control">
+                <input type="text" name="LastName" value="@Model.LastName" />
+                <label>นามสกุล*</label>
+                <div class="border-around"></div>
+            </div>
+            <div class="col-sm-6 form-user-control">
+                <input type="email" name="Email" value="@Model.Email" />
+                <label>อีเมล*</label>
+                <div class="border-around"></div>
+            </div>
+            <div class="col-sm-6 form-user-control">
+                <input type="text" name="Mobile" value="@Model.Mobile" />
+                <label>เบอร์โทร*</label>
+                <div class="border-around"></div>
+            </div>
+            @*<div class="col-sm-12 form-user-control ">
+                <input type="text" name="CitizenID" value="@Model.CitizenID" />
+                <label>บัตรประชาชน*</label>
+                <div class="border-around bd-full-width"></div>
+            </div>*@
+            <div class="col-sm-6 form-user-control pass_show" style="margin-bottom: 10px;">
+                <input type="password" name="Password" value="" />
+                <label>รหัสผ่านใหม่</label>
+                <div class="border-around"></div>
+            </div>
+            <div class="col-sm-6 form-user-control pass_show" style="margin-bottom: 10px;">
+                <input type="password" name="ConfirmPassword" value="" />
+                <label>ยืนยันรหัสผ่านใหม่</label>
+                <div class="border-around "></div>
+            </div>
+            <div class="col-xs-12 text-left" style="color:red;font-size:18px;line-height:1;padding-bottom:20px">รหัสผ่านต้องมีอย่างน้อย 8 ตัวอักษร ประกอบด้วยตัวอักษรพิมพ์ใหญ่ (A-Z)ตัวอักษรพิมพ์เล็ก (a-z) และตัวเลข (0-9) เท่านั้น</div>
+            <div class="col-sm-12">
+                <button id="btn-save" type="submit" class="btn btn-payment">บันทึกข้อมูล</button>
+            </div>
+        </div>
+    </div>
+</form>
+@section scripts{
+    <script src="@Url.Content("~/Scripts/pages/User.js?ver=")@DateTime.Now.Ticks.ToString()" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            User.init();
+        });
+
+    </script>
+}

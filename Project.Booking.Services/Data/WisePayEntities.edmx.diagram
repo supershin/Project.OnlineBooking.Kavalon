@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3fddca496cd74700939e578fededf9b8" Name="Diagram1">
+        <EntityTypeShape EntityType="WisePayModel.ts_OrderChagre" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="WisePayModel.ts_OrderPayment" Width="1.5" PointX="3" PointY="2.625" IsExpanded="true" />
+        <AssociationConnector Association="WisePayModel.FK_ts_OrderPayment_ts_OrderChagre" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="WisePayModel.ts_Order" Width="1.5" PointX="0.75" PointY="8.75" />
+        <AssociationConnector Association="WisePayModel.FK_ts_Order_Payment_ts_Order" />
+        <EntityTypeShape EntityType="WisePayModel.ts_OrderPaymentMethod" Width="1.5" PointX="3" PointY="9.75" />
+        <AssociationConnector Association="WisePayModel.FK_ts_OrderPaymentMethod_ts_Order" />
+        <AssociationConnector Association="WisePayModel.FK_ts_OrderChagre_ts_OrderPaymentMethod" />
+        <AssociationConnector Association="WisePayModel.FK_ts_OrderPayment_ts_OrderPaymentMethod" />
+        <EntityTypeShape EntityType="WisePayModel.tm_Company" Width="1.5" PointX="0.75" PointY="21.125" />
+        <EntityTypeShape EntityType="WisePayModel.tm_Project" Width="1.5" PointX="0.75" PointY="15.625" />
+        <AssociationConnector Association="WisePayModel.FK_tm_Project_tm_Company" />
+        <AssociationConnector Association="WisePayModel.FK_ts_Order_tm_Project" />
+        <EntityTypeShape EntityType="WisePayModel.tr_PaymentGateway" Width="1.5" PointX="3" PointY="21.25" />
+        <AssociationConnector Association="WisePayModel.FK_tr_PaymentGateway_tm_Company" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

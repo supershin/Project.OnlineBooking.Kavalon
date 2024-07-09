@@ -1,0 +1,46 @@
+﻿@model Project.Booking.Model.ProjectView
+
+@using Project.Booking.Constants;
+@using Project.Booking.Extensions;
+
+<div id="features" class="section wb">
+    <div class="container">
+        <div class="row" style="margin-top:5rem;">
+            @foreach (var item in Model.ProjectList)
+            {
+                string projectImgUrl = "";
+                var query = item.ProjectResourceList.Where(e => e.ResourceTypeID == Constant.Ext.RESOURCE_TYPE_PROJECT_CARD_ID);
+                <div class="col-md-4 col-sm-6 col-xs-12 d-project-list">
+                    <a href="~/project/detail/@item.ID" class="a-project-list">
+                        <div class="service-widget">
+                            <div class="property-main">
+                                <div class="property-wrap">
+                                    @if (query.Any())
+                                    {
+                                        var resource = query.FirstOrDefault();
+                                        if (!string.IsNullOrEmpty(resource.ImageUrl.ToStringNullable())
+                                            || !string.IsNullOrEmpty(resource.ResourceFilepath))
+                                        {
+                                            projectImgUrl = (!string.IsNullOrEmpty(resource.ImageUrl.ToStringNullable())) ? resource.ImageUrl.ToStringNullable() : ViewBag.BaseUrl + resource.ResourceFilepath.ToStringNullable();
+                                            <figure class="post-media wow fadeIn" style="background-image:url('@projectImgUrl')">
+                                            </figure>
+                                        }
+                                    }
+                                    <div class="item-body text-center">
+                                        <h1>@item.ProjectNameTH</h1>
+                                        <div class="adderess">
+                                            @item.Location
+                                        </div>
+                                        <div class="info">
+                                            <p>@item.Vocation</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- end service -->
+                    </a>
+                </div>
+            }
+        </div><!-- end row -->
+    </div><!-- end container -->
+</div>

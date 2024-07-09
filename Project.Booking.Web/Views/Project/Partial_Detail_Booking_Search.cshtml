@@ -1,0 +1,41 @@
+﻿@model Project.Booking.Model.ProjectDetailView
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12 text-right">
+        <a id="a-introduction" href="#" style="font-size:18px;" class="btn btn-xs btn-default"><i style="font-size: smaller;" class="fa fa-gear"></i> Instructions for use</a>&nbsp;&nbsp;
+        <a id="a-view-available" href="#" style="font-size:18px;background-color:#006600;" class="btn btn-xs btn-warning"><i style="font-size: smaller;" class="fa fa-heart-o"></i> View unit available</a>
+    </div>    
+</div>
+<div class="row">
+    <label class="col-md-2 col-sm-2 col-xs-12 text-right text-sm-left">Building :</label>
+    <div class="col-md-2 col-sm-2 col-xs-12">
+        <select id="BuildID" class="form-control">
+            @foreach (var build in Model.BuildList)
+            {
+                <option value="@build.BuildID">@build.BuildName</option>
+            }
+        </select>
+    </div>
+    <label class="col-md-1 col-sm-2 col-xs-12 text-right text-sm-left">Floor :</label>
+    <div class="col-md-2 col-sm-2 col-xs-12" id="div-floor">
+        @Html.Partial("Partial_Floor_SelectList", Model.FloorList)
+    </div>
+    <label class="col-md-2 col-sm-2 col-xs-3 text-right text-sm-left">Status :</label>
+    <div class="col-md-2 col-sm-2 col-xs-9 text-sm-left text-left" style="padding-left:0px;">
+        <button class="btn bnt-xs btn-unit-status status-booking" style="background-color: rgba(190, 24, 12, 0.94);"></button><span class="s-unit-status">Booked</span>
+    </div>
+</div>
+<!--<div class="row" style="">
+    <label class="col-sm-3 col-md-3 col-xs-12 text-right text-sm-left">Status :</label>
+    <div class="col-md-2 col-sm-2 col-xs-12 text-left">
+        <div style="float:left; padding-right:20px;">
+            <button class="btn bnt-xs btn-unit-status status-booking" style="background-color: rgba(190, 24, 12, 0.94);"></button><span class="s-unit-status">Booked</span>
+        </div>-->
+@*<div style="float:left;">
+        <button class="btn bnt-xs btn-unit-status status-payment"></button> <span class="s-unit-status">ชำระเงินแล้ว</span>
+    </div>*@
+<!--</div>-->
+@*<label class="col-md-2 col-sm-2 col-xs-12 text-right text-sm-left">Quota :</label>
+    <div class="col-md-2 col-sm-2 col-xs-12" id="div-floor">
+
+    </div>*@
+<!--</div>-->

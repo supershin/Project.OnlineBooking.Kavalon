@@ -1,0 +1,22 @@
+﻿@model Project.Booking.Model.ProjectDetailView
+@using Project.Booking.Constants;
+@using Project.Booking.Extensions;
+<div id="tile1" class="tile">
+    <div class="wrapper">
+        <div class="header">
+            <div>@($"{Html.UserProfile().FirstName} {Html.UserProfile().LastName}")</div>
+            <div><small style="color: #a8a3a3;">@($"email : {Html.UserProfile().Email.ToLower()}")</small></div>
+        </div>
+        <div class="dates" style="height:150px;">
+            <div class="start">
+                <strong>My Quota</strong>
+                <div id="div-my-quota" style="width:100%">@(Model.Quota.Quota.AsInt())</div>
+                <span></span>
+            </div>
+            <div class="ends">
+                <strong>Used Quota</strong>
+                <div id="div-used-quota" style="width:100%">@(Model.Quota.UseQuota.AsInt())</div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,25 @@
+﻿
+<div id="tile1" class="tile">
+    <div class="wrapper" style="padding:10px;">
+        <div class="header" style="margin-bottom:10px;">
+            <div>Attach a proof of payment/transfer slip</div>
+        </div>
+        <div class="input-group" style="padding:7px;">
+            <input id="trans-date" type="text" class="form-control" aria-label="" placeholder="transfer date">
+            <span class="input-group-addon bg-orange"><i class="fa fa-calendar"></i></span>
+        </div>
+        <div class="input-group" style="padding:7px;">
+            <input type="text" id="trans-amount" class="decimal form-control" aria-label="" placeholder="approximate transfer amount">
+            <span class="input-group-addon bg-green" style="font-size:2rem;">฿</span>
+        </div>
+        <div class="input-group col-md-12" style="padding:7px;width:100%;">
+            <form id="form-upload" method="post">
+                <input id="file-resource" class="file" accept="image/*" type="file" name="AttachFile">                
+            </form>
+        </div>
+        <div class="col-md-12" style="padding:7px;">
+            <button id="btn-save-transfer" class="btn-send-transfer btn btn-sm btn-success">Send</button>
+            <h3 style="padding-top:5px;color:olive">100,000 Baht / 1 Quota</h3>
+        </div>
+    </div>
+</div>

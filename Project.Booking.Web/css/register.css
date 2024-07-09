@@ -1,0 +1,201 @@
+
+
+@media (max-width: 1200px) {
+
+
+    .first-section {
+        overflow: auto !important;
+    }
+}
+
+@media (max-width: 1000px) {
+    .i-logo {
+        width: 200px;
+        margin-top: 10px;
+    }
+
+    .social-links {
+        display: unset !important;
+        float: left !important;
+    }
+
+    .navbar-default .navbar-toggle, .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
+        background-color: navy;
+        border-color: navy;
+    }
+}
+
+.first-section::before {
+    /*background: rgba(0,0,0,0.5);*/
+    background: unset;
+}
+
+.contact_form .form-control {
+    font-size: 20px;
+    margin-bottom: 5px !important;
+    height: 45px !important;
+}
+
+.contact_form {
+    border: 1px solid #1c044f;
+    /*background-color: rgba(0,0,0,0.5);*/
+    background-color: rgb(background-color: rgb(52 68 104) / 85%);
+    background-color: rgb(52 68 104 / 90%);
+}
+
+.contact_form {
+    border: 1px solid transparent;
+    padding: 25px 25px;
+}
+
+
+.grd1 {
+    background: #454039 !important;
+}
+
+.grd-active {
+    background: #a87b3c !important;
+    /*background: #454039 !important;*/
+}
+
+.grd1:focus, .grd1:hover, grd1:active {
+    background: #a87b3c !important
+}
+
+.btn-utility, btn-utility {
+    background: #454039 !important;
+}
+
+.chk-policy {
+    width: 15px;
+    height: 15px;
+}
+
+.a-policy {
+    color: white;
+}
+
+#a-forgot {
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+body.realestate_version .first-section {
+    display: block;
+    -webkit-box-align: unset;
+    align-items: unset;
+}
+
+.h-register {
+    color: white;
+    padding-bottom: 0px;
+}
+
+.d-logo {
+    padding-bottom: 0px;
+    text-align: left !important;
+    width: 20% !important;
+}
+
+.d-group {
+    height: 86px;
+    max-height: 86px;
+    text-align: right !important;
+    width: 80% !important;
+}
+
+.d-btn-group {
+    bottom: 0px;
+    position: absolute;
+    width: 100%;
+    bottom: 0px;
+    position: absolute;
+    width: 100%;
+    /* display: contents; */
+    padding-right: 30px;
+}
+
+.img-logo {
+    bottom: -85px;
+    position: absolute;
+}
+
+.img-thankyou-register {
+    width: 100%;
+    height: auto;
+    /*object-fit:cover;
+  object-position:center;*/
+}
+
+.img-container {
+}
+
+.a-close-page-lanscape {
+    position: absolute;
+    left: 75%;
+    background-color: transparent !important;
+    color: white !important;
+    top: 70%;
+    transform: translate(-25%,-30%);
+    font-size: 1.5vw;
+    text-decoration: underline !important;
+}
+
+.a-add-line-lanscape {
+    position: absolute;
+    left: 73%;
+    background-color: transparent !important;
+    color: white !important;
+    top: 53%;
+    transform: translate(-27%,-47%);
+    font-size: 1.5vw;
+    text-decoration: underline !important;
+}
+
+.a-close-page-portrait {
+    position: absolute;
+    left: 68%;
+    background-color: transparent !important;
+    color: white !important;
+    top: 90%;
+    font-size: 2.5vw;
+    text-decoration: underline !important;
+}
+
+.a-add-line-portrait {
+    position: absolute;
+    left: 55%;
+    background-color: transparent !important;
+    color: white !important;
+    top: 78%;
+    /*transform: translate(-45%,-22%);*/
+    font-size: 2.5vw;
+    text-decoration: underline !important;
+}
+
+.img-line-icon {
+    margin-right: 10px;
+}
+
+.img-line-icon-lanscape {
+    width: 30px;
+}
+
+.img-line-icon-portrait {
+    width: 20px;
+}
+
+.a-btn-close-lanscape {
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    cursor: pointer;
+}
+
+.a-btn-close-portrait {
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    cursor: pointer;
+}

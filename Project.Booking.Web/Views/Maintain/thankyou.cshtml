@@ -1,0 +1,53 @@
+﻿@{
+    Layout = null;
+}
+<html>
+<head>
+
+    <!-- Basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- Site Metas -->
+    <title>Title - Online Booking</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Site Icons -->
+    <link rel="shortcut icon" href="~/Images/rombho_logo.svg" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="images/rombho_logo.svg">
+    <style>
+        .bg-thankyou {
+            background-image: url(@(ViewBag.BaseUrl)Images/The-Title-Legendary-Web-Materials_Without-Logo_1920x870_SaleOffice.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: fixed;
+            height: 100%;
+            width: 100%;
+        }
+        @@media only screen and (max-width: 1024px) {
+            .bg-thankyou {
+                background-image: url(@(ViewBag.BaseUrl)Images/The-Title-Legendary-Web-Materials_Without-Logo_1080x1080_SaleOffice.jpg) !important;
+                /*background-repeat: no-repeat;
+                background-position: center;
+                background-attachment: fixed !important;
+                webkit-background-size: cover !important;
+                -moz-background-size: cover !important;
+                -o-background-size: cover !important;
+                background-size: cover !important;
+                height: 90%;
+                width: 90%;*/
+            }
+        }
+
+    </style>
+</head>
+<body >
+   <div >
+       <img class="bg-thankyou" />
+   </div>
+</body>
+</html>

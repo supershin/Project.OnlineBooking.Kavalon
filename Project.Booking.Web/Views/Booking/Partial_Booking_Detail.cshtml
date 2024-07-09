@@ -1,0 +1,87 @@
+﻿@model Project.Booking.Model.BookingModel
+@using Project.Booking.Extensions;
+@using Project.Booking.Constants;
+<h3 class="h-header">Booking Detail</h3>
+<div class="row">
+    <div class="col-md-4 col-xs-6 l-header">Project :</div>
+    <div class="col-md-8 col-xs-6 l-detail">@Model.ProjectName</div>
+</div>
+<div class="row">
+    <div class="col-md-4 col-xs-6 l-header">Unit Code :</div>
+    <div class="col-md-8 col-xs-6 l-detail">@Model.UnitCode</div>
+</div>
+@*<div class="row">
+        <div class="col-md-4 col-xs-6 l-header">Book No. :</div>
+        <div class="col-md-8 col-xs-6 l-detail">@Model.BookingNumber</div>
+    </div>*@
+<div class="row">
+    <div class="col-md-4 col-xs-6 l-header">Booked Date :</div>
+    <div class="col-md-8 col-xs-6 l-detail">@(Model.BookingDate.AsDate().ToStringDateTime()) (GMT+7)</div>
+</div>
+<div class="row">
+    <div class="col-md-4 col-xs-6 l-header">Model :</div>
+    <div class="col-md-8 col-xs-6 l-detail">@Model.ModelTypeName</div>
+</div>
+<div class="row">
+    <div class="col-md-4 col-xs-6 l-header">Unit Type :</div>
+    <div class="col-md-8 col-xs-6 l-detail">@Model.UnitTypeName</div>
+</div>
+<div class="row">
+    <div class="col-md-4 col-xs-6 l-header">Area :</div>
+    <div class="col-md-8 col-xs-6 l-detail">@(Model.Area) Sq.m.</div>
+</div>
+@if (Model.AreaIncrease.AsDecimal() > 0)
+{
+    <div class="row">
+        <div class="col-md-4 col-xs-6 l-header">Balcony Area :</div>
+        <div class="col-md-8 col-xs-6 l-detail">@(Model.AreaIncrease) Sq.m.</div>
+    </div>
+}
+<div class="row">
+    <div class="col-md-4 col-xs-6 l-header">Selling Price :</div>
+    <div class="col-md-8 col-xs-6 l-detail">@(Model.SellingPrice.AsDecimal().ToStringNumber()) ฿</div>
+</div>
+<div class="row">
+    <div class="col-md-4 col-xs-6 l-header">Discount :</div>
+    <div class="col-md-8 col-xs-6 l-detail">@(Model.Discount.AsDecimal().ToStringNumber()) ฿</div>
+</div>
+<div class="row">
+    <div class="col-md-4 col-xs-6 l-header">Booked By :</div>
+    <div class="col-md-8 col-xs-6 l-detail">@($"{Model.CustomerFirstName} {Model.CustomerLastName}")</div>
+</div>
+<div class="row">
+    <div class="col-md-4 col-xs-6 l-header">Email :</div>
+    <div class="col-md-8 col-xs-6 l-detail">@Model.CustomerEmail</div>
+</div>
+@*<div class="row">
+        <div class="col-md-4 col-xs-6 l-header">Net Price :</div>
+        <div class="col-md-8 col-xs-6 l-detail">@(Model.SpecialPrice.AsDecimal().ToStringNumber())฿</div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 col-xs-6 l-header" style="color:#cf8a0c;">Book :</div>
+        <div class="col-md-8 col-xs-6 l-detail" style="color:#cf8a0c;">@(Model.BookingAmount.AsDecimal().ToStringNumber())฿</div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 col-xs-6 l-header" style="color:#cf8a0c;">Contract :</div>
+        <div class="col-md-8 col-xs-6 l-detail" style="color:#cf8a0c;">@(Model.ContractAmount.AsDecimal().ToStringNumber())฿</div>
+    </div>*@
+@*@if (Model.BookingStatusID != Constant.BookingStatus.PAYMENT_SUCCESS)
+    {
+        <div class="row">
+            <div class="col-md-4 col-xs-6 l-header" style="color:#cf8a0c;">กำหนดชำระเงิน :</div>
+            <div class="col-md-8 col-xs-6 l-detail" style="color:#cf8a0c;">@(Model.PaymentDueDate.AsDate().ToStringDateTime())</div>
+        </div>
+    }*@
+<div class="row">
+    @*<div class="col-md-4 col-xs-6 l-header" style="color:#cf8a0c;">Status :</div>
+        <div class="col-md-8 col-xs-6 l-detail l-unit-status btn btn-xs" >@Model.BookingStatus</div>*@
+    <div class="col-md-4 col-xs-6 l-header">Status :</div>
+    @if (Model.BookingStatusID == Constant.BookingStatus.WAIT_PAYMENT)
+    {
+        <div class="col-md-8 col-xs-6 l-detail" style="color:green"><i class="fa fa-check"></i> @Model.BookingStatus</div>
+    }
+    @if (Model.BookingStatusID == Constant.BookingStatus.CANCEL)
+    {
+        <div class="col-md-8 col-xs-6 l-detail " style="color:red;"><i class="fa fa-remove"></i> @Model.BookingStatus</div>
+    }
+</div>

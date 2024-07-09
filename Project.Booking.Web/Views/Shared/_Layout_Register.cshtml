@@ -1,0 +1,133 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <!-- Cookie Consent by https://www.cookiewow.com -->
+    <script type="text/javascript" src="https://cookiecdn.com/cwc.js"></script>
+    <script id="cookieWow" type="text/javascript" src="https://cookiecdn.com/configs/sNQskapogEJitwaRUEerR3AZ" data-cwcid="sNQskapogEJitwaRUEerR3AZ"></script>
+
+    <!-- Basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- Site Metas -->
+    <title>Title - Online Booking</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Site Icons -->
+    <link rel="shortcut icon" href="~/Images/rombho_logo.svg" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="images/rombho_logo.svg">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/template/css/bootstrap.min.css">
+    <!-- Site CSS -->
+    <link rel="stylesheet" href="@Url.Content("~/template/style.css?ver=")@DateTime.Now.Ticks.ToString()">
+    <!-- Colors CSS -->
+    <link rel="stylesheet" href="~/template/css/colors.css">
+    <!-- ALL VERSION CSS -->
+    <link rel="stylesheet" href="~/template/css/versions.css">
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="~/template/css/responsive.css">
+
+    <!-- load mask -->
+    <link rel="stylesheet" href="~/Scripts/plugins/waitMe/waitMe.min.css" />
+
+    <!-- Notify -->
+    <link href="~/Scripts/plugins/jquery.growl/jquery.growl.css" rel="stylesheet" type="text/css" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="@Url.Content("~/css/custom.css?ver=")@DateTime.Now.Ticks.ToString()">
+    <link rel="stylesheet" href="@Url.Content("~/css/register.css?ver=")@DateTime.Now.Ticks.ToString()">
+    <link rel="stylesheet" href="@Url.Content("~/css/media.css?ver=")@DateTime.Now.Ticks.ToString()">
+    <link rel="stylesheet" href="@Url.Content("~/css/cookies.css?ver=")@DateTime.Now.Ticks.ToString()">
+    <!-- Custom CSS -->
+    <!-- Modernizer for Portfolio -->
+    <script src="~/template/js/modernizer.js"></script>
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+
+</head>
+<body class="realestate_version">
+   
+    <script>
+        var baseUrl = '@(ViewBag.baseUrl)';
+    </script>
+    <!-- LOADER -->
+    <div id="preloader">
+        <span class="loader"><span class="loader-inner"></span></span>
+    </div>
+    <!-- END LOADER -->
+    <!--<header class="header header_style_01">
+        <nav class="megamenu navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href="@Url.Action("Index","Project")"><img class="i-logo" width="50" src="~/Images/rombho_logo.svg" alt="image"></a>
+                </div>-->
+                @*<div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="social-links"><a target="_blank" href="https://www.facebook.com/AssetWiseThailand/"><i class="fa fa-facebook global-radius"></i></a></li>
+                        <li class="social-links"><a target="_blank" href="https://www.youtube.com/channel/UCI_7R29HhJfBPbBiJ65GxfQ"><i class="fa fa-youtube-play global-radius"></i></a></li>
+                        <li class="social-links"><a target="_blank" href="https://www.instagram.com/assetwisethailand/"><i class="fa fa-instagram global-radius"></i></a></li>
+                    </ul>
+                </div>*@
+            <!--</div>
+        </nav>
+    </header>-->
+
+    <ul class='slideshow' >
+        <li>
+            <span></span>
+        </li>
+        <li>
+            <span></span>
+        </li>
+        <li>
+            <span></span>
+        </li>
+        <li>
+            <span></span>
+        </li>
+    </ul>
+    @RenderBody()
+    @Html.Partial("_Layout_Footer")
+    @Html.Partial("~/Views/Register/Partial_Cookies.cshtml")
+    @*<a href="#" id="scroll-to-top" class="dmtop global-radius"><i class="fa fa-angle-up"></i></a>*@
+
+    <!-- ALL JS FILES -->
+    <script src="~/template/js/all.js"></script>
+    <!-- ALL PLUGINS -->
+    <script src="~/template/js/custom.js"></script>
+    <script src="~/template/js/portfolio.js"></script>
+    <script src="~/template/js/hoverdir.js"></script>
+
+    <!-- load mask -->
+    <script type="text/javascript" src="~/scripts/plugins/waitMe/waitMe.min.js"></script>
+
+    <!-- Notify -->
+    <script src="~/Scripts/plugins/jquery.growl/jquery.growl.js" type="text/javascript"></script>
+
+    <script src="@Url.Content("~/Scripts/cookieClient.js?ver=")@DateTime.Now.Ticks.ToString()" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/app.js?ver=")@DateTime.Now.Ticks.ToString()" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //CookieClient.init();
+            $('.slideshow')
+        });
+    </script>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

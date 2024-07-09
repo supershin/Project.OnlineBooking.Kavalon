@@ -1,0 +1,664 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{BC740B6B-97FA-44FE-B7B7-D07A8B18ABF0}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Project.Booking.Web</RootNamespace>
+    <AssemblyName>Project.Booking.Web</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Hangfire.AspNet, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Hangfire.AspNet.0.2.0\lib\net45\Hangfire.AspNet.dll</HintPath>
+    </Reference>
+    <Reference Include="Hangfire.Core, Version=1.7.31.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Hangfire.Core.1.7.31\lib\net46\Hangfire.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Hangfire.SqlServer, Version=1.7.31.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Hangfire.SqlServer.1.7.31\lib\net45\Hangfire.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Core, Version=2.4.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.2.4.2\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.SystemWeb, Version=2.4.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.SystemWeb.2.4.2\lib\net45\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin, Version=4.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.4.2.0\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Cors, Version=4.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Cors.4.2.0\lib\net45\Microsoft.Owin.Cors.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.2.1.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Omise, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Omise.2.7.11\lib\netstandard2.0\Omise.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Scrypt, Version=1.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Scrypt.NET.1.3.0\lib\net20\Scrypt.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.Cors, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Cors.5.0.0\lib\net45\System.Web.Cors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.4\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.4\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\BookingController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MatrixController.cs" />
+    <Compile Include="Controllers\PaymentController.cs" />
+    <Compile Include="Controllers\ProjectController.cs" />
+    <Compile Include="Controllers\MaintainController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\RegisterController.cs" />
+    <Compile Include="Filters\CustomAuthenticationFilter.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="HangFire\HangFireWorker.cs" />
+    <Compile Include="Helpers\HtmlHelperExtensions.cs" />
+    <Compile Include="Hubs\NotifyHub.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Startup.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\countdown.css" />
+    <Content Include="Content\countdown_00102013.css" />
+    <Content Include="Content\countdown_PDC002.css" />
+    <Content Include="Content\matrix\style.css" />
+    <Content Include="Content\my-quota.css" />
+    <Content Include="css\cookies.css" />
+    <Content Include="css\gallery.css" />
+    <Content Include="css\pinczoomh-floorplan.css" />
+    <Content Include="css\logo\logo_2020_3.jpg" />
+    <Content Include="css\media.css" />
+    <Content Include="css\Privacy-Policy\bootstrap.min.css" />
+    <Content Include="css\Privacy-Policy\bootstrap.min.js" />
+    <Content Include="css\Privacy-Policy\jquery.min.js" />
+    <Content Include="css\register-success.css" />
+    <Content Include="css\register.css" />
+    <Content Include="css\custom.css" />
+    <Content Include="css\slideshow.css" />
+    <Content Include="css\tab-project-detail.css" />
+    <Content Include="css\unit-selected.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="css\fonts\dbgillsiamx_0-demo.html" />
+    <Content Include="css\fonts\db_gill_siam_x_bd_it_v3.2_0-demo.html" />
+    <Content Include="css\fonts\db_gill_siam_x_bd_v3.2_1-demo.html" />
+    <Content Include="css\fonts\db_gill_siam_x_it_v3.2_0-demo.html" />
+    <Content Include="css\fonts\db_gill_siam_x_li_it_v3.2_0-demo.html" />
+    <Content Include="css\fonts\db_gill_siam_x_li_v3.2_0-demo.html" />
+    <Content Include="css\fonts\generator_config.txt" />
+    <Content Include="css\fonts\specimen_files\grid_12-825-55-15.css" />
+    <Content Include="css\fonts\specimen_files\specimen_stylesheet.css" />
+    <Content Include="css\fonts\stylesheet.css" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Images\bang-toa.jpg" />
+    <Content Include="Images\BG.jpg" />
+    <Content Include="Images\BG_Company.jpg" />
+    <Content Include="Images\BG_Company.png" />
+    <Content Include="Images\booking-online.png" />
+    <Content Include="Images\email.ico" />
+    <Content Include="Images\Error_UnitNotAvailable.png" />
+    <Content Include="Images\kave-universe_logo.png" />
+    <Content Include="Images\LobbyFlare.jpg" />
+    <Content Include="Images\play.png" />
+    <Content Include="Images\quota.png" />
+    <Content Include="Images\rombho_logo.svg" />
+    <Content Include="Images\logo_2020.jpg" />
+    <Content Include="Images\logo_2020_2.jpg" />
+    <Content Include="Images\pz_sheet.png" />
+    <Content Include="Images\success.png" />
+    <Content Include="Images\sweet.png" />
+    <Content Include="Images\thankyou.png" />
+    <Content Include="Images\The-Title-Legendary-Web-Materials_Without-Logo_1080x1080_SaleOffice.jpg" />
+    <Content Include="Images\The-Title-Legendary-Web-Materials_Without-Logo_1920x870_SaleOffice.jpg" />
+    <Content Include="Images\TheTitle Heritage_Logo_Original.png" />
+    <Content Include="Images\TheTitle Heritage_Logo_White.png" />
+    <Content Include="Images\The_title_Legendary_final.png" />
+    <Content Include="Images\The_title_Legendary_final_white.png" />
+    <Content Include="Images\title_Legendary_logo_dark.png" />
+    <Content Include="Images\title_Legendary_logo_hor_dark.png" />
+    <Content Include="Images\title_Legendary_logo_hor_light.png" />
+    <Content Include="Images\title_Legendary_logo_light.png" />
+    <Content Include="Images\Top-BG.jpg" />
+    <Content Include="Images\UnitPlan_Error Message.jpg" />
+    <Content Include="Images\warning.png" />
+    <Content Include="readme.txt" />
+    <Content Include="Resources\ESTA_THANK_YOU_DESKTOP.jpg" />
+    <Content Include="Resources\ESTA_THANK_YOU_MOBILE.jpg" />
+    <Content Include="css\fonts\dbgillsiamx_0-webfont.woff" />
+    <Content Include="css\fonts\dbgillsiamx_0-webfont.woff2" />
+    <Content Include="css\fonts\db_gill_siam_x_bd_it_v3.2_0-webfont.woff" />
+    <Content Include="css\fonts\db_gill_siam_x_bd_it_v3.2_0-webfont.woff2" />
+    <Content Include="css\fonts\db_gill_siam_x_bd_v3.2_1-webfont.woff" />
+    <Content Include="css\fonts\db_gill_siam_x_bd_v3.2_1-webfont.woff2" />
+    <Content Include="css\fonts\db_gill_siam_x_it_v3.2_0-webfont.woff" />
+    <Content Include="css\fonts\db_gill_siam_x_it_v3.2_0-webfont.woff2" />
+    <Content Include="css\fonts\db_gill_siam_x_li_it_v3.2_0-webfont.woff" />
+    <Content Include="css\fonts\db_gill_siam_x_li_it_v3.2_0-webfont.woff2" />
+    <Content Include="css\fonts\db_gill_siam_x_li_v3.2_0-webfont.woff" />
+    <Content Include="css\fonts\db_gill_siam_x_li_v3.2_0-webfont.woff2" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <Content Include="Scripts\app.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\cookieClient.js" />
+    <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.3.1.js" />
+    <Content Include="Scripts\jquery-3.3.1.min.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
+    <Content Include="Scripts\jquery.signalR-2.4.2.js" />
+    <Content Include="Scripts\jquery.signalR-2.4.2.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\pages\Booking.js" />
+    <Content Include="Scripts\pages\CountDown.js" />
+    <Content Include="Scripts\pages\matrix.js" />
+    <Content Include="Scripts\pages\myquota.js" />
+    <Content Include="Scripts\pages\ProjectDetail.js" />
+    <Content Include="Scripts\pages\User.js" />
+    <Content Include="Scripts\pages\Utility.js" />
+    <Content Include="Scripts\plugins\annotorious\annotorious.min.js" />
+    <Content Include="Scripts\plugins\autoNumeric\autoNumeric.js" />
+    <Content Include="Scripts\plugins\fancybox-3.0\dist\custom.css" />
+    <Content Include="Scripts\plugins\fancybox-3.0\dist\jquery.fancybox.css" />
+    <Content Include="Scripts\plugins\fancybox-3.0\dist\jquery.fancybox.js" />
+    <Content Include="Scripts\plugins\fancybox-3.0\dist\jquery.fancybox.min.css" />
+    <Content Include="Scripts\plugins\fancybox-3.0\dist\jquery.fancybox.min.js" />
+    <Content Include="Scripts\plugins\fancybox-3.0\docs\index.html" />
+    <Content Include="Scripts\plugins\fancybox-3.0\gulpfile.js" />
+    <Content Include="Scripts\plugins\fancybox-3.0\src\css\core.css" />
+    <Content Include="Scripts\plugins\fancybox-3.0\src\css\fullscreen.css" />
+    <Content Include="Scripts\plugins\fancybox-3.0\src\css\slideshow.css" />
+    <Content Include="Scripts\plugins\fancybox-3.0\src\css\thumbs.css" />
+    <Content Include="Scripts\plugins\fancybox-3.0\src\js\core.js" />
+    <Content Include="Scripts\plugins\fancybox-3.0\src\js\fullscreen.js" />
+    <Content Include="Scripts\plugins\fancybox-3.0\src\js\guestures.js" />
+    <Content Include="Scripts\plugins\fancybox-3.0\src\js\hash.js" />
+    <Content Include="Scripts\plugins\fancybox-3.0\src\js\media.js" />
+    <Content Include="Scripts\plugins\fancybox-3.0\src\js\slideshow.js" />
+    <Content Include="Scripts\plugins\fancybox-3.0\src\js\thumbs.js" />
+    <Content Include="Scripts\plugins\fileUpload\fileUpload.css" />
+    <Content Include="Scripts\plugins\fileUpload\fileUpload.js" />
+    <Content Include="Scripts\plugins\fileUpload\fileUpload.v1.js" />
+    <Content Include="Scripts\plugins\jquery.growl\jquery.growl.css" />
+    <Content Include="Scripts\plugins\jquery.growl\jquery.growl.js" />
+    <Content Include="Scripts\plugins\jquery.touchSwipe.min.js" />
+    <Content Include="Scripts\plugins\pg-calendar-master\dist\css\pignose.calendar.css" />
+    <Content Include="Scripts\plugins\pg-calendar-master\dist\css\pignose.calendar.min.css" />
+    <Content Include="Scripts\plugins\pg-calendar-master\dist\fonts\icon_navs.svg" />
+    <Content Include="Scripts\plugins\pg-calendar-master\dist\fonts\pignose.calendar.svg" />
+    <Content Include="Scripts\plugins\pg-calendar-master\dist\js\pignose.calendar.full.js" />
+    <Content Include="Scripts\plugins\pg-calendar-master\dist\js\pignose.calendar.full.min.js" />
+    <Content Include="Scripts\plugins\pg-calendar-master\dist\js\pignose.calendar.js" />
+    <Content Include="Scripts\plugins\pg-calendar-master\dist\js\pignose.calendar.min.js" />
+    <Content Include="Scripts\plugins\PgwSlider-master\pgwslider.css" />
+    <Content Include="Scripts\plugins\PgwSlider-master\pgwslider.js" />
+    <Content Include="Scripts\plugins\PgwSlider-master\pgwslider.min.css" />
+    <Content Include="Scripts\plugins\PgwSlider-master\pgwslider.min.js" />
+    <Content Include="Scripts\plugins\PgwSlideshow-master\pgwslideshow.css" />
+    <Content Include="Scripts\plugins\PgwSlideshow-master\pgwslideshow.js" />
+    <Content Include="Scripts\plugins\PgwSlideshow-master\pgwslideshow.min.css" />
+    <Content Include="Scripts\plugins\PgwSlideshow-master\pgwslideshow.min.js" />
+    <Content Include="Scripts\plugins\PgwSlideshow-master\pgwslideshow_light.css" />
+    <Content Include="Scripts\plugins\PgwSlideshow-master\pgwslideshow_light.min.css" />
+    <Content Include="Scripts\plugins\PinchZoom\hammer.min.js" />
+    <Content Include="Scripts\plugins\PinchZoom\jquery.mousewheel.min.js" />
+    <Content Include="Scripts\plugins\PinchZoom\pinchzoom.custom.js" />
+    <Content Include="Scripts\plugins\PinchZoom\TweenMax.min.js" />
+    <Content Include="Scripts\plugins\waitMe\img.svg" />
+    <Content Include="Scripts\plugins\waitMe\waitMe.css" />
+    <Content Include="Scripts\plugins\waitMe\waitMe.js" />
+    <Content Include="Scripts\plugins\waitMe\waitMe.min.css" />
+    <Content Include="Scripts\plugins\waitMe\waitMe.min.js" />
+    <Content Include="template\css\animate.css" />
+    <Content Include="template\css\bootstrap-theme.css" />
+    <Content Include="template\css\bootstrap-theme.min.css" />
+    <Content Include="template\css\bootstrap.css" />
+    <Content Include="template\css\bootstrap.min.css" />
+    <Content Include="template\css\colors.css" />
+    <Content Include="template\css\custom.css" />
+    <Content Include="template\css\flaticon.css" />
+    <Content Include="template\css\font-awesome.css" />
+    <Content Include="template\css\font-awesome.min.css" />
+    <Content Include="template\css\owl.carousel.css" />
+    <Content Include="template\css\prettyPhoto.css" />
+    <Content Include="template\css\responsive.css" />
+    <Content Include="template\css\slideshow.css" />
+    <Content Include="template\css\versions.css" />
+    <Content Include="template\fonts\flaticon.css" />
+    <Content Include="template\fonts\flaticon.html" />
+    <Content Include="template\fonts\Flaticon.svg" />
+    <Content Include="template\fonts\fontawesome-webfont.svg" />
+    <Content Include="template\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="template\images\ajax-loader.gif" />
+    <Content Include="template\images\apple-touch-icon.png" />
+    <Content Include="template\images\bg.png" />
+    <Content Include="template\images\favicon.ico" />
+    <Content Include="template\images\gps.png" />
+    <Content Include="template\images\logos\logo-realestate.png" />
+    <Content Include="template\images\logos\logo.png" />
+    <Content Include="template\images\prettyPhoto\dark_rounded\btnNext.png" />
+    <Content Include="template\images\prettyPhoto\dark_rounded\btnPrevious.png" />
+    <Content Include="template\images\prettyPhoto\dark_rounded\contentPattern.png" />
+    <Content Include="template\images\prettyPhoto\dark_rounded\default_thumbnail.gif" />
+    <Content Include="template\images\prettyPhoto\dark_rounded\loader.gif" />
+    <Content Include="template\images\prettyPhoto\dark_rounded\sprite.png" />
+    <Content Include="template\images\prettyPhoto\dark_square\btnNext.png" />
+    <Content Include="template\images\prettyPhoto\dark_square\btnPrevious.png" />
+    <Content Include="template\images\prettyPhoto\dark_square\contentPattern.png" />
+    <Content Include="template\images\prettyPhoto\dark_square\default_thumbnail.gif" />
+    <Content Include="template\images\prettyPhoto\dark_square\loader.gif" />
+    <Content Include="template\images\prettyPhoto\dark_square\sprite.png" />
+    <Content Include="template\images\prettyPhoto\default\default_thumb.png" />
+    <Content Include="template\images\prettyPhoto\default\loader.gif" />
+    <Content Include="template\images\prettyPhoto\default\sprite.png" />
+    <Content Include="template\images\prettyPhoto\default\sprite_next.png" />
+    <Content Include="template\images\prettyPhoto\default\sprite_prev.png" />
+    <Content Include="template\images\prettyPhoto\default\sprite_x.png" />
+    <Content Include="template\images\prettyPhoto\default\sprite_y.png" />
+    <Content Include="template\images\prettyPhoto\facebook\btnNext.png" />
+    <Content Include="template\images\prettyPhoto\facebook\btnPrevious.png" />
+    <Content Include="template\images\prettyPhoto\facebook\contentPatternBottom.png" />
+    <Content Include="template\images\prettyPhoto\facebook\contentPatternLeft.png" />
+    <Content Include="template\images\prettyPhoto\facebook\contentPatternRight.png" />
+    <Content Include="template\images\prettyPhoto\facebook\contentPatternTop.png" />
+    <Content Include="template\images\prettyPhoto\facebook\default_thumbnail.gif" />
+    <Content Include="template\images\prettyPhoto\facebook\loader.gif" />
+    <Content Include="template\images\prettyPhoto\facebook\sprite.png" />
+    <Content Include="template\images\prettyPhoto\light_rounded\btnNext.png" />
+    <Content Include="template\images\prettyPhoto\light_rounded\btnPrevious.png" />
+    <Content Include="template\images\prettyPhoto\light_rounded\default_thumbnail.gif" />
+    <Content Include="template\images\prettyPhoto\light_rounded\loader.gif" />
+    <Content Include="template\images\prettyPhoto\light_rounded\sprite.png" />
+    <Content Include="template\images\prettyPhoto\light_square\btnNext.png" />
+    <Content Include="template\images\prettyPhoto\light_square\btnPrevious.png" />
+    <Content Include="template\images\prettyPhoto\light_square\default_thumbnail.gif" />
+    <Content Include="template\images\prettyPhoto\light_square\loader.gif" />
+    <Content Include="template\images\prettyPhoto\light_square\sprite.png" />
+    <Content Include="template\js\all.js" />
+    <Content Include="template\js\animate.js" />
+    <Content Include="template\js\custom.js" />
+    <Content Include="template\js\hoverdir.js" />
+    <Content Include="template\js\jquery.prettyPhoto.js" />
+    <Content Include="template\js\jquery.vide.js" />
+    <Content Include="template\js\map.js" />
+    <Content Include="template\js\modernizer.js" />
+    <Content Include="template\js\owl.carousel.js" />
+    <Content Include="template\js\portfolio.js" />
+    <Content Include="template\js\retina.js" />
+    <Content Include="template\js\scroll.js" />
+    <Content Include="template\style.css" />
+    <Content Include="template\uploads\about_bg.jpg" />
+    <Content Include="template\uploads\agent.jpg" />
+    <Content Include="template\uploads\estate_01.jpg" />
+    <Content Include="template\uploads\estate_02.jpg" />
+    <Content Include="template\uploads\estate_03.jpg" />
+    <Content Include="template\uploads\home_01.jpg" />
+    <Content Include="template\uploads\home_02.jpg" />
+    <Content Include="template\uploads\home_03.jpg" />
+    <Content Include="template\uploads\home_04.jpg" />
+    <Content Include="template\uploads\home_05.jpg" />
+    <Content Include="template\uploads\home_06.jpg" />
+    <Content Include="template\uploads\icon-01.png" />
+    <Content Include="template\uploads\icon-02.png" />
+    <Content Include="template\uploads\icon-03.png" />
+    <Content Include="template\uploads\icon-04.png" />
+    <Content Include="template\uploads\inner-bg.jpg" />
+    <Content Include="template\uploads\parallax_02.jpg" />
+    <Content Include="template\uploads\parallax_02.png" />
+    <Content Include="template\uploads\parallax_05.png" />
+    <Content Include="template\uploads\parallax_11.jpg" />
+    <Content Include="template\uploads\parallax_17.jpg" />
+    <Content Include="template\uploads\slider_01.jpg" />
+    <Content Include="template\uploads\slider_02.jpg" />
+    <Content Include="template\uploads\slider_03.jpg" />
+    <Content Include="template\uploads\testi_01.png" />
+    <Content Include="template\uploads\testi_02.png" />
+    <Content Include="template\uploads\testi_03.png" />
+    <Content Include="template\uploads\version_soon.jpg" />
+    <Content Include="Views\Templates\Register.html" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Register\Index.cshtml" />
+    <Content Include="Views\Shared\_Layout_Register.cshtml" />
+    <Content Include="template\css\bootstrap-theme.css.map" />
+    <Content Include="template\css\bootstrap-theme.min.css.map" />
+    <Content Include="template\css\bootstrap.css.map" />
+    <Content Include="template\css\bootstrap.min.css.map" />
+    <Content Include="template\fonts\Flaticon.eot" />
+    <Content Include="template\fonts\Flaticon.ttf" />
+    <Content Include="template\fonts\Flaticon.woff" />
+    <Content Include="template\fonts\fontawesome-webfont.eot" />
+    <Content Include="template\fonts\fontawesome-webfont.ttf" />
+    <Content Include="template\fonts\fontawesome-webfont.woff" />
+    <Content Include="template\fonts\fontawesome-webfont.woff2" />
+    <Content Include="template\fonts\FontAwesome.otf" />
+    <Content Include="template\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="template\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="template\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="template\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="template\fonts\_flaticon.scss" />
+    <Content Include="Views\Register\Partial_Register.cshtml" />
+    <Content Include="Views\Register\Partial_Register_Success.cshtml" />
+    <Content Include="Views\Templates\Register_Email.cshtml" />
+    <Content Include="Views\Register\Partial_Forgot.cshtml" />
+    <Content Include="Views\Register\Partial_Forgot_Success.cshtml" />
+    <Content Include="Views\Templates\Forgot_Email.cshtml" />
+    <Content Include="Views\Project\Index.cshtml" />
+    <Content Include="Views\Shared\_Layout_Project.cshtml" />
+    <Content Include="Views\Project\Partial_Project_Section.cshtml" />
+    <Content Include="Views\Project\Partial_Project_List.cshtml" />
+    <Content Include="Views\Project\Detail.cshtml" />
+    <Content Include="Views\Project\Partial_Detail_Section.cshtml" />
+    <Content Include="Views\Project\Partial_Detail_Menu.cshtml" />
+    <Content Include="Views\Project\Partial_Detail_Booking_FloorPlan.cshtml" />
+    <Content Include="Views\Project\Partial_Detail_Booking_Search.cshtml" />
+    <Content Include="Views\Error\InternalServer.cshtml" />
+    <Content Include="Views\Error\NotFound.cshtml" />
+    <Content Include="Views\Error\UnAuthorized.cshtml" />
+    <Content Include="Views\Register\Partial_Register_Success_2.cshtml" />
+    <Content Include="Views\Shared\_Layout_Footer.cshtml" />
+    <Content Include="Views\Shared\_Layout_Privacy.cshtml" />
+    <Content Include="Views\Register\Partial_Cookies.cshtml" />
+    <Content Include="Views\Project\Partial_Floor_SelectList.cshtml" />
+    <Content Include="Views\Project\Partial_Detail_Booking_Unit_Selected.cshtml" />
+    <Content Include="Views\Booking\Index.cshtml" />
+    <Content Include="Views\Booking\Partial_Booking_HIstory.cshtml" />
+    <Content Include="Views\Booking\Partial_Booking_Detail.cshtml" />
+    <Content Include="Views\Booking\Partial_Booking_Customer.cshtml" />
+    <Content Include="Views\Booking\Partial_Booking_Action.cshtml" />
+    <Content Include="Views\Shared\Partial_Confirm_Modal.cshtml" />
+    <Content Include="Views\Booking\Partial_TermPayment_Modal.cshtml" />
+    <Content Include="Views\Booking\Partial_Checkout.cshtml" />
+    <Content Include="Views\Payment\CreditComplete.cshtml" />
+    <Content Include="Views\Payment\Partial_PaymentCredit_Success.cshtml" />
+    <Content Include="Views\Payment\Partial_Booking_Customer.cshtml" />
+    <Content Include="Views\Payment\Partial_Booking_Detail.cshtml" />
+    <Content Include="Views\Payment\Partial_Payment_Detail.cshtml" />
+    <Content Include="Views\Booking\Partial_Booking_PaymentDetail.cshtml" />
+    <Content Include="Views\User\index.cshtml" />
+    <Content Include="Views\Templates\Payment_Email.cshtml" />
+    <Content Include="Views\Project\Partial_Detail_Gallery_PGW_SlideShow.cshtml" />
+    <Content Include="Views\Project\Partial_Detail_Gallery.cshtml" />
+    <Content Include="Views\Matrix\Index.cshtml" />
+    <Content Include="Views\Project\CountDown_PDC002.cshtml" />
+    <Content Include="Views\Register\Partial_Register_Start.cshtml" />
+    <Content Include="Views\Templates\Register_Email - Copy.cshtml" />
+    <Content Include="Views\Project\Partial_CountDown_Modal.cshtml" />
+    <Content Include="Views\Matrix\Partial_Unit_Modal.cshtml" />
+    <Content Include="Views\Project\CountDown_00102013.cshtml" />
+    <Content Include="Views\Project\Partial_Detail_Quota.cshtml" />
+    <Content Include="Views\Shared\Partial_Confirm_Booking_Modal.cshtml" />
+    <Content Include="Views\Templates\Booking_Email.cshtml" />
+    <Content Include="Views\Register\Partial_Login.cshtml" />
+    <Content Include="Views\Project\Partial_Booking_Success.cshtml" />
+    <Content Include="Views\Shared\Partial_Introduction_Modal.cshtml" />
+    <Content Include="Scripts\jquery-3.3.1.min.map" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
+    <Content Include="Scripts\plugins\fancybox-3.0\bower.json" />
+    <Content Include="Scripts\plugins\fancybox-3.0\package.json" />
+    <Content Include="Scripts\plugins\fancybox-3.0\README.md" />
+    <Content Include="Scripts\plugins\PgwSlider-master\LICENSE.md" />
+    <Content Include="Scripts\plugins\PgwSlider-master\package.json" />
+    <Content Include="Scripts\plugins\PgwSlider-master\pgwslider.jquery.json" />
+    <Content Include="Scripts\plugins\PgwSlider-master\README.md" />
+    <Content Include="Scripts\plugins\PgwSlideshow-master\LICENSE.md" />
+    <Content Include="Scripts\plugins\PgwSlideshow-master\package.json" />
+    <Content Include="Scripts\plugins\PgwSlideshow-master\pgwslideshow.jquery.json" />
+    <Content Include="Scripts\plugins\PgwSlideshow-master\README.md" />
+    <Content Include="Scripts\plugins\waitMe\LICENSE.md" />
+    <Content Include="Scripts\plugins\waitMe\README.md" />
+    <Content Include="Views\Project\Partial_Booking_Quota_Error.cshtml" />
+    <Content Include="Views\Project\Partial_Booking_Unit_Error.cshtml" />
+    <Content Include="Views\Maintain\thankyou.cshtml" />
+    <Content Include="Views\Project\Partial_Detail_MyQuota_Profile.cshtml" />
+    <Content Include="Views\Project\Partial_Detail_MyQuota_Transfer.cshtml" />
+    <Content Include="Views\Project\Partial_Detail_MyQuota_Transfer_List.cshtml" />
+    <Content Include="Scripts\plugins\pg-calendar-master\dist\fonts\icon_navs.eot" />
+    <Content Include="Scripts\plugins\pg-calendar-master\dist\fonts\icon_navs.ttf" />
+    <Content Include="Scripts\plugins\pg-calendar-master\dist\fonts\icon_navs.woff" />
+    <Content Include="Scripts\plugins\pg-calendar-master\dist\fonts\pignose.calendar.eot" />
+    <Content Include="Scripts\plugins\pg-calendar-master\dist\fonts\pignose.calendar.ttf" />
+    <Content Include="Scripts\plugins\pg-calendar-master\dist\fonts\pignose.calendar.woff" />
+    <Content Include="Views\Project\Partial_Detail_MyQuota_Wizard.cshtml" />
+    <Content Include="Views\Project\Partial_Detail_CountDown.cshtml" />
+    <Content Include="Views\Project\Partial_View_Unit_Available_Modal.cshtml" />
+    <Content Include="Views\Booking\BookingVIPSendMail.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="css\register\" />
+    <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Project.Booking.Business\Project.Booking.Business.csproj">
+      <Project>{c1199922-07a9-4b08-8f42-d00b73a9cd54}</Project>
+      <Name>Project.Booking.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Project.Booking.Data\Project.Booking.Data.csproj">
+      <Project>{39b8da1f-9bc2-477e-8249-5c4ad29bc19e}</Project>
+      <Name>Project.Booking.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Project.Booking.Model\Project.Booking.Model.csproj">
+      <Project>{4db42caf-db60-449b-bd39-db0ac836d87a}</Project>
+      <Name>Project.Booking.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Project.Booking\Project.Booking.csproj">
+      <Project>{8e413263-2aba-4253-afbf-b91fdface8e0}</Project>
+      <Name>Project.Booking</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>55641</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:55641/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>
