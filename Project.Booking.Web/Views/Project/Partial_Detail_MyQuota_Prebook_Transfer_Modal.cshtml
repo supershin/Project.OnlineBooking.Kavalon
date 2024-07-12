@@ -1,0 +1,71 @@
+﻿<div class="modal fade" id="modal-prebook-transfer" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #f0f7f7; ">
+                <h3 class="modal-title" style="padding-bottom: unset; color: maroon;"><i style="color:dimgrey;" class="fa fa-file-text-o "></i> แจ้งการโอนเงิน</h3>
+            </div>
+            <div class="modal-body " style="padding-top: 10px; max-height: calc(100vh - 212px); overflow-y: auto; ">
+                <div class="row r-prebook">
+                    <div class="col-md-4 col-xs-5 p-right-0">
+                        <label class="lb-prebook">จำนวนสิทธิ์การจอง :</label>
+                    </div>
+                    <div class="col-md-8 col-xs-7 p-left-0">
+                        <label class="lb-prebook">3</label>
+                    </div>
+                </div>
+                <div class="row r-prebook">
+                    <div class="col-md-4 col-xs-5 p-right-0">
+                        <label class="lb-prebook">โอนเงินเข้าบัญชี :</label>
+                    </div>
+                    <div class="col-md-8 col-xs-7 p-left-0">
+                        <label class="lb-prebook">XXX-XXXXX-XXXX</label>
+                    </div>
+                </div>
+                <div class="row r-prebook">
+                    <div class="col-md-4 col-xs-5 p-right-0">
+                        <label class="lb-prebook">วันที่โอน :</label>
+                    </div>
+                    <div class="col-md-4 col-xs-7 p-left-0">
+                        <div class="input-group">
+                            <input id="trans-date" type="text" class="form-control" aria-label="" placeholder="">
+                            <span class="input-group-addon bg-orange"><i class="fa fa-calendar"></i></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row r-prebook">
+                    <div class="col-md-4 col-xs-5 p-right-0">
+                        <label class="lb-prebook">เวลา :</label>
+                    </div>
+                    <div class="col-md-4 col-xs-7 p-left-0" style="display:flex">
+                        <select class="form-control" style="margin-right:5px;">
+                            <option>ชั่วโมง</option>
+                        </select>
+                        <select class="form-control">
+                            <option>นาที</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row r-prebook">
+                    <div class="col-md-4 col-xs-5 p-right-0">
+                        <label class="lb-prebook">จำนวนเงิน :</label>
+                    </div>
+                    <div class="col-md-8 col-xs-7 p-left-0">
+                        <input type="text" id="trans-amount" class="decimal form-control" aria-label="">
+                    </div>
+                </div>
+                <div class="row r-prebook">                
+                    <div class="col-md-12">
+                        <form id="form-upload" method="post">
+                            <input id="file-resource" class="" accept="image/*" type="file" name="AttachFile">
+                        </form>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <button class="btn btn-sm btn-danger">ยืนยันการโอนเงิน</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

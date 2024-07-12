@@ -206,6 +206,7 @@
     <Content Include="Content\countdown_PDC002.css" />
     <Content Include="Content\matrix\style.css" />
     <Content Include="Content\my-quota.css" />
+    <Content Include="Content\prebook.css" />
     <Content Include="css\cookies.css" />
     <Content Include="css\gallery.css" />
     <Content Include="css\pinczoomh-floorplan.css" />
@@ -302,6 +303,7 @@
     <Content Include="Scripts\pages\CountDown.js" />
     <Content Include="Scripts\pages\matrix.js" />
     <Content Include="Scripts\pages\myquota.js" />
+    <Content Include="Scripts\pages\Prebook.js" />
     <Content Include="Scripts\pages\ProjectDetail.js" />
     <Content Include="Scripts\pages\User.js" />
     <Content Include="Scripts\pages\Utility.js" />
@@ -586,6 +588,12 @@
     <Content Include="Views\Project\Partial_Detail_CountDown.cshtml" />
     <Content Include="Views\Project\Partial_View_Unit_Available_Modal.cshtml" />
     <Content Include="Views\Booking\BookingVIPSendMail.cshtml" />
+    <Content Include="Views\Project\Partial_Detail_MyQuota_Prebook.cshtml" />
+    <Content Include="Views\Project\Partial_Detail_MyQuota_Prebook_List.cshtml" />
+    <Content Include="Views\Project\Partial_Detail_MyQuota_Prebook_Transfer_Modal.cshtml" />
+    <Content Include="Views\Project\Partial_TermPayment_Modal.cshtml" />
+    <Content Include="Views\Project\Partial_Detail_MyQuota_Prebook_Payment_Modal.cshtml" />
+    <Content Include="Views\Project\Partial_Detail_MyQuota_Prebook_Payment_Detail_Modal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

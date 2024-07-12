@@ -6,6 +6,7 @@
 }
 <link href="~/css/gallery.css" rel="stylesheet" />
 <link href="~/Content/my-quota.css?ver=@DateTime.Now.Ticks.ToString()" rel="stylesheet" />
+<link href="~/Content/prebook.css?ver=@DateTime.Now.Ticks.ToString()" rel="stylesheet" />
 
 @*@Html.Partial("Partial_Detail_Section", Model)*@
 
@@ -19,6 +20,10 @@
 @Html.Partial("Partial_Booking_Quota_Error")
 @Html.Partial("Partial_Booking_Unit_Error")
 @Html.Partial("Partial_Introduction_Modal")
+@Html.Partial("Partial_Detail_MyQuota_Prebook_Transfer_Modal")
+@Html.Partial("Partial_TermPayment_Modal")
+@Html.Partial("Partial_Detail_MyQuota_Prebook_Payment_Modal")
+@Html.Partial("Partial_Detail_MyQuota_Prebook_Payment_Detail_Modal")
 <div id="partial-unit-available"></div>
 @section scripts{
     <script>
@@ -34,6 +39,7 @@
     <script src="@Url.Content("~/Scripts/pages/Booking.js?ver=")@DateTime.Now.Ticks.ToString()" type="text/javascript"></script>
     <script src="@Url.Content("~/Scripts/pages/myquota.js?ver=")@DateTime.Now.Ticks.ToString()" type="text/javascript"></script>
     <script src="@Url.Content("~/Scripts/pages/CountDown.js?ver=")@DateTime.Now.Ticks.ToString()" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/pages/Prebook.js?ver=")@DateTime.Now.Ticks.ToString()" type="text/javascript"></script>
     <script type="text/javascript">
         var projectID = '@ViewData["ProjectID"]';
         $(document).ready(function () {
@@ -42,6 +48,7 @@
             ProjectDetail.initHub();
             //ProjectDetail.initGallery();
             myquota.init();
+            Prebook.init();
             //$('.nav-tabs a[href="#detail-booking"]').tab('show');
         });
     </script>

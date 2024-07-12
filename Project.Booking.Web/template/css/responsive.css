@@ -342,7 +342,8 @@
         box-shadow: none !important;
     }
     .first-section {
-        padding: 8em 0 6em;
+        /*padding: 8em 0 6em;*/
+        padding: 3em 0 6em;
     }
     .first-section h2 {
         font-size: 32px;

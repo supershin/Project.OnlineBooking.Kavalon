@@ -1,5 +1,5 @@
 ﻿var Utility = {
-    init: function () {
+    init: function () {                  
         //$('.slideInDown').stopSlide();
         //Utility.RegisterStartModal();
 
@@ -8,7 +8,7 @@
         //Utility.controlVisible($("#frm-register"));
 
         // login อย่างเดียว       
-        $("#btn-register").hide();
+        //$("#btn-register").hide();
         Utility.controlActive($("#btn-login"));
         Utility.controlVisible($("#frm-login"));
 
@@ -59,11 +59,11 @@
         active.fadeIn(100);
     },
     SaveRegister: function () {
-        //var accept = $("#chkAccept").prop('checked');
-        //if (!accept) {
-        //    app.notify('warning', 'โปรดยอมรับเงื่อนไข และนโยบายความเป็นส่วนตัว');
-        //    return false;
-        //}
+        var accept = $("#chkAccept").prop('checked');
+        if (!accept) {
+            app.notify('warning', 'โปรดยอมรับเงื่อนไข และนโยบายความเป็นส่วนตัว');
+            return false;
+        }
 
         app.LoadWait(true);
         var formData = new FormData(document.getElementById("frm-register"));

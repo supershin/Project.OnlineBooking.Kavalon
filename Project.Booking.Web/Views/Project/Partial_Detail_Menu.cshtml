@@ -1,7 +1,7 @@
 ﻿@model Project.Booking.Model.ProjectDetailView
 @using Project.Booking.Constants;
 @using Project.Booking.Extensions;
-@{ 
+@{
     var activeBook = (Html.UserProfile().Email == Html.UserProfile().Email) ? "active" : "";
     var activeQuota = (Html.UserProfile().Email == Html.UserProfile().Email) ? "" : "active";
 }
@@ -58,15 +58,17 @@
                             <div class="col-md-4">
                                 @Html.Partial("Partial_Detail_MyQuota_Profile")
                             </div>
-                            @if (Model.Project.TransferPaymentExpireDate >= DateTime.Now)
-                            {
-                                <div class="col-md-4">
-                                    @Html.Partial("Partial_Detail_MyQuota_Transfer")
-                                </div>
-                            }
-
+                            @*@if (Model.Project.TransferPaymentExpireDate >= DateTime.Now)
+                                {
+                                    <div class="col-md-4">
+                                        @Html.Partial("Partial_Detail_MyQuota_Transfer")
+                                    </div>
+                                }*@
+                            <div class="col-md-4">
+                                @Html.Partial("Partial_Detail_MyQuota_Prebook")
+                            </div>
                             <div class="col-md-4" id="div-trans-resource">
-                                @Html.Partial("Partial_Detail_MyQuota_Transfer_List", Model.PaymentResources)
+                                @Html.Partial("Partial_Detail_MyQuota_Prebook_List", Model.PaymentResources)
                             </div>
                         </div>
                     </div>
