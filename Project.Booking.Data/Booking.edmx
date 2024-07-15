@@ -160,6 +160,7 @@
           <Property Name="CitizenID" Type="varchar" MaxLength="50" />
           <Property Name="Password" Type="varchar" MaxLength="200" />
           <Property Name="AllowBookDate" Type="datetime" />
+          <Property Name="ActivateDate" Type="datetime" />
           <Property Name="FlagActive" Type="bit" />
           <Property Name="LastSignInDate" Type="datetime" />
           <Property Name="LastSignOutDate" Type="datetime" />
@@ -1638,19 +1639,6 @@
             <End Role="tm_Project" EntitySet="tm_Project" />
             <End Role="tr_ProjectRegisterQuota" EntitySet="tr_ProjectRegisterQuota" />
           </AssociationSet>
-          <EntitySet Name="tm_Register" EntityType="OnlineBooking_DevModel.tm_Register" />
-          <AssociationSet Name="FK_tm_Register_tm_Ext" Association="OnlineBooking_DevModel.FK_tm_Register_tm_Ext">
-            <End Role="tm_Ext" EntitySet="tm_Ext" />
-            <End Role="tm_Register" EntitySet="tm_Register" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tr_ProjectRegisterQuota_tm_Register" Association="OnlineBooking_DevModel.FK_tr_ProjectRegisterQuota_tm_Register">
-            <End Role="tm_Register" EntitySet="tm_Register" />
-            <End Role="tr_ProjectRegisterQuota" EntitySet="tr_ProjectRegisterQuota" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ts_Booking_tm_Register" Association="OnlineBooking_DevModel.FK_ts_Booking_tm_Register">
-            <End Role="tm_Register" EntitySet="tm_Register" />
-            <End Role="ts_Booking" EntitySet="ts_Booking" />
-          </AssociationSet>
           <EntitySet Name="tr_UnitVIP" EntityType="OnlineBooking_DevModel.tr_UnitVIP" />
           <AssociationSet Name="FK_tr_UnitVIP_tm_Unit" Association="OnlineBooking_DevModel.FK_tr_UnitVIP_tm_Unit">
             <End Role="tm_Unit" EntitySet="tm_Unit" />
@@ -1678,15 +1666,28 @@
             <End Role="tm_Project" EntitySet="tm_Project" />
             <End Role="tr_ProjectTransferPayment" EntitySet="tr_ProjectTransferPayment" />
           </AssociationSet>
-          <AssociationSet Name="FK_tr_ProjectTransferPayment_tm_Register" Association="OnlineBooking_DevModel.FK_tr_ProjectTransferPayment_tm_Register">
-            <End Role="tm_Register" EntitySet="tm_Register" />
-            <End Role="tr_ProjectTransferPayment" EntitySet="tr_ProjectTransferPayment" />
-          </AssociationSet>
           <AssociationSet Name="FK_tr_ProjectTransferPayment_tm_Resource" Association="OnlineBooking_DevModel.FK_tr_ProjectTransferPayment_tm_Resource">
             <End Role="tm_Resource" EntitySet="tm_Resource" />
             <End Role="tr_ProjectTransferPayment" EntitySet="tr_ProjectTransferPayment" />
           </AssociationSet>
           <EntitySet Name="ts_Booking_VIP" EntityType="OnlineBooking_DevModel.ts_Booking_VIP" />
+          <EntitySet Name="tm_Register" EntityType="OnlineBooking_DevModel.tm_Register" />
+          <AssociationSet Name="FK_tm_Register_tm_Ext" Association="OnlineBooking_DevModel.FK_tm_Register_tm_Ext">
+            <End Role="tm_Ext" EntitySet="tm_Ext" />
+            <End Role="tm_Register" EntitySet="tm_Register" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tr_ProjectRegisterQuota_tm_Register" Association="OnlineBooking_DevModel.FK_tr_ProjectRegisterQuota_tm_Register">
+            <End Role="tm_Register" EntitySet="tm_Register" />
+            <End Role="tr_ProjectRegisterQuota" EntitySet="tr_ProjectRegisterQuota" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tr_ProjectTransferPayment_tm_Register" Association="OnlineBooking_DevModel.FK_tr_ProjectTransferPayment_tm_Register">
+            <End Role="tm_Register" EntitySet="tm_Register" />
+            <End Role="tr_ProjectTransferPayment" EntitySet="tr_ProjectTransferPayment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ts_Booking_tm_Register" Association="OnlineBooking_DevModel.FK_ts_Booking_tm_Register">
+            <End Role="tm_Register" EntitySet="tm_Register" />
+            <End Role="ts_Booking" EntitySet="ts_Booking" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="tm_Annotation">
           <Key>
@@ -2164,8 +2165,8 @@
           <Property Name="UserUpdateByID" Type="Guid" />
           <NavigationProperty Name="tm_Unit" Relationship="OnlineBooking_DevModel.FK_ts_Booking_tm_Unit" FromRole="ts_Booking" ToRole="tm_Unit" />
           <Property Name="ContractAmount" Type="Decimal" Precision="18" Scale="2" />
-          <NavigationProperty Name="tm_Register" Relationship="OnlineBooking_DevModel.FK_ts_Booking_tm_Register" FromRole="ts_Booking" ToRole="tm_Register" />
           <NavigationProperty Name="ts_Unitbooking_History" Relationship="OnlineBooking_DevModel.FK_ts_Unitbooking_History_ts_Booking" FromRole="ts_Booking" ToRole="ts_Unitbooking_History" />
+          <NavigationProperty Name="tm_Register" Relationship="OnlineBooking_DevModel.FK_ts_Booking_tm_Register" FromRole="ts_Booking" ToRole="tm_Register" />
         </EntityType>
         <Association Name="FK_ts_Booking_tm_BookingStatus">
           <End Type="OnlineBooking_DevModel.tm_BookingStatus" Role="tm_BookingStatus" Multiplicity="0..1" />
@@ -2735,68 +2736,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="tm_Register">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Guid" Nullable="false" />
-          <Property Name="RegisterTypeID" Type="Int32" />
-          <Property Name="Code" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
-          <Property Name="FirstName" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <Property Name="LastName" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Mobile" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="CitizenID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Password" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="FlagActive" Type="Boolean" />
-          <Property Name="LastSignInDate" Type="DateTime" Precision="3" />
-          <Property Name="LastSignOutDate" Type="DateTime" Precision="3" />
-          <Property Name="CreateDate" Type="DateTime" Precision="3" />
-          <Property Name="CreateBy" Type="Guid" />
-          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
-          <Property Name="UpdateBy" Type="Guid" />
-          <NavigationProperty Name="tm_Ext" Relationship="OnlineBooking_DevModel.FK_tm_Register_tm_Ext" FromRole="tm_Register" ToRole="tm_Ext" />
-          <NavigationProperty Name="tr_ProjectRegisterQuota" Relationship="OnlineBooking_DevModel.FK_tr_ProjectRegisterQuota_tm_Register" FromRole="tm_Register" ToRole="tr_ProjectRegisterQuota" />
-          <NavigationProperty Name="ts_Booking" Relationship="OnlineBooking_DevModel.FK_ts_Booking_tm_Register" FromRole="tm_Register" ToRole="ts_Booking" />
-          <NavigationProperty Name="tr_ProjectTransferPayment" Relationship="OnlineBooking_DevModel.FK_tr_ProjectTransferPayment_tm_Register" FromRole="tm_Register" ToRole="tr_ProjectTransferPayment" />
-          <Property Name="AllowBookDate" Type="DateTime" Precision="3" />
-        </EntityType>
-        <Association Name="FK_tm_Register_tm_Ext">
-          <End Type="OnlineBooking_DevModel.tm_Ext" Role="tm_Ext" Multiplicity="0..1" />
-          <End Type="OnlineBooking_DevModel.tm_Register" Role="tm_Register" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tm_Ext">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="tm_Register">
-              <PropertyRef Name="RegisterTypeID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tr_ProjectRegisterQuota_tm_Register">
-          <End Type="OnlineBooking_DevModel.tm_Register" Role="tm_Register" Multiplicity="0..1" />
-          <End Type="OnlineBooking_DevModel.tr_ProjectRegisterQuota" Role="tr_ProjectRegisterQuota" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tm_Register">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="tr_ProjectRegisterQuota">
-              <PropertyRef Name="RegisterID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ts_Booking_tm_Register">
-          <End Type="OnlineBooking_DevModel.tm_Register" Role="tm_Register" Multiplicity="0..1" />
-          <End Type="OnlineBooking_DevModel.ts_Booking" Role="ts_Booking" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tm_Register">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="ts_Booking">
-              <PropertyRef Name="CustomerID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="tr_UnitVIP">
           <Key>
             <PropertyRef Name="ID" />
@@ -2908,8 +2847,8 @@
           <Property Name="UpdateDate" Type="DateTime" Precision="3" />
           <Property Name="UpdateBy" Type="Guid" />
           <NavigationProperty Name="tm_Project" Relationship="OnlineBooking_DevModel.FK_tr_ProjectTransferPayment_tm_Project" FromRole="tr_ProjectTransferPayment" ToRole="tm_Project" />
-          <NavigationProperty Name="tm_Register" Relationship="OnlineBooking_DevModel.FK_tr_ProjectTransferPayment_tm_Register" FromRole="tr_ProjectTransferPayment" ToRole="tm_Register" />
           <NavigationProperty Name="tm_Resource" Relationship="OnlineBooking_DevModel.FK_tr_ProjectTransferPayment_tm_Resource" FromRole="tr_ProjectTransferPayment" ToRole="tm_Resource" />
+          <NavigationProperty Name="tm_Register" Relationship="OnlineBooking_DevModel.FK_tr_ProjectTransferPayment_tm_Register" FromRole="tr_ProjectTransferPayment" ToRole="tm_Register" />
         </EntityType>
         <Association Name="FK_tr_ProjectTransferPayment_tm_Project">
           <End Type="OnlineBooking_DevModel.tm_Project" Role="tm_Project" Multiplicity="0..1" />
@@ -2920,18 +2859,6 @@
             </Principal>
             <Dependent Role="tr_ProjectTransferPayment">
               <PropertyRef Name="ProjectID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tr_ProjectTransferPayment_tm_Register">
-          <End Type="OnlineBooking_DevModel.tm_Register" Role="tm_Register" Multiplicity="0..1" />
-          <End Type="OnlineBooking_DevModel.tr_ProjectTransferPayment" Role="tr_ProjectTransferPayment" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tm_Register">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="tr_ProjectTransferPayment">
-              <PropertyRef Name="RegisterID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2981,6 +2908,81 @@
           <Property Name="UnitCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Email" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="tm_Register">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="RegisterTypeID" Type="Int32" />
+          <Property Name="Code" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="FirstName" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Mobile" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CitizenID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="AllowBookDate" Type="DateTime" Precision="3" />
+          <Property Name="ActivateDate" Type="DateTime" Precision="3" />
+          <Property Name="FlagActive" Type="Boolean" />
+          <Property Name="LastSignInDate" Type="DateTime" Precision="3" />
+          <Property Name="LastSignOutDate" Type="DateTime" Precision="3" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="CreateBy" Type="Guid" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdateBy" Type="Guid" />
+          <NavigationProperty Name="tm_Ext" Relationship="OnlineBooking_DevModel.FK_tm_Register_tm_Ext" FromRole="tm_Register" ToRole="tm_Ext" />
+          <NavigationProperty Name="tr_ProjectRegisterQuota" Relationship="OnlineBooking_DevModel.FK_tr_ProjectRegisterQuota_tm_Register" FromRole="tm_Register" ToRole="tr_ProjectRegisterQuota" />
+          <NavigationProperty Name="tr_ProjectTransferPayment" Relationship="OnlineBooking_DevModel.FK_tr_ProjectTransferPayment_tm_Register" FromRole="tm_Register" ToRole="tr_ProjectTransferPayment" />
+          <NavigationProperty Name="ts_Booking" Relationship="OnlineBooking_DevModel.FK_ts_Booking_tm_Register" FromRole="tm_Register" ToRole="ts_Booking" />
+        </EntityType>
+        <Association Name="FK_tm_Register_tm_Ext">
+          <End Type="OnlineBooking_DevModel.tm_Ext" Role="tm_Ext" Multiplicity="0..1" />
+          <End Type="OnlineBooking_DevModel.tm_Register" Role="tm_Register" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tm_Ext">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tm_Register">
+              <PropertyRef Name="RegisterTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tr_ProjectRegisterQuota_tm_Register">
+          <End Type="OnlineBooking_DevModel.tm_Register" Role="tm_Register" Multiplicity="0..1" />
+          <End Type="OnlineBooking_DevModel.tr_ProjectRegisterQuota" Role="tr_ProjectRegisterQuota" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tm_Register">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tr_ProjectRegisterQuota">
+              <PropertyRef Name="RegisterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tr_ProjectTransferPayment_tm_Register">
+          <End Type="OnlineBooking_DevModel.tm_Register" Role="tm_Register" Multiplicity="0..1" />
+          <End Type="OnlineBooking_DevModel.tr_ProjectTransferPayment" Role="tr_ProjectTransferPayment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tm_Register">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tr_ProjectTransferPayment">
+              <PropertyRef Name="RegisterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ts_Booking_tm_Register">
+          <End Type="OnlineBooking_DevModel.tm_Register" Role="tm_Register" Multiplicity="0..1" />
+          <End Type="OnlineBooking_DevModel.ts_Booking" Role="ts_Booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tm_Register">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ts_Booking">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3480,29 +3482,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tm_Register">
-            <EntityTypeMapping TypeName="OnlineBooking_DevModel.tm_Register">
-              <MappingFragment StoreEntitySet="tm_Register">
-                <ScalarProperty Name="AllowBookDate" ColumnName="AllowBookDate" />
-                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
-                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
-                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
-                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-                <ScalarProperty Name="LastSignOutDate" ColumnName="LastSignOutDate" />
-                <ScalarProperty Name="LastSignInDate" ColumnName="LastSignInDate" />
-                <ScalarProperty Name="FlagActive" ColumnName="FlagActive" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="CitizenID" ColumnName="CitizenID" />
-                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="Code" ColumnName="Code" />
-                <ScalarProperty Name="RegisterTypeID" ColumnName="RegisterTypeID" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="tr_UnitVIP">
             <EntityTypeMapping TypeName="OnlineBooking_DevModel.tr_UnitVIP">
               <MappingFragment StoreEntitySet="tr_UnitVIP">
@@ -3583,6 +3562,30 @@
                 <ScalarProperty Name="BookingID" ColumnName="BookingID" />
                 <ScalarProperty Name="UnitID" ColumnName="UnitID" />
                 <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tm_Register">
+            <EntityTypeMapping TypeName="OnlineBooking_DevModel.tm_Register">
+              <MappingFragment StoreEntitySet="tm_Register">
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="LastSignOutDate" ColumnName="LastSignOutDate" />
+                <ScalarProperty Name="LastSignInDate" ColumnName="LastSignInDate" />
+                <ScalarProperty Name="FlagActive" ColumnName="FlagActive" />
+                <ScalarProperty Name="ActivateDate" ColumnName="ActivateDate" />
+                <ScalarProperty Name="AllowBookDate" ColumnName="AllowBookDate" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="CitizenID" ColumnName="CitizenID" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="RegisterTypeID" ColumnName="RegisterTypeID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

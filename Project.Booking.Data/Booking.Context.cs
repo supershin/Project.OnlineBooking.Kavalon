@@ -92,8 +92,6 @@ public partial class OnlineBookingEntities : DbContext
 
     public virtual DbSet<tr_ProjectRegisterQuota> tr_ProjectRegisterQuota { get; set; }
 
-    public virtual DbSet<tm_Register> tm_Register { get; set; }
-
     public virtual DbSet<tr_UnitVIP> tr_UnitVIP { get; set; }
 
     public virtual DbSet<ts_Unitbooking_History> ts_Unitbooking_History { get; set; }
@@ -101,6 +99,8 @@ public partial class OnlineBookingEntities : DbContext
     public virtual DbSet<tr_ProjectTransferPayment> tr_ProjectTransferPayment { get; set; }
 
     public virtual DbSet<ts_Booking_VIP> ts_Booking_VIP { get; set; }
+
+    public virtual DbSet<tm_Register> tm_Register { get; set; }
 
 }
 

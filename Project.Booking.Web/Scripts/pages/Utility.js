@@ -1,5 +1,5 @@
 ﻿var Utility = {
-    init: function () {                  
+    init: function () {
         //$('.slideInDown').stopSlide();
         //Utility.RegisterStartModal();
 
@@ -77,12 +77,13 @@
             success: function (res) {
                 if (res.success) {
                     $('#frm-register').trigger("reset");
-                    //Utility.RegisterSuccessModal2();
+                    Utility.RegisterSuccessModal2();
                     //Utility.RegisterSuccessModal();
-                    setTimeout(() => {
-                        //redirect to kave uni.verse
-                        window.location = baseUrl + 'project/detail/7ee1b4d9-50dc-4cad-91e6-bf8b25e9cb9a';
-                    }, 5000);
+                    //if (res.isActivate)
+                    //    setTimeout(() => {
+                    //        //redirect to kave uni.verse
+                    //        window.location = baseUrl + 'project/detail/7ee1b4d9-50dc-4cad-91e6-bf8b25e9cb9a';
+                    //    }, 5000);
                 }
                 else {
                     app.notify('error', res.message);
@@ -106,11 +107,16 @@
             contentType: false,
             success: function (res) {
                 if (res.success) {
-                    if (res.returnUrl === null || res.returnUrl === "") {
-                        res.returnUrl = baseUrl + 'Project';
+                    if (res.activateDate == null)
+                        Utility.RegisterSuccessModal2();
+                    else {
+                        window.location = baseUrl + 'project/detail/' + REDIRECT_PROJECT_ID;
                     }
-                    /*window.location = res.returnUrl;*/
-                    window.location = baseUrl + 'project/detail/203a5133-dcea-4e71-befb-e5ccc8adab4a'
+                    //else if (res.returnUrl === null || res.returnUrl === "") {
+                    //    //res.returnUrl = baseUrl + 'Project';
+                    //    window.location = baseUrl + 'project/detail/97C0E5D4-3894-4318-A018-F48315878BDF'
+                    //}
+                    //window.location = res.returnUrl;                    
                 }
                 else {
                     app.notify('error', res.message);

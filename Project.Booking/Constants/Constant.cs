@@ -14,6 +14,7 @@ namespace Project.Booking.Constants
         public static readonly int UNIT_RANDOM_VIEW = Convert.ToInt32(ConfigurationManager.AppSettings["unit.random.view"]);
         public static readonly string ONLINE_BOOKING_CONN = ConfigurationManager.AppSettings["onnlingbooking.conn"].ToString();
         public static readonly Guid ADMIN_TITLE_ID = new Guid(ConfigurationManager.AppSettings["admin.title.id"].ToString());
+        public static readonly Guid REDIRECT_PROJECT_ID = new Guid(ConfigurationManager.AppSettings["redirect.project.id"].ToString());
 
         public static class Ext
         {
@@ -38,6 +39,7 @@ namespace Project.Booking.Constants
 
             public static class SUBJECT
             {
+                public static readonly string ACTIVATE = ConfigurationSettings.AppSettings["Email.Subject.Activate"].ToString();
                 public static readonly string REGISTER = ConfigurationSettings.AppSettings["Email.Subject.Register"].ToString();
                 public static readonly string FORGOT_PASSWORD = ConfigurationSettings.AppSettings["Email.Subject.ForgotPassword"].ToString();
                 public static readonly string PAYMENT = ConfigurationSettings.AppSettings["Email.Subject.Payment"].ToString();
@@ -58,18 +60,18 @@ namespace Project.Booking.Constants
             public class Error
             {
                 public static readonly string SESSION_TIME_OUT = "Session timeout please sign in again";
-                public static readonly string LOGIN_FAIL = "Email or password invalid";
-                public static readonly string REGISTER_EMAIL_NOT_FOUND = "Email not found or email inactive";
+                public static readonly string LOGIN_FAIL = "อีเมล หรือรหัสผ่านไม่ถูกต้อง";
+                public static readonly string REGISTER_EMAIL_NOT_FOUND = "ไม่พบอีเมลในระบบ";
                 public static readonly string REGISTER_ERROR = "ลงทะเบียนไม่สำเร็จ";
-                public static readonly string REGISTER_PLEASE_FILL_OUT = "Please fill in complete information.";
+                public static readonly string REGISTER_PLEASE_FILL_OUT = "โปรดระบุข้อมูลให้ครบถ้วน";
                 public static readonly string REGISTER_CONFIRM_PASSWORD_INVALID = "ยืนยันรหัสผ่านไม่ถูกต้อง";
                 public static readonly string REGISTER_PLEASE_ACCEPT = "โปรดยอมรับเงื่อนไข และนโยบายคามเป็นส่วนตัว";
                 public static readonly string REGISTER_PASSWORS_ADVISOR = "รหัสผ่านต้องมีอย่างน้อย 8 ตัวอักษร ประกอบด้วยตัวอักษรพิมพ์ใหญ่ (A-Z) ตัวอักษรพิมพ์เล็ก (a-z) และตัวเลข (0-9) เท่านั้น";
-                public static readonly string REGISTER_EMAIL_ALREADY = "Email already exists";
-                public static readonly string REGISTER_EMAIL_INVALID = "Email invalid";
-                public static readonly string EMAIL_FORMAT_INVALID = "Email invalid";
+                public static readonly string REGISTER_EMAIL_ALREADY = "อีเมลนี้มีในระบบแล้ว";
+                public static readonly string REGISTER_EMAIL_INVALID = "อีเมลไม่ถูกต้อง";
+                public static readonly string EMAIL_FORMAT_INVALID = "อีเมลไม่ถูกต้อง";
                 public static readonly string CITIZEN_FORMAT_INVALID = "บัตรประชาชน ไม่ถูกต้อง";
-                public static readonly string LOGIN_PLEASE_FILL_OUT = "Please input email & password";
+                public static readonly string LOGIN_PLEASE_FILL_OUT = "อีเมล หรือรหัสผ่านไม่ถูกต้อง";
                 public static readonly string UNIT_NOT_AVAILABLE = "Unit not available";
                 public static readonly string BOOKING_DOES_NOT_EXISTS = "ไม่พบรายการจองนี้";
                 //public static readonly string BOOKING_OVER_QUOTA = "บันทึกไม่สำเร็จ สามารถจองได้พร้อมกันสูงสุด {0} ยูนิต";
@@ -86,6 +88,7 @@ namespace Project.Booking.Constants
                 public static readonly string PLEASE_INPUT_TRASFER_PAYMENT_AMOUNT = "Please input transfer amount.";
                 public static readonly string PLEASE_ATTACH_TRASFER_PAYMENT = "Please attach transfer payment.";
                 public static readonly string TRANSACTION_IS_VERIFY = "Can not delete. Transaction is verify success.";
+                public static readonly string REGISTER_NOT_FOUND = "ไม่พบข้อมูลการลงทะเบียน";                
             }
         }
 

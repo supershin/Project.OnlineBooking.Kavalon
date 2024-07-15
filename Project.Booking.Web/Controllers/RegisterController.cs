@@ -19,13 +19,22 @@ namespace Project.Booking.Web.Controllers
             //var model = master.GetWebImageList();
             if (UserProfile != null)
             {
-                return RedirectToAction("Detail", "Project",new { projectID = "203a5133-dcea-4e71-befb-e5ccc8adab4a" });
+                return RedirectToAction("Detail", "Project", new { projectID = Constant.REDIRECT_PROJECT_ID });
                 //return RedirectToAction("Index", "Project");
             }
             ViewBag.returnUrl = returnUrl;
             return View();
         }
-
+        [Route("Register/Activate/{ID}")]
+        public ActionResult Activate(Guid ID)
+        {
+            string email = utility.SaveActivate(ID);
+            UserProfile = utility.GetRegister(email);
+            UserProfile.IsSignIn = true;
+            UserProfile.IsSignOut = false;
+            utility.SaveSignInOut(UserProfile);
+            return RedirectToAction("Detail", "Project", new { projectID = Constant.REDIRECT_PROJECT_ID });
+        }
         #region Register
         [HttpPost]
         public JsonResult SaveRegister(UserProfile model)
@@ -33,14 +42,17 @@ namespace Project.Booking.Web.Controllers
             try
             {
                 ValidateRegister(model);
-                //model.EncryptPassword = AES.Encrypt(model.Password);
-                model.EncryptPassword = FormatExtension.RandomString(5);
+                model.EncryptPassword = AES.Encrypt(model.Password);
+                //model.EncryptPassword = FormatExtension.RandomString(5);
                 model.Password = model.EncryptPassword;
                 utility.SaveRegister(model);
-                verifyAuthen(model);
-                SendMailRegister(model);
+                //verifyAuthen(model);
+                if (model.ActivateDate == null)
+                    SendMailActivate(model);
+                //SendMailRegister(model);
                 return Json(new
                 {
+                    activateDate = model.ActivateDate,
                     message = Constant.Message.Success.REGISTER_SUCCESS,
                     success = true
                 });
@@ -61,8 +73,8 @@ namespace Project.Booking.Web.Controllers
                 || string.IsNullOrEmpty(model.Email.ToStringNullable())
                 || string.IsNullOrEmpty(model.Mobile.ToStringNullable())
                 //|| string.IsNullOrEmpty(model.CitizenID.ToStringNullable())
-                //|| string.IsNullOrEmpty(model.Password)
-                //|| string.IsNullOrEmpty(model.ConfirmPassword)
+                || string.IsNullOrEmpty(model.Password)
+                || string.IsNullOrEmpty(model.ConfirmPassword)
                 )
                 throw new Exception(Constant.Message.Error.REGISTER_PLEASE_FILL_OUT);
             else if (!IsValidEmail(model.Email.ToStringNullable()))
@@ -71,14 +83,14 @@ namespace Project.Booking.Web.Controllers
             //{
             //    throw new Exception(Constant.Message.Error.CITIZEN_FORMAT_INVALID);
             //}
-            //else if (PasswordAdvisor.CheckStrength(model.Password) < PasswordScore.Medium)
-            //{
-            //    throw new Exception(Constant.Message.Error.REGISTER_PASSWORS_ADVISOR);
-            //}
-            //else if (!model.Password.Equals(model.ConfirmPassword))
-            //    throw new Exception(Constant.Message.Error.REGISTER_CONFIRM_PASSWORD_INVALID);
-            //else if (!model.Accept)
-            //    throw new Exception(Constant.Message.Error.REGISTER_PLEASE_ACCEPT);
+            else if (PasswordAdvisor.CheckStrength(model.Password) < PasswordScore.Medium)
+            {
+                throw new Exception(Constant.Message.Error.REGISTER_PASSWORS_ADVISOR);
+            }
+            else if (!model.Password.Equals(model.ConfirmPassword))
+                throw new Exception(Constant.Message.Error.REGISTER_CONFIRM_PASSWORD_INVALID);
+            else if (!model.Accept)
+                throw new Exception(Constant.Message.Error.REGISTER_PLEASE_ACCEPT);
 
         }
         private void SendMailRegister(UserProfile model)
@@ -88,6 +100,18 @@ namespace Project.Booking.Web.Controllers
             var email = new Email();
             email.To = new List<string> { model.Email };
             email.Subject = Constant.Email.SUBJECT.REGISTER;
+            email.Body = template;
+
+            (new MailService()).SendMail(email);
+
+        }
+        private void SendMailActivate(UserProfile model)
+        {
+            model.baseUrl = baseUrl;
+            string template = RenderPartialViewToString("~/Views/Templates/Activate_Email.cshtml", model);
+            var email = new Email();
+            email.To = new List<string> { model.Email };
+            email.Subject = Constant.Email.SUBJECT.ACTIVATE;
             email.Body = template;
 
             (new MailService()).SendMail(email);
@@ -103,11 +127,19 @@ namespace Project.Booking.Web.Controllers
             {
                 ValidateAuthentication(model);
                 verifyAuthen(model);
-                model.returnUrl = getRedirectURL(model.returnUrl);
+
+                if (model.ActivateDate == null)
+                {
+                    SendMailActivate(model);
+                    UserProfile = null;
+                }
+                else
+                    model.returnUrl = getRedirectURL(model.returnUrl);
                 return Json(new
                 {
                     message = Constant.Message.Success.LOGIN_SUCCESS,
                     success = true,
+                    activateDate = model.ActivateDate,
                     model.returnUrl
                 });
             }
@@ -140,7 +172,10 @@ namespace Project.Booking.Web.Controllers
             UserProfile = utility.Authentcation(model);
             UserProfile.IsSignIn = true;
             UserProfile.IsSignOut = false;
-            utility.SaveSignInOut(UserProfile);
+            model.ActivateDate = UserProfile.ActivateDate;
+            model.ID = UserProfile.ID;
+            if (model.ActivateDate != null)
+                utility.SaveSignInOut(UserProfile);
         }
         public ActionResult LogOut()
         {
@@ -191,7 +226,6 @@ namespace Project.Booking.Web.Controllers
         private void SendMailForgot(UserProfile model)
         {
             model.baseUrl = baseUrl;
-            model.baseUrl = "https://portal.rhombho.co.th/salekit/";
             string template = RenderPartialViewToString("~/Views/Templates/Forgot_Email.cshtml", model);
             var email = new Email();
             email.To = new List<string> { model.Email };

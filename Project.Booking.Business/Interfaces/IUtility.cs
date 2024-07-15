@@ -13,5 +13,6 @@ namespace Project.Booking.Business.Interfaces
         void SaveRegister(UserProfile model);
         UserProfile Authentcation(UserProfile model);
         void SaveSignInOut(UserProfile model);
+        string SaveActivate(Guid registerID);
     }
 }

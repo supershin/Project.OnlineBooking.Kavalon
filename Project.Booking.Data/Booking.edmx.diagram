@@ -76,10 +76,6 @@
         <AssociationConnector Association="OnlineBooking_DevModel.FK_ts_Booking_tm_Unit" />
         <EntityTypeShape EntityType="OnlineBooking_DevModel.tr_ProjectRegisterQuota" Width="1.5" PointX="6.25" PointY="31.75" />
         <AssociationConnector Association="OnlineBooking_DevModel.FK_tr_ProjectRegisterQuota_tm_Project" />
-        <EntityTypeShape EntityType="OnlineBooking_DevModel.tm_Register" Width="1.5" PointX="3" PointY="15.875" />
-        <AssociationConnector Association="OnlineBooking_DevModel.FK_tm_Register_tm_Ext" />
-        <AssociationConnector Association="OnlineBooking_DevModel.FK_tr_ProjectRegisterQuota_tm_Register" />
-        <AssociationConnector Association="OnlineBooking_DevModel.FK_ts_Booking_tm_Register" />
         <EntityTypeShape EntityType="OnlineBooking_DevModel.tr_UnitVIP" Width="1.5" PointX="12.875" PointY="22.5" />
         <AssociationConnector Association="OnlineBooking_DevModel.FK_tr_UnitVIP_tm_Unit" />
         <EntityTypeShape EntityType="OnlineBooking_DevModel.ts_Unitbooking_History" Width="1.5" PointX="16.25" PointY="15.625" />
@@ -89,9 +85,13 @@
         <AssociationConnector Association="OnlineBooking_DevModel.FK_ts_Unitbooking_History_ts_Booking" />
         <EntityTypeShape EntityType="OnlineBooking_DevModel.tr_ProjectTransferPayment" Width="1.5" PointX="15" PointY="2.875" />
         <AssociationConnector Association="OnlineBooking_DevModel.FK_tr_ProjectTransferPayment_tm_Project" />
-        <AssociationConnector Association="OnlineBooking_DevModel.FK_tr_ProjectTransferPayment_tm_Register" />
         <AssociationConnector Association="OnlineBooking_DevModel.FK_tr_ProjectTransferPayment_tm_Resource" />
         <EntityTypeShape EntityType="OnlineBooking_DevModel.ts_Booking_VIP" Width="1.5" PointX="17.375" PointY="0.75" />
+        <EntityTypeShape EntityType="OnlineBooking_DevModel.tm_Register" Width="1.5" PointX="3" PointY="15.625" />
+        <AssociationConnector Association="OnlineBooking_DevModel.FK_tm_Register_tm_Ext" />
+        <AssociationConnector Association="OnlineBooking_DevModel.FK_tr_ProjectRegisterQuota_tm_Register" />
+        <AssociationConnector Association="OnlineBooking_DevModel.FK_tr_ProjectTransferPayment_tm_Register" />
+        <AssociationConnector Association="OnlineBooking_DevModel.FK_ts_Booking_tm_Register" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

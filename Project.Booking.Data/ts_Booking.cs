@@ -95,11 +95,11 @@ public partial class ts_Booking
 
     public virtual tm_Unit tm_Unit { get; set; }
 
-    public virtual tm_Register tm_Register { get; set; }
-
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
     public virtual ICollection<ts_Unitbooking_History> ts_Unitbooking_History { get; set; }
+
+    public virtual tm_Register tm_Register { get; set; }
 
 }
 

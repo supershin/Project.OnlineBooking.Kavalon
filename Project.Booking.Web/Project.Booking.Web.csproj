@@ -242,6 +242,7 @@
     <Content Include="Images\booking-online.png" />
     <Content Include="Images\email.ico" />
     <Content Include="Images\Error_UnitNotAvailable.png" />
+    <Content Include="Images\KAVALON-LOGO-WHITE.png" />
     <Content Include="Images\kave-universe_logo.png" />
     <Content Include="Images\LobbyFlare.jpg" />
     <Content Include="Images\play.png" />
@@ -594,6 +595,7 @@
     <Content Include="Views\Project\Partial_TermPayment_Modal.cshtml" />
     <Content Include="Views\Project\Partial_Detail_MyQuota_Prebook_Payment_Modal.cshtml" />
     <Content Include="Views\Project\Partial_Detail_MyQuota_Prebook_Payment_Detail_Modal.cshtml" />
+    <Content Include="Views\Templates\Activate_Email.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

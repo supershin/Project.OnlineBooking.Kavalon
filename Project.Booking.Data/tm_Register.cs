@@ -24,9 +24,9 @@ public partial class tm_Register
 
         this.tr_ProjectRegisterQuota = new HashSet<tr_ProjectRegisterQuota>();
 
-        this.ts_Booking = new HashSet<ts_Booking>();
-
         this.tr_ProjectTransferPayment = new HashSet<tr_ProjectTransferPayment>();
+
+        this.ts_Booking = new HashSet<ts_Booking>();
 
     }
 
@@ -49,6 +49,10 @@ public partial class tm_Register
 
     public string Password { get; set; }
 
+    public Nullable<System.DateTime> AllowBookDate { get; set; }
+
+    public Nullable<System.DateTime> ActivateDate { get; set; }
+
     public Nullable<bool> FlagActive { get; set; }
 
     public Nullable<System.DateTime> LastSignInDate { get; set; }
@@ -63,8 +67,6 @@ public partial class tm_Register
 
     public Nullable<System.Guid> UpdateBy { get; set; }
 
-    public Nullable<System.DateTime> AllowBookDate { get; set; }
-
 
 
     public virtual tm_Ext tm_Ext { get; set; }
@@ -75,11 +77,11 @@ public partial class tm_Register
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
-    public virtual ICollection<ts_Booking> ts_Booking { get; set; }
+    public virtual ICollection<tr_ProjectTransferPayment> tr_ProjectTransferPayment { get; set; }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
-    public virtual ICollection<tr_ProjectTransferPayment> tr_ProjectTransferPayment { get; set; }
+    public virtual ICollection<ts_Booking> ts_Booking { get; set; }
 
 }
 

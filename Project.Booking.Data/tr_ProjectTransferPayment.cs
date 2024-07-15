@@ -54,9 +54,9 @@ public partial class tr_ProjectTransferPayment
 
     public virtual tm_Project tm_Project { get; set; }
 
-    public virtual tm_Register tm_Register { get; set; }
-
     public virtual tm_Resource tm_Resource { get; set; }
+
+    public virtual tm_Register tm_Register { get; set; }
 
 }
 

@@ -10,6 +10,7 @@ using System.Transactions;
 using Project.Booking.Constants;
 using Project.Booking.Extensions;
 using Project.Booking.Security;
+using System.Web.ModelBinding;
 
 namespace Project.Booking.Business.Sevices
 {
@@ -74,7 +75,7 @@ namespace Project.Booking.Business.Sevices
                 item.ID = Guid.NewGuid();
                 model.ID = item.ID;
                 UserProfile.ID = item.ID;
-
+                item.ActivateDate = null;
                 item.FlagActive = true;
                 item.CreateDate = DateTime.Now;
                 item.CreateBy = UserProfile.ID;
@@ -92,7 +93,7 @@ namespace Project.Booking.Business.Sevices
             
             item.UpdateDate = DateTime.Now;
             item.UpdateBy = UserProfile.ID;
-
+            model.ActivateDate = item.ActivateDate;
             return item;
         }
         public UserProfile GetRegister(string email)
@@ -110,9 +111,10 @@ namespace Project.Booking.Business.Sevices
                     Mobile = e.Mobile,
                     Email = e.Email,
                     CitizenID = e.CitizenID,
-                    DescryptPassword = e.Password,
-                    //DescryptPassword = AES.Decrypt(e.Password),
-                    RegisterTypeID = e.RegisterTypeID
+                    //DescryptPassword = e.Password,
+                    DescryptPassword = AES.Decrypt(e.Password),
+                    RegisterTypeID = e.RegisterTypeID,
+                    ActivateDate = e.ActivateDate
                 }).FirstOrDefault();
             }
             else
@@ -120,14 +122,51 @@ namespace Project.Booking.Business.Sevices
                 throw new Exception(Constant.Message.Error.REGISTER_EMAIL_NOT_FOUND);
             }
         }
+
+        public string SaveActivate(Guid registerID)
+        {
+            var email = string.Empty;
+            try
+            {
+                TransactionOptions option = new TransactionOptions();
+                option.Timeout = new TimeSpan(0, 10, 0);
+                using (TransactionScope scope = new TransactionScope(TransactionScopeOption.RequiresNew, option))
+                {
+                   email =  saveActivateData(registerID);
+                    scope.Complete();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return email;
+        }
+        private string saveActivateData(Guid registerID) {
+            var email = string.Empty;
+            using (var context = new OnlineBookingEntities())
+            {
+                var item = context.tm_Register.FirstOrDefault(e => e.ID == registerID && e.FlagActive == true);
+                if (item != null)
+                {
+                    item.ActivateDate = DateTime.Now;
+                    context.Entry(item).State = System.Data.Entity.EntityState.Modified;
+                    context.SaveChanges();
+                    email = item.Email;
+                }
+                else
+                    throw new Exception(Constant.Message.Error.REGISTER_NOT_FOUND);                
+            }
+            return email;
+        }
         #endregion
 
         #region Authentication
         public UserProfile Authentcation(UserProfile model)
         {
 
-            //model.EncryptPassword = AES.Encrypt(model.Password);
-            var query = db.tm_Register.Where(e => e.Email == model.Email && e.Password.Equals(model.Password)
+            model.EncryptPassword = AES.Encrypt(model.Password);
+            var query = db.tm_Register.Where(e => e.Email == model.Email && e.Password.Equals(model.EncryptPassword)
                         && e.FlagActive == true);
             if (query.Any())
             {
