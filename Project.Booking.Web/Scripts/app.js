@@ -94,7 +94,7 @@ var app = {
             $.growl.warning({ message: message, duration: 6000, location: 'tc' });
         }
     },
-    ajaxComplete: function (res, callbackSuccess, callbackError, successAlert = true, errorAlert = true) {
+    ajaxComplete: function (res, callbackSuccess, callbackError, successAlert = true, errorAlert = true) {        
         if (res.success) {
             if (successAlert) {
                 app.notify('success', res.message);
@@ -114,7 +114,7 @@ var app = {
                 if (typeof callbackError === 'function') {
                     callbackError();
                 }
-                if (errorAlert) {
+                if (errorAlert) {                   
                     app.notify('error', res.message);
                 }                
             }

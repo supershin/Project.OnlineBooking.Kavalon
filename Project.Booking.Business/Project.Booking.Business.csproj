@@ -64,6 +64,7 @@
     <Compile Include="Interfaces\IMaster.cs" />
     <Compile Include="Interfaces\IMatrix.cs" />
     <Compile Include="Interfaces\IPayment.cs" />
+    <Compile Include="Interfaces\IPrebook.cs" />
     <Compile Include="Interfaces\IProject.cs" />
     <Compile Include="Interfaces\IUtility.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -73,6 +74,7 @@
     <Compile Include="Sevices\MasterService.cs" />
     <Compile Include="Sevices\MatrixService.cs" />
     <Compile Include="Sevices\PaymentService.cs" />
+    <Compile Include="Sevices\PrebookService.cs" />
     <Compile Include="Sevices\ProjectService.cs" />
     <Compile Include="Sevices\UtilityService.cs" />
   </ItemGroup>

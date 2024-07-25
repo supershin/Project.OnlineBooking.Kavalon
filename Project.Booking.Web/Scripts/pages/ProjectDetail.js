@@ -14,17 +14,17 @@ var ProjectDetail = {
             return false;
         });
 
-        $('#trans-date').pignoseCalendar({
-            format: 'YYYY-MM-DD', // date format string. (2017-02-02)
-            theme: 'light', // light, dark, blue
-            //minDate: strDate
-        });
+        //$('#trans-date').pignoseCalendar({
+        //    format: 'YYYY-MM-DD', // date format string. (2017-02-02)
+        //    theme: 'light', // light, dark, blue
+        //    //minDate: strDate
+        //});
 
-        $('#btn-save-transfer').click(() => {
-            ProjectDetail.saveTransferPayment();
-            return false;
-        });
-        ProjectDetail.bindDeletePayment();
+        //$('#btn-save-transfer').click(() => {
+        //    ProjectDetail.saveTransferPayment();
+        //    return false;
+        //});
+        //ProjectDetail.bindDeletePayment();
     },
     initHub: function () {
         //Set Client SignalR

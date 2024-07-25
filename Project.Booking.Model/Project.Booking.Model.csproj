@@ -61,6 +61,7 @@
     <Compile Include="MatrixView.cs" />
     <Compile Include="Payment.cs" />
     <Compile Include="PaymentCredit.cs" />
+    <Compile Include="PaymentTransfer.cs" />
     <Compile Include="PaymentViewModel.cs" />
     <Compile Include="ProjectBuild.cs" />
     <Compile Include="ProjectBuildFloor.cs" />
@@ -69,6 +70,7 @@
     <Compile Include="ProjectGallery.cs" />
     <Compile Include="ProjectGalleryResource.cs" />
     <Compile Include="ProjectModel.cs" />
+    <Compile Include="ProjectQuota.cs" />
     <Compile Include="ProjectRegisterQuota.cs" />
     <Compile Include="ProjectResource.cs" />
     <Compile Include="ProjectTransPayment.cs" />

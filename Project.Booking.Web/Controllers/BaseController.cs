@@ -76,12 +76,22 @@ namespace Project.Booking.Web.Controllers
                 return (_payment == null) ? _payment = new PaymentService(UserProfile) : _payment;
             }
         }
+
         private IMatrix _matrix;
         protected IMatrix matrix
         {
             get
             {
                 return (_matrix == null) ? _matrix = new MatrixService() : _matrix;
+            }
+        }
+
+        private IPrebook _prebook;
+        protected IPrebook prebook
+        {
+            get
+            {
+                return (_prebook == null) ? _prebook = new PrebookService(UserProfile) : _prebook;
             }
         }
         #endregion

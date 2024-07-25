@@ -24,9 +24,9 @@ public partial class tm_Ext
 
         this.tr_ProjectResource = new HashSet<tr_ProjectResource>();
 
-        this.ts_Payment = new HashSet<ts_Payment>();
-
         this.tm_Register = new HashSet<tm_Register>();
+
+        this.ts_Payment = new HashSet<ts_Payment>();
 
     }
 
@@ -59,11 +59,11 @@ public partial class tm_Ext
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
-    public virtual ICollection<ts_Payment> ts_Payment { get; set; }
+    public virtual ICollection<tm_Register> tm_Register { get; set; }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
-    public virtual ICollection<tm_Register> tm_Register { get; set; }
+    public virtual ICollection<ts_Payment> ts_Payment { get; set; }
 
 }
 

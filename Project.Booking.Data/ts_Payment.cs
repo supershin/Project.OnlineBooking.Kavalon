@@ -31,6 +31,8 @@ public partial class ts_Payment
 
     public Nullable<System.Guid> BookingID { get; set; }
 
+    public Nullable<int> ProjectRegisterQuotaID { get; set; }
+
     public Nullable<int> PaymentTypeID { get; set; }
 
     public string PaymentNo { get; set; }
@@ -56,6 +58,8 @@ public partial class ts_Payment
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
     public virtual ICollection<ts_Payment_Credit> ts_Payment_Credit { get; set; }
+
+    public virtual tr_ProjectRegisterQuota tr_ProjectRegisterQuota { get; set; }
 
 }
 

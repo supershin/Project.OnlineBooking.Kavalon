@@ -15,14 +15,14 @@ namespace Project.Booking.Data
 using System;
     using System.Collections.Generic;
     
-public partial class tr_ProjectRegisterQuota
+public partial class tr_ProjectQuota
 {
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-    public tr_ProjectRegisterQuota()
+    public tr_ProjectQuota()
     {
 
-        this.ts_Payment = new HashSet<ts_Payment>();
+        this.tr_ProjectRegisterQuota = new HashSet<tr_ProjectRegisterQuota>();
 
     }
 
@@ -31,55 +31,29 @@ public partial class tr_ProjectRegisterQuota
 
     public Nullable<System.Guid> ProjectID { get; set; }
 
-    public Nullable<System.Guid> RegisterID { get; set; }
-
-    public Nullable<int> ProjectQuotaID { get; set; }
-
     public Nullable<int> Quota { get; set; }
 
     public Nullable<decimal> TotalPrice { get; set; }
 
-    public Nullable<int> StatusID { get; set; }
-
-    public Nullable<System.DateTime> ApproveDate_1 { get; set; }
-
-    public Nullable<int> ApproveStatusID_1 { get; set; }
-
-    public Nullable<System.Guid> ApproveBy_1 { get; set; }
-
-    public Nullable<System.DateTime> ApproveDate_2 { get; set; }
-
-    public Nullable<int> ApproveStatusID_2 { get; set; }
-
-    public Nullable<System.Guid> ApproveBy_2 { get; set; }
-
-    public Nullable<System.DateTime> CancelDate { get; set; }
-
-    public Nullable<System.Guid> CancelBy { get; set; }
-
-    public string CancelRemark { get; set; }
+    public Nullable<int> LineOrder { get; set; }
 
     public Nullable<bool> FlagActive { get; set; }
 
     public Nullable<System.DateTime> CreateDate { get; set; }
 
-    public Nullable<System.Guid> CreateBy { get; set; }
+    public Nullable<System.Guid> CraeteBy { get; set; }
 
     public Nullable<System.DateTime> UpdateDate { get; set; }
 
     public Nullable<System.Guid> UpdateBy { get; set; }
 
+    public string Name { get; set; }
 
 
-    public virtual tm_Project tm_Project { get; set; }
-
-    public virtual tm_Register tm_Register { get; set; }
-
-    public virtual tr_ProjectQuota tr_ProjectQuota { get; set; }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
-    public virtual ICollection<ts_Payment> ts_Payment { get; set; }
+    public virtual ICollection<tr_ProjectRegisterQuota> tr_ProjectRegisterQuota { get; set; }
 
 }
 

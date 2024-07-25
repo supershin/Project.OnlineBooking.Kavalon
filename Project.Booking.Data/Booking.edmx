@@ -48,6 +48,8 @@
           <Property Name="CompanyName" Type="nvarchar" MaxLength="500" />
           <Property Name="OmisePublicKey" Type="varchar" MaxLength="100" />
           <Property Name="OmiseSecurityKey" Type="varchar" MaxLength="100" />
+          <Property Name="TransferBank" Type="varchar" MaxLength="50" />
+          <Property Name="TransferAccountNo" Type="varchar" MaxLength="50" />
           <Property Name="FlagActive" Type="bit" />
           <Property Name="CreateDate" Type="datetime" />
           <Property Name="CreateBy" Type="int" />
@@ -349,6 +351,22 @@
           <Property Name="UpdateDate" Type="datetime" />
           <Property Name="UpdateBy" Type="uniqueidentifier" />
         </EntityType>
+        <EntityType Name="tr_ProjectQuota">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ProjectID" Type="uniqueidentifier" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Quota" Type="int" />
+          <Property Name="TotalPrice" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="LineOrder" Type="int" />
+          <Property Name="FlagActive" Type="bit" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="CraeteBy" Type="uniqueidentifier" />
+          <Property Name="UpdateDate" Type="datetime" />
+          <Property Name="UpdateBy" Type="uniqueidentifier" />
+        </EntityType>
         <EntityType Name="tr_ProjectRegisterQuota">
           <Key>
             <PropertyRef Name="ID" />
@@ -356,7 +374,19 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ProjectID" Type="uniqueidentifier" />
           <Property Name="RegisterID" Type="uniqueidentifier" />
+          <Property Name="ProjectQuotaID" Type="int" />
           <Property Name="Quota" Type="int" />
+          <Property Name="TotalPrice" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="StatusID" Type="int" />
+          <Property Name="ApproveDate_1" Type="datetime" />
+          <Property Name="ApproveStatusID_1" Type="int" />
+          <Property Name="ApproveBy_1" Type="uniqueidentifier" />
+          <Property Name="ApproveDate_2" Type="datetime" />
+          <Property Name="ApproveStatusID_2" Type="int" />
+          <Property Name="ApproveBy_2" Type="uniqueidentifier" />
+          <Property Name="CancelDate" Type="datetime" />
+          <Property Name="CancelBy" Type="uniqueidentifier" />
+          <Property Name="CancelRemark" Type="varchar(max)" />
           <Property Name="FlagActive" Type="bit" />
           <Property Name="CreateDate" Type="datetime" />
           <Property Name="CreateBy" Type="uniqueidentifier" />
@@ -513,6 +543,7 @@
           </Key>
           <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
           <Property Name="BookingID" Type="uniqueidentifier" />
+          <Property Name="ProjectRegisterQuotaID" Type="int" />
           <Property Name="PaymentTypeID" Type="int" />
           <Property Name="PaymentNo" Type="varchar" MaxLength="50" />
           <Property Name="PaymentDate" Type="datetime" />
@@ -558,6 +589,20 @@
           <Property Name="CreateBy" Type="uniqueidentifier" />
           <Property Name="UpdateDate" Type="datetime" />
           <Property Name="UpdateBy" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="ts_Payment_Transfer">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PaymentID" Type="uniqueidentifier" />
+          <Property Name="ResourceID" Type="uniqueidentifier" />
+          <Property Name="TransferDate" Type="datetime" />
+          <Property Name="Hours" Type="varchar" MaxLength="2" />
+          <Property Name="Minutes" Type="varchar" MaxLength="2" />
+          <Property Name="Amount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="CreateBy" Type="uniqueidentifier" />
         </EntityType>
         <EntityType Name="ts_Unitbooking_History">
           <Key>
@@ -943,6 +988,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_tr_ProjectRegisterQuota_tr_ProjectQuota">
+          <End Role="tr_ProjectQuota" Type="Self.tr_ProjectQuota" Multiplicity="0..1" />
+          <End Role="tr_ProjectRegisterQuota" Type="Self.tr_ProjectRegisterQuota" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tr_ProjectQuota">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tr_ProjectRegisterQuota">
+              <PropertyRef Name="ProjectQuotaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_tr_ProjectResource_tm_Ext">
           <End Role="tm_Ext" Type="Self.tm_Ext" Multiplicity="0..1" />
           <End Role="tr_ProjectResource" Type="Self.tr_ProjectResource" Multiplicity="*" />
@@ -1135,6 +1192,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ts_Payment_tr_ProjectRegisterQuota">
+          <End Role="tr_ProjectRegisterQuota" Type="Self.tr_ProjectRegisterQuota" Multiplicity="0..1" />
+          <End Role="ts_Payment" Type="Self.ts_Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tr_ProjectRegisterQuota">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ts_Payment">
+              <PropertyRef Name="ProjectRegisterQuotaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ts_Payment_Transfer_tm_Resource">
+          <End Role="tm_Resource" Type="Self.tm_Resource" Multiplicity="0..1" />
+          <End Role="ts_Payment_Transfer" Type="Self.ts_Payment_Transfer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tm_Resource">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ts_Payment_Transfer">
+              <PropertyRef Name="ResourceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ts_Payment_ts_Booking">
           <End Role="ts_Booking" Type="Self.ts_Booking" Multiplicity="0..1" />
           <End Role="ts_Payment" Type="Self.ts_Payment" Multiplicity="*" />
@@ -1220,6 +1301,7 @@
           <EntitySet Name="tr_ProjectGallery" EntityType="Self.tr_ProjectGallery" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tr_ProjectGalleryResource" EntityType="Self.tr_ProjectGalleryResource" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tr_ProjectModelType" EntityType="Self.tr_ProjectModelType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tr_ProjectQuota" EntityType="Self.tr_ProjectQuota" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tr_ProjectRegisterQuota" EntityType="Self.tr_ProjectRegisterQuota" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tr_ProjectResource" EntityType="Self.tr_ProjectResource" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tr_ProjectSpecialPromotion" EntityType="Self.tr_ProjectSpecialPromotion" Schema="dbo" store:Type="Tables" />
@@ -1230,6 +1312,7 @@
           <EntitySet Name="ts_Booking_VIP" EntityType="Self.ts_Booking_VIP" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ts_Payment" EntityType="Self.ts_Payment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ts_Payment_Credit" EntityType="Self.ts_Payment_Credit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ts_Payment_Transfer" EntityType="Self.ts_Payment_Transfer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ts_Unitbooking_History" EntityType="Self.ts_Unitbooking_History" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_tm_Ext_tm_ExtType" Association="Self.FK_tm_Ext_tm_ExtType">
             <End Role="tm_ExtType" EntitySet="tm_ExtType" />
@@ -1355,6 +1438,10 @@
             <End Role="tm_Register" EntitySet="tm_Register" />
             <End Role="tr_ProjectRegisterQuota" EntitySet="tr_ProjectRegisterQuota" />
           </AssociationSet>
+          <AssociationSet Name="FK_tr_ProjectRegisterQuota_tr_ProjectQuota" Association="Self.FK_tr_ProjectRegisterQuota_tr_ProjectQuota">
+            <End Role="tr_ProjectQuota" EntitySet="tr_ProjectQuota" />
+            <End Role="tr_ProjectRegisterQuota" EntitySet="tr_ProjectRegisterQuota" />
+          </AssociationSet>
           <AssociationSet Name="FK_tr_ProjectResource_tm_Ext" Association="Self.FK_tr_ProjectResource_tm_Ext">
             <End Role="tm_Ext" EntitySet="tm_Ext" />
             <End Role="tr_ProjectResource" EntitySet="tr_ProjectResource" />
@@ -1418,6 +1505,14 @@
           <AssociationSet Name="FK_ts_Payment_tm_Ext" Association="Self.FK_ts_Payment_tm_Ext">
             <End Role="tm_Ext" EntitySet="tm_Ext" />
             <End Role="ts_Payment" EntitySet="ts_Payment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ts_Payment_tr_ProjectRegisterQuota" Association="Self.FK_ts_Payment_tr_ProjectRegisterQuota">
+            <End Role="tr_ProjectRegisterQuota" EntitySet="tr_ProjectRegisterQuota" />
+            <End Role="ts_Payment" EntitySet="ts_Payment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ts_Payment_Transfer_tm_Resource" Association="Self.FK_ts_Payment_Transfer_tm_Resource">
+            <End Role="tm_Resource" EntitySet="tm_Resource" />
+            <End Role="ts_Payment_Transfer" EntitySet="ts_Payment_Transfer" />
           </AssociationSet>
           <AssociationSet Name="FK_ts_Payment_ts_Booking" Association="Self.FK_ts_Payment_ts_Booking">
             <End Role="ts_Booking" EntitySet="ts_Booking" />
@@ -1533,19 +1628,6 @@
             <End Role="tm_Project" EntitySet="tm_Project" />
           </AssociationSet>
           <EntitySet Name="ts_Payment_Credit" EntityType="OnlineBooking_DevModel.ts_Payment_Credit" />
-          <EntitySet Name="ts_Payment" EntityType="OnlineBooking_DevModel.ts_Payment" />
-          <AssociationSet Name="FK_ts_Payment_tm_Ext" Association="OnlineBooking_DevModel.FK_ts_Payment_tm_Ext">
-            <End Role="tm_Ext" EntitySet="tm_Ext" />
-            <End Role="ts_Payment" EntitySet="ts_Payment" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ts_Payment_ts_Booking" Association="OnlineBooking_DevModel.FK_ts_Payment_ts_Booking">
-            <End Role="ts_Booking" EntitySet="ts_Booking" />
-            <End Role="ts_Payment" EntitySet="ts_Payment" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ts_Payment_Credit_ts_Payment" Association="OnlineBooking_DevModel.FK_ts_Payment_Credit_ts_Payment">
-            <End Role="ts_Payment" EntitySet="ts_Payment" />
-            <End Role="ts_Payment_Credit" EntitySet="ts_Payment_Credit" />
-          </AssociationSet>
           <EntitySet Name="tr_ProjectGallery" EntityType="OnlineBooking_DevModel.tr_ProjectGallery" />
           <EntitySet Name="tr_ProjectGalleryResource" EntityType="OnlineBooking_DevModel.tr_ProjectGalleryResource" />
           <AssociationSet Name="FK_tr_ProjectGallery_tm_Project" Association="OnlineBooking_DevModel.FK_tr_ProjectGallery_tm_Project">
@@ -1634,11 +1716,6 @@
             <End Role="tm_Unit" EntitySet="tm_Unit" />
             <End Role="ts_Booking" EntitySet="ts_Booking" />
           </AssociationSet>
-          <EntitySet Name="tr_ProjectRegisterQuota" EntityType="OnlineBooking_DevModel.tr_ProjectRegisterQuota" />
-          <AssociationSet Name="FK_tr_ProjectRegisterQuota_tm_Project" Association="OnlineBooking_DevModel.FK_tr_ProjectRegisterQuota_tm_Project">
-            <End Role="tm_Project" EntitySet="tm_Project" />
-            <End Role="tr_ProjectRegisterQuota" EntitySet="tr_ProjectRegisterQuota" />
-          </AssociationSet>
           <EntitySet Name="tr_UnitVIP" EntityType="OnlineBooking_DevModel.tr_UnitVIP" />
           <AssociationSet Name="FK_tr_UnitVIP_tm_Unit" Association="OnlineBooking_DevModel.FK_tr_UnitVIP_tm_Unit">
             <End Role="tm_Unit" EntitySet="tm_Unit" />
@@ -1676,10 +1753,6 @@
             <End Role="tm_Ext" EntitySet="tm_Ext" />
             <End Role="tm_Register" EntitySet="tm_Register" />
           </AssociationSet>
-          <AssociationSet Name="FK_tr_ProjectRegisterQuota_tm_Register" Association="OnlineBooking_DevModel.FK_tr_ProjectRegisterQuota_tm_Register">
-            <End Role="tm_Register" EntitySet="tm_Register" />
-            <End Role="tr_ProjectRegisterQuota" EntitySet="tr_ProjectRegisterQuota" />
-          </AssociationSet>
           <AssociationSet Name="FK_tr_ProjectTransferPayment_tm_Register" Association="OnlineBooking_DevModel.FK_tr_ProjectTransferPayment_tm_Register">
             <End Role="tm_Register" EntitySet="tm_Register" />
             <End Role="tr_ProjectTransferPayment" EntitySet="tr_ProjectTransferPayment" />
@@ -1687,6 +1760,42 @@
           <AssociationSet Name="FK_ts_Booking_tm_Register" Association="OnlineBooking_DevModel.FK_ts_Booking_tm_Register">
             <End Role="tm_Register" EntitySet="tm_Register" />
             <End Role="ts_Booking" EntitySet="ts_Booking" />
+          </AssociationSet>
+          <EntitySet Name="tr_ProjectQuota" EntityType="OnlineBooking_DevModel.tr_ProjectQuota" />
+          <EntitySet Name="ts_Payment_Transfer" EntityType="OnlineBooking_DevModel.ts_Payment_Transfer" />
+          <AssociationSet Name="FK_ts_Payment_Transfer_tm_Resource" Association="OnlineBooking_DevModel.FK_ts_Payment_Transfer_tm_Resource">
+            <End Role="tm_Resource" EntitySet="tm_Resource" />
+            <End Role="ts_Payment_Transfer" EntitySet="ts_Payment_Transfer" />
+          </AssociationSet>
+          <EntitySet Name="ts_Payment" EntityType="OnlineBooking_DevModel.ts_Payment" />
+          <AssociationSet Name="FK_ts_Payment_tm_Ext" Association="OnlineBooking_DevModel.FK_ts_Payment_tm_Ext">
+            <End Role="tm_Ext" EntitySet="tm_Ext" />
+            <End Role="ts_Payment" EntitySet="ts_Payment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ts_Payment_ts_Booking" Association="OnlineBooking_DevModel.FK_ts_Payment_ts_Booking">
+            <End Role="ts_Booking" EntitySet="ts_Booking" />
+            <End Role="ts_Payment" EntitySet="ts_Payment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ts_Payment_Credit_ts_Payment" Association="OnlineBooking_DevModel.FK_ts_Payment_Credit_ts_Payment">
+            <End Role="ts_Payment" EntitySet="ts_Payment" />
+            <End Role="ts_Payment_Credit" EntitySet="ts_Payment_Credit" />
+          </AssociationSet>
+          <EntitySet Name="tr_ProjectRegisterQuota" EntityType="OnlineBooking_DevModel.tr_ProjectRegisterQuota" />
+          <AssociationSet Name="FK_tr_ProjectRegisterQuota_tm_Project" Association="OnlineBooking_DevModel.FK_tr_ProjectRegisterQuota_tm_Project">
+            <End Role="tm_Project" EntitySet="tm_Project" />
+            <End Role="tr_ProjectRegisterQuota" EntitySet="tr_ProjectRegisterQuota" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tr_ProjectRegisterQuota_tm_Register" Association="OnlineBooking_DevModel.FK_tr_ProjectRegisterQuota_tm_Register">
+            <End Role="tm_Register" EntitySet="tm_Register" />
+            <End Role="tr_ProjectRegisterQuota" EntitySet="tr_ProjectRegisterQuota" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tr_ProjectRegisterQuota_tr_ProjectQuota" Association="OnlineBooking_DevModel.FK_tr_ProjectRegisterQuota_tr_ProjectQuota">
+            <End Role="tr_ProjectQuota" EntitySet="tr_ProjectQuota" />
+            <End Role="tr_ProjectRegisterQuota" EntitySet="tr_ProjectRegisterQuota" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ts_Payment_tr_ProjectRegisterQuota" Association="OnlineBooking_DevModel.FK_ts_Payment_tr_ProjectRegisterQuota">
+            <End Role="tr_ProjectRegisterQuota" EntitySet="tr_ProjectRegisterQuota" />
+            <End Role="ts_Payment" EntitySet="ts_Payment" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="tm_Annotation">
@@ -1731,8 +1840,8 @@
           <Property Name="UpdateBy" Type="Guid" />
           <NavigationProperty Name="tm_ExtType" Relationship="OnlineBooking_DevModel.FK_tm_Ext_tm_ExtType" FromRole="tm_Ext" ToRole="tm_ExtType" />
           <NavigationProperty Name="tr_ProjectResource" Relationship="OnlineBooking_DevModel.FK_tr_ProjectResource_tm_Ext" FromRole="tm_Ext" ToRole="tr_ProjectResource" />
-          <NavigationProperty Name="ts_Payment" Relationship="OnlineBooking_DevModel.FK_ts_Payment_tm_Ext" FromRole="tm_Ext" ToRole="ts_Payment" />
           <NavigationProperty Name="tm_Register" Relationship="OnlineBooking_DevModel.FK_tm_Register_tm_Ext" FromRole="tm_Ext" ToRole="tm_Register" />
+          <NavigationProperty Name="ts_Payment" Relationship="OnlineBooking_DevModel.FK_ts_Payment_tm_Ext" FromRole="tm_Ext" ToRole="ts_Payment" />
           </EntityType>
         <EntityType Name="tm_ExtType">
           <Key>
@@ -1806,9 +1915,9 @@
           <NavigationProperty Name="tm_ProjectConfig" Relationship="OnlineBooking_DevModel.FK_tm_ProjectConfig_tm_Project" FromRole="tm_Project" ToRole="tm_ProjectConfig" />
           <NavigationProperty Name="tr_Matrix_Config" Relationship="OnlineBooking_DevModel.FK_tr_Matrix_Config_tm_Project" FromRole="tm_Project" ToRole="tr_Matrix_Config" />
           <NavigationProperty Name="tm_Unit" Relationship="OnlineBooking_DevModel.FK_tm_Unit_tm_Project" FromRole="tm_Project" ToRole="tm_Unit" />
-          <NavigationProperty Name="tr_ProjectRegisterQuota" Relationship="OnlineBooking_DevModel.FK_tr_ProjectRegisterQuota_tm_Project" FromRole="tm_Project" ToRole="tr_ProjectRegisterQuota" />
           <NavigationProperty Name="tr_ProjectTransferPayment" Relationship="OnlineBooking_DevModel.FK_tr_ProjectTransferPayment_tm_Project" FromRole="tm_Project" ToRole="tr_ProjectTransferPayment" />
           <Property Name="TransferPaymentExpireDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tr_ProjectRegisterQuota" Relationship="OnlineBooking_DevModel.FK_tr_ProjectRegisterQuota_tm_Project" FromRole="tm_Project" ToRole="tr_ProjectRegisterQuota" />
         </EntityType>
         <EntityType Name="tm_Resource">
           <Key>
@@ -1829,6 +1938,7 @@
           <NavigationProperty Name="tr_ProjectResource" Relationship="OnlineBooking_DevModel.FK_tr_ProjectResource_tm_Resource" FromRole="tm_Resource" ToRole="tr_ProjectResource" />
           <NavigationProperty Name="tr_ProjectGalleryResource" Relationship="OnlineBooking_DevModel.FK_tr_ProjectGalleryResource_tm_Resource" FromRole="tm_Resource" ToRole="tr_ProjectGalleryResource" />
           <NavigationProperty Name="tr_ProjectTransferPayment" Relationship="OnlineBooking_DevModel.FK_tr_ProjectTransferPayment_tm_Resource" FromRole="tm_Resource" ToRole="tr_ProjectTransferPayment" />
+          <NavigationProperty Name="ts_Payment_Transfer" Relationship="OnlineBooking_DevModel.FK_ts_Payment_Transfer_tm_Resource" FromRole="tm_Resource" ToRole="ts_Payment_Transfer" />
         </EntityType>
         <EntityType Name="tm_UnitStatus">
           <Key>
@@ -2157,7 +2267,6 @@
           <Property Name="UpdateBy" Type="Guid" />
           <NavigationProperty Name="tm_BookingStatus" Relationship="OnlineBooking_DevModel.FK_ts_Booking_tm_BookingStatus" FromRole="ts_Booking" ToRole="tm_BookingStatus" />
           <NavigationProperty Name="tm_Project" Relationship="OnlineBooking_DevModel.FK_ts_Booking_tm_Project" FromRole="ts_Booking" ToRole="tm_Project" />
-          <NavigationProperty Name="ts_Payment" Relationship="OnlineBooking_DevModel.FK_ts_Payment_ts_Booking" FromRole="ts_Booking" ToRole="ts_Payment" />
           <Property Name="SpecialPrice" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="Discount" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="PaymentOverDueDate" Type="DateTime" Precision="3" />
@@ -2167,6 +2276,7 @@
           <Property Name="ContractAmount" Type="Decimal" Precision="18" Scale="2" />
           <NavigationProperty Name="ts_Unitbooking_History" Relationship="OnlineBooking_DevModel.FK_ts_Unitbooking_History_ts_Booking" FromRole="ts_Booking" ToRole="ts_Unitbooking_History" />
           <NavigationProperty Name="tm_Register" Relationship="OnlineBooking_DevModel.FK_ts_Booking_tm_Register" FromRole="ts_Booking" ToRole="tm_Register" />
+          <NavigationProperty Name="ts_Payment" Relationship="OnlineBooking_DevModel.FK_ts_Payment_ts_Booking" FromRole="ts_Booking" ToRole="ts_Payment" />
         </EntityType>
         <Association Name="FK_ts_Booking_tm_BookingStatus">
           <End Type="OnlineBooking_DevModel.tm_BookingStatus" Role="tm_BookingStatus" Multiplicity="0..1" />
@@ -2207,6 +2317,8 @@
           <Property Name="UpdateDate" Type="DateTime" Precision="3" />
           <Property Name="UpdateBy" Type="Int32" />
           <NavigationProperty Name="tm_Project" Relationship="OnlineBooking_DevModel.FK_tm_Project_tm_Company" FromRole="tm_Company" ToRole="tm_Project" />
+          <Property Name="TransferBank" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TransferAccountNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="tm_OmiseChargeStatus">
           <Key>
@@ -2270,60 +2382,6 @@
           <Property Name="UpdateBy" Type="Guid" />
           <NavigationProperty Name="ts_Payment" Relationship="OnlineBooking_DevModel.FK_ts_Payment_Credit_ts_Payment" FromRole="ts_Payment_Credit" ToRole="ts_Payment" />
         </EntityType>
-        <EntityType Name="ts_Payment">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Guid" Nullable="false" />
-          <Property Name="BookingID" Type="Guid" />
-          <Property Name="PaymentTypeID" Type="Int32" />
-          <Property Name="PaymentNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="PaymentDate" Type="DateTime" Precision="3" />
-          <Property Name="FlagActive" Type="Boolean" />
-          <Property Name="CreateDate" Type="DateTime" Precision="3" />
-          <Property Name="CreateBy" Type="Guid" />
-          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
-          <Property Name="UpdateBy" Type="Guid" />
-          <NavigationProperty Name="tm_Ext" Relationship="OnlineBooking_DevModel.FK_ts_Payment_tm_Ext" FromRole="ts_Payment" ToRole="tm_Ext" />
-          <NavigationProperty Name="ts_Booking" Relationship="OnlineBooking_DevModel.FK_ts_Payment_ts_Booking" FromRole="ts_Payment" ToRole="ts_Booking" />
-          <NavigationProperty Name="ts_Payment_Credit" Relationship="OnlineBooking_DevModel.FK_ts_Payment_Credit_ts_Payment" FromRole="ts_Payment" ToRole="ts_Payment_Credit" />
-        </EntityType>
-        <Association Name="FK_ts_Payment_tm_Ext">
-          <End Type="OnlineBooking_DevModel.tm_Ext" Role="tm_Ext" Multiplicity="0..1" />
-          <End Type="OnlineBooking_DevModel.ts_Payment" Role="ts_Payment" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tm_Ext">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="ts_Payment">
-              <PropertyRef Name="PaymentTypeID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ts_Payment_ts_Booking">
-          <End Type="OnlineBooking_DevModel.ts_Booking" Role="ts_Booking" Multiplicity="0..1" />
-          <End Type="OnlineBooking_DevModel.ts_Payment" Role="ts_Payment" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ts_Booking">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="ts_Payment">
-              <PropertyRef Name="BookingID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ts_Payment_Credit_ts_Payment">
-          <End Type="OnlineBooking_DevModel.ts_Payment" Role="ts_Payment" Multiplicity="0..1" />
-          <End Type="OnlineBooking_DevModel.ts_Payment_Credit" Role="ts_Payment_Credit" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ts_Payment">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="ts_Payment_Credit">
-              <PropertyRef Name="PaymentID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="tr_ProjectGallery">
           <Key>
             <PropertyRef Name="ID" />
@@ -2708,34 +2766,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="tr_ProjectRegisterQuota">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ProjectID" Type="Guid" />
-          <Property Name="RegisterID" Type="Guid" />
-          <Property Name="Quota" Type="Int32" />
-          <Property Name="FlagActive" Type="Boolean" />
-          <Property Name="CreateDate" Type="DateTime" Precision="3" />
-          <Property Name="CreateBy" Type="Guid" />
-          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
-          <Property Name="UpdateBy" Type="Guid" />
-          <NavigationProperty Name="tm_Project" Relationship="OnlineBooking_DevModel.FK_tr_ProjectRegisterQuota_tm_Project" FromRole="tr_ProjectRegisterQuota" ToRole="tm_Project" />
-          <NavigationProperty Name="tm_Register" Relationship="OnlineBooking_DevModel.FK_tr_ProjectRegisterQuota_tm_Register" FromRole="tr_ProjectRegisterQuota" ToRole="tm_Register" />
-        </EntityType>
-        <Association Name="FK_tr_ProjectRegisterQuota_tm_Project">
-          <End Type="OnlineBooking_DevModel.tm_Project" Role="tm_Project" Multiplicity="0..1" />
-          <End Type="OnlineBooking_DevModel.tr_ProjectRegisterQuota" Role="tr_ProjectRegisterQuota" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tm_Project">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="tr_ProjectRegisterQuota">
-              <PropertyRef Name="ProjectID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="tr_UnitVIP">
           <Key>
             <PropertyRef Name="ID" />
@@ -2931,9 +2961,9 @@
           <Property Name="UpdateDate" Type="DateTime" Precision="3" />
           <Property Name="UpdateBy" Type="Guid" />
           <NavigationProperty Name="tm_Ext" Relationship="OnlineBooking_DevModel.FK_tm_Register_tm_Ext" FromRole="tm_Register" ToRole="tm_Ext" />
-          <NavigationProperty Name="tr_ProjectRegisterQuota" Relationship="OnlineBooking_DevModel.FK_tr_ProjectRegisterQuota_tm_Register" FromRole="tm_Register" ToRole="tr_ProjectRegisterQuota" />
           <NavigationProperty Name="tr_ProjectTransferPayment" Relationship="OnlineBooking_DevModel.FK_tr_ProjectTransferPayment_tm_Register" FromRole="tm_Register" ToRole="tr_ProjectTransferPayment" />
           <NavigationProperty Name="ts_Booking" Relationship="OnlineBooking_DevModel.FK_ts_Booking_tm_Register" FromRole="tm_Register" ToRole="ts_Booking" />
+          <NavigationProperty Name="tr_ProjectRegisterQuota" Relationship="OnlineBooking_DevModel.FK_tr_ProjectRegisterQuota_tm_Register" FromRole="tm_Register" ToRole="tr_ProjectRegisterQuota" />
         </EntityType>
         <Association Name="FK_tm_Register_tm_Ext">
           <End Type="OnlineBooking_DevModel.tm_Ext" Role="tm_Ext" Multiplicity="0..1" />
@@ -2944,18 +2974,6 @@
             </Principal>
             <Dependent Role="tm_Register">
               <PropertyRef Name="RegisterTypeID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tr_ProjectRegisterQuota_tm_Register">
-          <End Type="OnlineBooking_DevModel.tm_Register" Role="tm_Register" Multiplicity="0..1" />
-          <End Type="OnlineBooking_DevModel.tr_ProjectRegisterQuota" Role="tr_ProjectRegisterQuota" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tm_Register">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="tr_ProjectRegisterQuota">
-              <PropertyRef Name="RegisterID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2980,6 +2998,184 @@
             </Principal>
             <Dependent Role="ts_Booking">
               <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tr_ProjectQuota">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ProjectID" Type="Guid" />
+          <Property Name="Quota" Type="Int32" />
+          <Property Name="TotalPrice" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="LineOrder" Type="Int32" />
+          <Property Name="FlagActive" Type="Boolean" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="CraeteBy" Type="Guid" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdateBy" Type="Guid" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tr_ProjectRegisterQuota" Relationship="OnlineBooking_DevModel.FK_tr_ProjectRegisterQuota_tr_ProjectQuota" FromRole="tr_ProjectQuota" ToRole="tr_ProjectRegisterQuota" />
+        </EntityType>
+        <EntityType Name="ts_Payment_Transfer">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="PaymentID" Type="Guid" />
+          <Property Name="ResourceID" Type="Guid" />
+          <Property Name="TransferDate" Type="DateTime" Precision="3" />
+          <Property Name="Hours" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="Minutes" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="Amount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="CreateBy" Type="Guid" />
+          <NavigationProperty Name="tm_Resource" Relationship="OnlineBooking_DevModel.FK_ts_Payment_Transfer_tm_Resource" FromRole="ts_Payment_Transfer" ToRole="tm_Resource" />
+        </EntityType>
+        <Association Name="FK_ts_Payment_Transfer_tm_Resource">
+          <End Type="OnlineBooking_DevModel.tm_Resource" Role="tm_Resource" Multiplicity="0..1" />
+          <End Type="OnlineBooking_DevModel.ts_Payment_Transfer" Role="ts_Payment_Transfer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tm_Resource">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ts_Payment_Transfer">
+              <PropertyRef Name="ResourceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ts_Payment">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="BookingID" Type="Guid" />
+          <Property Name="ProjectRegisterQuotaID" Type="Int32" />
+          <Property Name="PaymentTypeID" Type="Int32" />
+          <Property Name="PaymentNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PaymentDate" Type="DateTime" Precision="3" />
+          <Property Name="FlagActive" Type="Boolean" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="CreateBy" Type="Guid" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdateBy" Type="Guid" />
+          <NavigationProperty Name="tm_Ext" Relationship="OnlineBooking_DevModel.FK_ts_Payment_tm_Ext" FromRole="ts_Payment" ToRole="tm_Ext" />
+          <NavigationProperty Name="ts_Booking" Relationship="OnlineBooking_DevModel.FK_ts_Payment_ts_Booking" FromRole="ts_Payment" ToRole="ts_Booking" />
+          <NavigationProperty Name="ts_Payment_Credit" Relationship="OnlineBooking_DevModel.FK_ts_Payment_Credit_ts_Payment" FromRole="ts_Payment" ToRole="ts_Payment_Credit" />
+          <NavigationProperty Name="tr_ProjectRegisterQuota" Relationship="OnlineBooking_DevModel.FK_ts_Payment_tr_ProjectRegisterQuota" FromRole="ts_Payment" ToRole="tr_ProjectRegisterQuota" />
+        </EntityType>
+        <Association Name="FK_ts_Payment_tm_Ext">
+          <End Type="OnlineBooking_DevModel.tm_Ext" Role="tm_Ext" Multiplicity="0..1" />
+          <End Type="OnlineBooking_DevModel.ts_Payment" Role="ts_Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tm_Ext">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ts_Payment">
+              <PropertyRef Name="PaymentTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ts_Payment_ts_Booking">
+          <End Type="OnlineBooking_DevModel.ts_Booking" Role="ts_Booking" Multiplicity="0..1" />
+          <End Type="OnlineBooking_DevModel.ts_Payment" Role="ts_Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ts_Booking">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ts_Payment">
+              <PropertyRef Name="BookingID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ts_Payment_Credit_ts_Payment">
+          <End Type="OnlineBooking_DevModel.ts_Payment" Role="ts_Payment" Multiplicity="0..1" />
+          <End Type="OnlineBooking_DevModel.ts_Payment_Credit" Role="ts_Payment_Credit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ts_Payment">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ts_Payment_Credit">
+              <PropertyRef Name="PaymentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tr_ProjectRegisterQuota">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectID" Type="Guid" />
+          <Property Name="RegisterID" Type="Guid" />
+          <Property Name="ProjectQuotaID" Type="Int32" />
+          <Property Name="Quota" Type="Int32" />
+          <Property Name="TotalPrice" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="StatusID" Type="Int32" />
+          <Property Name="ApproveDate_1" Type="DateTime" Precision="3" />
+          <Property Name="ApproveStatusID_1" Type="Int32" />
+          <Property Name="ApproveBy_1" Type="Guid" />
+          <Property Name="ApproveDate_2" Type="DateTime" Precision="3" />
+          <Property Name="ApproveStatusID_2" Type="Int32" />
+          <Property Name="ApproveBy_2" Type="Guid" />
+          <Property Name="CancelDate" Type="DateTime" Precision="3" />
+          <Property Name="CancelBy" Type="Guid" />
+          <Property Name="CancelRemark" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="FlagActive" Type="Boolean" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="CreateBy" Type="Guid" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdateBy" Type="Guid" />
+          <NavigationProperty Name="tm_Project" Relationship="OnlineBooking_DevModel.FK_tr_ProjectRegisterQuota_tm_Project" FromRole="tr_ProjectRegisterQuota" ToRole="tm_Project" />
+          <NavigationProperty Name="tm_Register" Relationship="OnlineBooking_DevModel.FK_tr_ProjectRegisterQuota_tm_Register" FromRole="tr_ProjectRegisterQuota" ToRole="tm_Register" />
+          <NavigationProperty Name="tr_ProjectQuota" Relationship="OnlineBooking_DevModel.FK_tr_ProjectRegisterQuota_tr_ProjectQuota" FromRole="tr_ProjectRegisterQuota" ToRole="tr_ProjectQuota" />
+          <NavigationProperty Name="ts_Payment" Relationship="OnlineBooking_DevModel.FK_ts_Payment_tr_ProjectRegisterQuota" FromRole="tr_ProjectRegisterQuota" ToRole="ts_Payment" />
+        </EntityType>
+        <Association Name="FK_tr_ProjectRegisterQuota_tm_Project">
+          <End Type="OnlineBooking_DevModel.tm_Project" Role="tm_Project" Multiplicity="0..1" />
+          <End Type="OnlineBooking_DevModel.tr_ProjectRegisterQuota" Role="tr_ProjectRegisterQuota" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tm_Project">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tr_ProjectRegisterQuota">
+              <PropertyRef Name="ProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tr_ProjectRegisterQuota_tm_Register">
+          <End Type="OnlineBooking_DevModel.tm_Register" Role="tm_Register" Multiplicity="0..1" />
+          <End Type="OnlineBooking_DevModel.tr_ProjectRegisterQuota" Role="tr_ProjectRegisterQuota" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tm_Register">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tr_ProjectRegisterQuota">
+              <PropertyRef Name="RegisterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tr_ProjectRegisterQuota_tr_ProjectQuota">
+          <End Type="OnlineBooking_DevModel.tr_ProjectQuota" Role="tr_ProjectQuota" Multiplicity="0..1" />
+          <End Type="OnlineBooking_DevModel.tr_ProjectRegisterQuota" Role="tr_ProjectRegisterQuota" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tr_ProjectQuota">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tr_ProjectRegisterQuota">
+              <PropertyRef Name="ProjectQuotaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ts_Payment_tr_ProjectRegisterQuota">
+          <End Type="OnlineBooking_DevModel.tr_ProjectRegisterQuota" Role="tr_ProjectRegisterQuota" Multiplicity="0..1" />
+          <End Type="OnlineBooking_DevModel.ts_Payment" Role="ts_Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tr_ProjectRegisterQuota">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ts_Payment">
+              <PropertyRef Name="ProjectRegisterQuotaID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3260,6 +3456,8 @@
           <EntitySetMapping Name="tm_Company">
             <EntityTypeMapping TypeName="OnlineBooking_DevModel.tm_Company">
               <MappingFragment StoreEntitySet="tm_Company">
+                <ScalarProperty Name="TransferAccountNo" ColumnName="TransferAccountNo" />
+                <ScalarProperty Name="TransferBank" ColumnName="TransferBank" />
                 <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
                 <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
                 <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
@@ -3320,22 +3518,6 @@
                 <ScalarProperty Name="IP" ColumnName="IP" />
                 <ScalarProperty Name="ChargeID" ColumnName="ChargeID" />
                 <ScalarProperty Name="PaymentID" ColumnName="PaymentID" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ts_Payment">
-            <EntityTypeMapping TypeName="OnlineBooking_DevModel.ts_Payment">
-              <MappingFragment StoreEntitySet="ts_Payment">
-                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
-                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
-                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
-                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-                <ScalarProperty Name="FlagActive" ColumnName="FlagActive" />
-                <ScalarProperty Name="PaymentDate" ColumnName="PaymentDate" />
-                <ScalarProperty Name="PaymentNo" ColumnName="PaymentNo" />
-                <ScalarProperty Name="PaymentTypeID" ColumnName="PaymentTypeID" />
-                <ScalarProperty Name="BookingID" ColumnName="BookingID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -3467,21 +3649,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tr_ProjectRegisterQuota">
-            <EntityTypeMapping TypeName="OnlineBooking_DevModel.tr_ProjectRegisterQuota">
-              <MappingFragment StoreEntitySet="tr_ProjectRegisterQuota">
-                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
-                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
-                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
-                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-                <ScalarProperty Name="FlagActive" ColumnName="FlagActive" />
-                <ScalarProperty Name="Quota" ColumnName="Quota" />
-                <ScalarProperty Name="RegisterID" ColumnName="RegisterID" />
-                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="tr_UnitVIP">
             <EntityTypeMapping TypeName="OnlineBooking_DevModel.tr_UnitVIP">
               <MappingFragment StoreEntitySet="tr_UnitVIP">
@@ -3586,6 +3753,82 @@
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="Code" ColumnName="Code" />
                 <ScalarProperty Name="RegisterTypeID" ColumnName="RegisterTypeID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tr_ProjectQuota">
+            <EntityTypeMapping TypeName="OnlineBooking_DevModel.tr_ProjectQuota">
+              <MappingFragment StoreEntitySet="tr_ProjectQuota">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="CraeteBy" ColumnName="CraeteBy" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="FlagActive" ColumnName="FlagActive" />
+                <ScalarProperty Name="LineOrder" ColumnName="LineOrder" />
+                <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+                <ScalarProperty Name="Quota" ColumnName="Quota" />
+                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ts_Payment_Transfer">
+            <EntityTypeMapping TypeName="OnlineBooking_DevModel.ts_Payment_Transfer">
+              <MappingFragment StoreEntitySet="ts_Payment_Transfer">
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Minutes" ColumnName="Minutes" />
+                <ScalarProperty Name="Hours" ColumnName="Hours" />
+                <ScalarProperty Name="TransferDate" ColumnName="TransferDate" />
+                <ScalarProperty Name="ResourceID" ColumnName="ResourceID" />
+                <ScalarProperty Name="PaymentID" ColumnName="PaymentID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ts_Payment">
+            <EntityTypeMapping TypeName="OnlineBooking_DevModel.ts_Payment">
+              <MappingFragment StoreEntitySet="ts_Payment">
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="FlagActive" ColumnName="FlagActive" />
+                <ScalarProperty Name="PaymentDate" ColumnName="PaymentDate" />
+                <ScalarProperty Name="PaymentNo" ColumnName="PaymentNo" />
+                <ScalarProperty Name="PaymentTypeID" ColumnName="PaymentTypeID" />
+                <ScalarProperty Name="ProjectRegisterQuotaID" ColumnName="ProjectRegisterQuotaID" />
+                <ScalarProperty Name="BookingID" ColumnName="BookingID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tr_ProjectRegisterQuota">
+            <EntityTypeMapping TypeName="OnlineBooking_DevModel.tr_ProjectRegisterQuota">
+              <MappingFragment StoreEntitySet="tr_ProjectRegisterQuota">
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="FlagActive" ColumnName="FlagActive" />
+                <ScalarProperty Name="CancelRemark" ColumnName="CancelRemark" />
+                <ScalarProperty Name="CancelBy" ColumnName="CancelBy" />
+                <ScalarProperty Name="CancelDate" ColumnName="CancelDate" />
+                <ScalarProperty Name="ApproveBy_2" ColumnName="ApproveBy_2" />
+                <ScalarProperty Name="ApproveStatusID_2" ColumnName="ApproveStatusID_2" />
+                <ScalarProperty Name="ApproveDate_2" ColumnName="ApproveDate_2" />
+                <ScalarProperty Name="ApproveBy_1" ColumnName="ApproveBy_1" />
+                <ScalarProperty Name="ApproveStatusID_1" ColumnName="ApproveStatusID_1" />
+                <ScalarProperty Name="ApproveDate_1" ColumnName="ApproveDate_1" />
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+                <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+                <ScalarProperty Name="Quota" ColumnName="Quota" />
+                <ScalarProperty Name="ProjectQuotaID" ColumnName="ProjectQuotaID" />
+                <ScalarProperty Name="RegisterID" ColumnName="RegisterID" />
+                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -113,7 +113,7 @@ namespace Project.Booking.Business.Sevices
             model.ID = item.ID;
             return item;
         }
-        private string GeneratePaymentNumber(OnlineBookingEntities context, Guid projectID)
+        public string GeneratePaymentNumber(OnlineBookingEntities context, Guid projectID)
         {
             var projectCode = context.tm_Project.Where(e => e.FlagActive == true && e.ID == projectID).FirstOrDefault().ProjectCode;
 

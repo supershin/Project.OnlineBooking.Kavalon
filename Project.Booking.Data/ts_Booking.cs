@@ -22,9 +22,9 @@ public partial class ts_Booking
     public ts_Booking()
     {
 
-        this.ts_Payment = new HashSet<ts_Payment>();
-
         this.ts_Unitbooking_History = new HashSet<ts_Unitbooking_History>();
+
+        this.ts_Payment = new HashSet<ts_Payment>();
 
     }
 
@@ -89,10 +89,6 @@ public partial class ts_Booking
 
     public virtual tm_Project tm_Project { get; set; }
 
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-
-    public virtual ICollection<ts_Payment> ts_Payment { get; set; }
-
     public virtual tm_Unit tm_Unit { get; set; }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -100,6 +96,10 @@ public partial class ts_Booking
     public virtual ICollection<ts_Unitbooking_History> ts_Unitbooking_History { get; set; }
 
     public virtual tm_Register tm_Register { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+
+    public virtual ICollection<ts_Payment> ts_Payment { get; set; }
 
 }
 

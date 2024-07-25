@@ -65,10 +65,10 @@
                                     </div>
                                 }*@
                             <div class="col-md-4">
-                                @Html.Partial("Partial_Detail_MyQuota_Prebook")
+                                @Html.Partial("Partial_Detail_MyQuota_Prebook",Model.ProjectQuotaList)
                             </div>
-                            <div class="col-md-4" id="div-trans-resource">
-                                @Html.Partial("Partial_Detail_MyQuota_Prebook_List", Model.PaymentResources)
+                            <div class="col-md-4" id="div-prebook-list">
+                                @Html.Partial("Partial_Detail_MyQuota_Prebook_List", Model.PreBookList)
                             </div>
                         </div>
                     </div>

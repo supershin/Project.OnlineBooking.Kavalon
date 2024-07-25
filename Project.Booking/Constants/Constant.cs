@@ -21,6 +21,7 @@ namespace Project.Booking.Constants
             public static readonly int RESOURCE_TYPE_PROJECT_CARD_ID = 1;
             public static readonly int RESOURCE_TYPE_PROJECT_SECTION_MAIN_PAGE_ID = 2;
             public static readonly int PAYMENT_TYPE_CREDIT_ID = 4;
+            public static readonly int PAYMENT_TYPE_TRANSFER_ID = 5;
             public static readonly int REGISTER_TYPE_SALEKIT = 6;
             public static readonly int REGISTER_TYPE_CUSTOMER = 7;
             public static readonly int TRANSFER_PAYMENR_STATUS_VERIFY = 8;
@@ -88,7 +89,11 @@ namespace Project.Booking.Constants
                 public static readonly string PLEASE_INPUT_TRASFER_PAYMENT_AMOUNT = "Please input transfer amount.";
                 public static readonly string PLEASE_ATTACH_TRASFER_PAYMENT = "Please attach transfer payment.";
                 public static readonly string TRANSACTION_IS_VERIFY = "Can not delete. Transaction is verify success.";
-                public static readonly string REGISTER_NOT_FOUND = "ไม่พบข้อมูลการลงทะเบียน";                
+                public static readonly string REGISTER_NOT_FOUND = "ไม่พบข้อมูลการลงทะเบียน";
+                public static readonly string PLEASE_INPUT_PAYMENT_TRANSFER_DATE = "โปรดระบุวันที่โอนเงิน";
+                public static readonly string PLEASE_INPUT_PAYMENT_TRANSFER_AMOUNT = "โปรดระบุจำนวนเงินที่โอน";
+                public static readonly string PLEASE_INPUT_PAYMENT_TRANSFER_ATTACH = "โปรดแนบไฟล์ หรือหลักฐานการโอนเงิน";
+                public static readonly string PROJECT_QUOTA_NOT_FOUND = "ไม่พบการกำหนดจองสิทธิ์ของโครงการ";
             }
         }
 

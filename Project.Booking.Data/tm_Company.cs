@@ -47,6 +47,10 @@ public partial class tm_Company
 
     public Nullable<int> UpdateBy { get; set; }
 
+    public string TransferBank { get; set; }
+
+    public string TransferAccountNo { get; set; }
+
 
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

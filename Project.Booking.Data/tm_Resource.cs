@@ -34,6 +34,8 @@ public partial class tm_Resource
 
         this.tr_ProjectTransferPayment = new HashSet<tr_ProjectTransferPayment>();
 
+        this.ts_Payment_Transfer = new HashSet<ts_Payment_Transfer>();
+
     }
 
 
@@ -80,6 +82,10 @@ public partial class tm_Resource
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
     public virtual ICollection<tr_ProjectTransferPayment> tr_ProjectTransferPayment { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+
+    public virtual ICollection<ts_Payment_Transfer> ts_Payment_Transfer { get; set; }
 
 }
 

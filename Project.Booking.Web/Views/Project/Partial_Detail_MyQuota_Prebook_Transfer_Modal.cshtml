@@ -1,4 +1,6 @@
-﻿<div class="modal fade" id="modal-prebook-transfer" tabindex="-1" role="dialog" aria-hidden="true">
+﻿@model Project.Booking.Model.ProjectQuota
+@using Project.Booking.Extensions;
+<div class="modal fade" id="modal-prebook-transfer" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog " role="document">
         <div class="modal-content">
             <div class="modal-header" style="background-color: #f0f7f7; ">
@@ -10,7 +12,7 @@
                         <label class="lb-prebook">จำนวนสิทธิ์การจอง :</label>
                     </div>
                     <div class="col-md-8 col-xs-7 p-left-0">
-                        <label class="lb-prebook">3 สิทธิ์ (6,000 บาท)</label>
+                        <label class="lb-prebook">@Model.Quota สิทธิ์ (@(Model.TotalPrice.ToStringNumber()) บาท)</label>
                     </div>
                 </div>
                 <div class="row r-prebook">
@@ -18,7 +20,7 @@
                         <label class="lb-prebook">โอนเงินเข้า :</label>
                     </div>
                     <div class="col-md-8 col-xs-7 p-left-0">
-                        <label class="lb-prebook">ธนาคารกสิกรไทย</label>
+                        <label class="lb-prebook">@Model.TransferBank</label>
                     </div>
                 </div>
                 <div class="row r-prebook">
@@ -26,7 +28,7 @@
                         <label class="lb-prebook">เลขที่บัญชี :</label>
                     </div>
                     <div class="col-md-8 col-xs-7 p-left-0">
-                        <label class="lb-prebook">XXX-XXXXX-XXXX</label>
+                        <label class="lb-prebook">@Model.TransferAccountNo</label>
                     </div>
                 </div>
                 <div class="row r-prebook">
@@ -35,7 +37,7 @@
                     </div>
                     <div class="col-md-4 col-xs-7 p-left-0">
                         <div class="input-group">
-                            <input id="trans-date" type="text" class="form-control" aria-label="" placeholder="">
+                            <input id="trans-date" type="text" class="form-control" aria-label="" placeholder="" value="@DateTime.Now.ToString("yyyy-MM-dd")">
                             <span class="input-group-addon bg-orange"><i class="fa fa-calendar"></i></span>
                         </div>
                     </div>
@@ -45,11 +47,22 @@
                         <label class="lb-prebook">เวลา :</label>
                     </div>
                     <div class="col-md-4 col-xs-7 p-left-0" style="display:flex">
-                        <select class="form-control" style="margin-right:5px;">
-                            <option>ชั่วโมง</option>
+                        @{
+                            var now = DateTime.Now;
+                            var HH = now.Hour;
+                            var mm = now.Minute;
+                        }
+                        <select  id="trans-hour" class="form-control" style="margin-right:5px;">
+                            @for (int i = 1; i <= 24; i++)
+                            {
+                                <option @((i == HH) ? "selected" : "") value="@(i.ToString("00"))">@(i.ToString("00"))</option>
+                            }
                         </select>
-                        <select class="form-control">
-                            <option>นาที</option>
+                        <select id="trans-minute" class="form-control" style="margin-right:5px;">
+                            @for (int i = 0; i <= 59; i++)
+                            {
+                                <option @((i == mm) ? "selected" : "") value="@(i.ToString("00"))">@(i.ToString("00"))</option>
+                            }
                         </select>
                     </div>
                 </div>
@@ -58,19 +71,28 @@
                         <label class="lb-prebook">จำนวนเงิน :</label>
                     </div>
                     <div class="col-md-8 col-xs-7 p-left-0">
-                        <input type="text" id="trans-amount" class="decimal form-control" aria-label="">
+                        <input type="text" id="trans-amount" class="decimal form-control" aria-label="" value="@Model.TotalPrice.ToStringNumber()">
                     </div>
                 </div>
                 <div class="row r-prebook">
-                    <div class="col-md-12">
+                    <div class="col-md-4 col-xs-5 p-right-0">
+                        <label class="lb-prebook">แนบไฟล์โอนเงิน :</label>
+                    </div>
+                    <div class="col-md-8 col-xs-7 p-left-0">
                         <form id="form-upload" method="post">
-                            <input id="file-resource" class="" accept="image/*" type="file" name="AttachFile">
+                            <input id="file-resource" class="" accept="image/*" type="file" name="AttachFile" onchange="Prebook.showImagePreview(this, document.getElementById('imagePreview1'))" >
                         </form>
                     </div>
                 </div>
+                <div class="row r-prebook">
+                    <div class="col-md-12" style="margin-top:10px;">
+                        <img id="imagePreview1" class="img-preview" width="100%" />
+                    </div>
+                </div>
+               
                 <div class="row">
                     <div class="col-md-12 text-center">
-                        <button class="btn btn-sm btn-danger">ยืนยันการโอนเงิน</button>
+                        <button id="btn-payment-transfer" class="btn btn-sm btn-danger">ยืนยันการโอนเงิน</button>
                     </div>
                 </div>
             </div>

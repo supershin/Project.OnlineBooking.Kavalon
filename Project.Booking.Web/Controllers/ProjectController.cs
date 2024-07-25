@@ -35,6 +35,8 @@ namespace Project.Booking.Web.Controllers
             var model = project.GetProjectDetailData(projectID);
             model.Quota = project.GetRegisterQuota(model.Project.ID, UserProfile.ID);
             model.PaymentResources = project.GetTransferPaymentResourceList(model.Project.ID, UserProfile.ID);
+            model.ProjectQuotaList = prebook.GetProjectQuotaList(projectID);
+            model.PreBookList = prebook.GetProjectRegisterQuotaList(projectID, UserProfile.ID);
             if (isConutDownComplete(model)) {
                 getAllowBookDate(model);
                 return View(model);

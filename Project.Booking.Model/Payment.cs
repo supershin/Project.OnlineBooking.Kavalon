@@ -9,6 +9,7 @@ namespace Project.Booking.Model
 {
     public class Payment : ts_Payment
     {
+        public Guid ProjectID { get; set; }
         public BookingModel Booking { get; set; }
         public PaymentCredit PaymentCredit { get; set; }
         public Company Company { get; set; }

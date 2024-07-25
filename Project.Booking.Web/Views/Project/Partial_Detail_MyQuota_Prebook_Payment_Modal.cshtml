@@ -1,4 +1,5 @@
-﻿<div class="modal fade" id="modal-prebook-payment" tabindex="-1" role="dialog" aria-hidden="true">
+﻿@using Project.Booking.Constants;
+<div class="modal fade" id="modal-prebook-payment" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content">
             <div class="modal-header" style="background-color: #f0f7f7; ">
@@ -7,7 +8,7 @@
             <div class="modal-body " style="padding: 40px; max-height: calc(100vh - 212px); overflow-y: auto; ">
                 <div class="row r-prebook">
                     <div class="col-md-12 text-center div-icon" style="margin-bottom:3rem;">
-                        <button class="btn-payment-credit" data-action="select-payment">
+                        <button class="btn-payment-credit" data-action="select-payment" data-id="@Constant.Ext.PAYMENT_TYPE_CREDIT_ID">
                             <span class="btn-gradient">
                                 <i class="fa fa-credit-card"></i>
                             </span>
@@ -15,7 +16,7 @@
                         </button>
                     </div>
                     <div class="col-md-12 text-center div-icon">
-                        <button class="btn-payment-transfer" data-action="select-payment">
+                        <button class="btn-payment-transfer" data-action="select-payment" data-id="@Constant.Ext.PAYMENT_TYPE_TRANSFER_ID">
                             <span class="btn-gradient">
                                 <i class="fa fa-file-text-o"></i>
                             </span>

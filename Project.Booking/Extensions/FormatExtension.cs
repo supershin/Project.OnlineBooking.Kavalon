@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HeyRed.Mime;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -246,6 +247,12 @@ namespace Project.Booking.Extensions
             const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
             return new string(Enumerable.Repeat(chars, length)
                 .Select(s => s[random.Next(s.Length)]).ToArray());
+        }
+
+        public static string GetExtension(string contentType)
+        {
+            //MimeTypesMap.GetMimeType("filename.jpeg"); // => image/jpeg
+            return MimeTypesMap.GetExtension(contentType); // => jpeg
         }
     }
 }

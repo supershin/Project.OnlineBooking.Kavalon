@@ -74,5 +74,8 @@ namespace Project.Booking.Model
                 return 0;
             }
         }
+        public List<ProjectQuota> ProjectQuotaList { get; set; } = new List<ProjectQuota>();
+
+        public List<ProjectRegisterQuota> PreBookList { get; set; } = new List<ProjectRegisterQuota>();
     }
 }

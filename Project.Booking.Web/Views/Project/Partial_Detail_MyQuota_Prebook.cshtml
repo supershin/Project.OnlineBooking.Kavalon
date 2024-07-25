@@ -1,30 +1,32 @@
-﻿<div class="tile tile-rv">
+﻿@model List<Project.Booking.Model.ProjectQuota>
+    @using Project.Booking.Extensions;    
+<div class="tile tile-rv">
     <div class="card-list">
         <div class="title">เลือกจำนวนสิทธิ์</div>
         <div class="content">
-            <input type="radio" name="rd" id="one">
-            <input type="radio" name="rd" id="two">
-            <input type="radio" name="rd" id="three">
+            <input type="radio" data-action="select-quota" name="rd" id="one" value="@Model[0].ID">
+            <input type="radio" data-action="select-quota" name="rd" id="two" value="@Model[1].ID">
+            <input type="radio" data-action="select-quota" name="rd" id="three" value="@Model[2].ID">
             <label for="one" class="box first">
-                <div class="plan"  >
+                <div class="plan">
                     <span class="circle"></span>
-                    <span class="yearly" style="font-size: larger;">1 สิทธิ์</span>
+                    <span class="yearly" style="font-size: larger;">@Model[0].Name</span>
                 </div>
-                <span class="price"  style="font-size: larger;">3,000 บาท</span>
+                <span class="price" style="font-size: larger;">@Model[0].TotalPrice.ToStringNumber() บาท</span>
             </label>
             <label for="two" class="box second">
                 <div class="plan">
                     <span class="circle"></span>
-                    <span class="yearly" style="font-size: larger;">2 สิทธิ์</span>
+                    <span class="yearly" style="font-size: larger;">@Model[1].Name</span>
                 </div>
-                <span class="price" style="font-size: larger;">6,000 บาท</span>
+                <span class="price" style="font-size: larger;">@Model[1].TotalPrice.ToStringNumber() บาท</span>
             </label>
             <label for="three" class="box third">
                 <div class="plan">
                     <span class="circle"></span>
-                    <span class="yearly" style="font-size: larger;">3 สิทธิ์</span>
+                    <span class="yearly" style="font-size: larger;">@Model[2].Name</span>
                 </div>
-                <span class="price" style="font-size: larger;">9,000 บาท</span>
+                <span class="price" style="font-size: larger;">@Model[2].TotalPrice.ToStringNumber() บาท</span>
             </label>
         </div>
         <div class="content">

@@ -22,11 +22,11 @@ public partial class tm_Register
     public tm_Register()
     {
 
-        this.tr_ProjectRegisterQuota = new HashSet<tr_ProjectRegisterQuota>();
-
         this.tr_ProjectTransferPayment = new HashSet<tr_ProjectTransferPayment>();
 
         this.ts_Booking = new HashSet<ts_Booking>();
+
+        this.tr_ProjectRegisterQuota = new HashSet<tr_ProjectRegisterQuota>();
 
     }
 
@@ -73,15 +73,15 @@ public partial class tm_Register
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
-    public virtual ICollection<tr_ProjectRegisterQuota> tr_ProjectRegisterQuota { get; set; }
-
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-
     public virtual ICollection<tr_ProjectTransferPayment> tr_ProjectTransferPayment { get; set; }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
     public virtual ICollection<ts_Booking> ts_Booking { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+
+    public virtual ICollection<tr_ProjectRegisterQuota> tr_ProjectRegisterQuota { get; set; }
 
 }
 

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace Project.Booking.Business.Interfaces
 {
@@ -21,5 +22,7 @@ namespace Project.Booking.Business.Interfaces
 
         DateTime? GetRegisterAllowBookDate(Guid registerID);
         List<Unit> GetUnitAvailable(Guid projectID);
+
+        void UploadFile(string filePath, HttpPostedFile post);
     }
 }

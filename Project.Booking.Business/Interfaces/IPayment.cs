@@ -1,4 +1,5 @@
-﻿using Project.Booking.Model;
+﻿using Project.Booking.Data;
+using Project.Booking.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,5 +14,6 @@ namespace Project.Booking.Business.Interfaces
         void SavePaymentCredit(PaymentCredit model);
         PaymentCredit GetPaymentCredit(Guid paymentID);
         Payment GetPayment(Guid paymentID);
+        string GeneratePaymentNumber(OnlineBookingEntities context, Guid projectID);
     }
 }

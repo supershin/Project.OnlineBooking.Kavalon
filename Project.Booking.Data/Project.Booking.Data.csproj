@@ -146,6 +146,9 @@
     <Compile Include="tr_ProjectModelType.cs">
       <DependentUpon>Booking.tt</DependentUpon>
     </Compile>
+    <Compile Include="tr_ProjectQuota.cs">
+      <DependentUpon>Booking.tt</DependentUpon>
+    </Compile>
     <Compile Include="tr_ProjectRegisterQuota.cs">
       <DependentUpon>Booking.tt</DependentUpon>
     </Compile>
@@ -174,6 +177,9 @@
       <DependentUpon>Booking.tt</DependentUpon>
     </Compile>
     <Compile Include="ts_Payment_Credit.cs">
+      <DependentUpon>Booking.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ts_Payment_Transfer.cs">
       <DependentUpon>Booking.tt</DependentUpon>
     </Compile>
     <Compile Include="ts_Unitbooking_History.cs">
