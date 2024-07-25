@@ -185,6 +185,7 @@
     <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Controllers\ProjectController.cs" />
     <Compile Include="Controllers\MaintainController.cs" />
+    <Compile Include="Controllers\FavouriteController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Filters\CustomAuthenticationFilter.cs" />
@@ -597,6 +598,7 @@
     <Content Include="Views\Project\Partial_Detail_MyQuota_Prebook_Payment_Modal.cshtml" />
     <Content Include="Views\Project\Partial_Detail_MyQuota_Prebook_Payment_Detail_Modal.cshtml" />
     <Content Include="Views\Templates\Activate_Email.cshtml" />
+    <Content Include="Views\Favourite\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

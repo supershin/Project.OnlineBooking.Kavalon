@@ -91,9 +91,10 @@
                         <li><a class="a-user" href="#"><i class="fa fa-user"></i> @Html.UserProfile().FirstName</a></li>
                         @*<li><a class="@((ViewBag.Active=="project")?"active" : "") " href="@($"{ViewBag.BaseUrl}project/detail/49111659-adcf-405c-99ea-07daa573b25a")"><i class="fa fa-building-o"></i> FLOOR PLAN</a></li>*@
                         <li><a class="@((ViewBag.Active=="project")?"active" : "") " href="@Url.Action("detail/" + Constant.REDIRECT_PROJECT_ID,"project")"><i class="fa fa-building-o"></i> MASTER PLAN</a></li>
+                        <li><a class="@((ViewBag.Active=="favourite")?"active" : "")" href="@Url.Action("index","Favourite")"><i class="fa fa-heart"></i> MY Favourite</a></li>
                         <li><a class="@((ViewBag.Active=="booking")?"active" : "")" href="@Url.Action("index","booking")"><i class="fa fa-list"></i> MY BOOKING</a></li>
                         @*<li><a href="~/Resources/00102013/Content/The Title Legendary E-Brochure.pdf"><i class="fa fa-file"></i> E-Brochure</a></li>
-                        <li><a href="~/Resources/00102013/Video/SaleKitTutorail.mp4" data-fancybox="tutorial"><i class="fa fa-play"></i> TUTORIAL</a></li>*@
+        <li><a href="~/Resources/00102013/Video/SaleKitTutorail.mp4" data-fancybox="tutorial"><i class="fa fa-play"></i> TUTORIAL</a></li>*@
                         <li><a class="" href="@Url.Action("logout" ,"register")"><i class="fa fa-sign-out"></i> SIGN OUT</a></li>
                     </ul>
                 </div>
